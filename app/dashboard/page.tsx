@@ -148,7 +148,7 @@ export default function DashboardPage() {
           ].map((item) => (
             <div
               key={item.label}
-              className="bg-base-100 p-4 rounded-lg shadow-sm hover:shadow-md transition-all"
+              className=" p-4 rounded-lg border border-context/60 transition-all"
             >
               <p className="text-sm text-base-content/70 mb-2 text-center">
                 {item.label}
