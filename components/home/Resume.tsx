@@ -117,8 +117,8 @@ const ResumeSections: React.FC = () => {
   const aboutData = useMemo(() => initializeAboutData(aboutDataJson), []);
 
   return (
-    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist">
-      <div className="flex flex-col gap-6">
+    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist py-6">
+      <div className="flex flex-col gap-12">
 
         {/* ================= Experience ================= */}
         <div>

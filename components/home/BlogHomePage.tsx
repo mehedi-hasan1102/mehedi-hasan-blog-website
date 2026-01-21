@@ -58,7 +58,7 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
   }, [latestBlogs]);
 
   return (
-    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist">
+    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist py-6">
       {/* Header */}
       <div className="mb-5">
         <h2 className="text-lg font-semibold tracking-tight">

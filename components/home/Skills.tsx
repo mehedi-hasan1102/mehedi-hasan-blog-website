@@ -54,7 +54,7 @@ const SkillsSection: React.FC = () => {
   const marqueeRow2 = useMemo(() => [...techIconsRow2, ...techIconsRow2], []);
 
   return (
-    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist">
+    <section className="max-w-3xl mx-auto px-4 py-6 text-base-content font-geist">
       {/* Header */}
       <div className="mb-5">
         <h2 className="text-lg font-semibold tracking-tight">
