@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useMemo, useState, useCallback } from "react";
-import { motion } from "framer-motion";
 import { Eye, ArrowUpRight, Github } from "lucide-react";
 import projectsData from "../../data/projects.json";
 import ProjectModal from "@/components/projects/ProjectModal";
@@ -48,33 +47,25 @@ const AllProjectsPage: React.FC = () => {
 
   return (
     <>
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="text-base-content font-geist mx-auto pt-1 max-w-3xl"
-      >
-        <div className="relative overflow-hidden rounded-lg p-4 backdrop-blur-sm  transition-shadow duration-300">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            viewport={{ once: true }}
-            className="my-4 text-start"
-          >
+      <section className="text-base-content font-geist mx-auto pt-1 max-w-3xl">
+        <div className="relative overflow-hidden rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300">
+          <div className="my-4 text-start">
             <h2 className="text-3xl">Projects</h2>
-             <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed"> I’ve developed commercial projects as well as hobby projects. All projects are included (along with course related projects) here.</h3>
-          </motion.div>
+            <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
+              I’ve developed commercial projects as well as hobby projects. All projects are included (along with course related projects) here.
+            </h3>
+          </div>
 
+          {/* Filter Buttons */}
           <div className="flex justify-center gap-2 mb-2 flex-wrap">
             {["All", "Frontend", "Backend", "Full Stack"].map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type as FilterType)}
-                className={`p-2 cursor-pointer px-2 py-2 rounded-lg transition text-sm
-                  hover:text-primary 
-                  group inline-flex items-center gap-2 font-geist duration-300
+                className={`
+                  px-3 py-2 rounded-lg text-sm font-geist transition duration-200
+                  hover:text-primary hover:scale-105
                   ${filter === type ? "scale-105 underline underline-offset-6 decoration-wavy decoration-2 decoration-primary" : "text-base-content"}
-                  hover:scale-105
                 `}
               >
                 {type}
@@ -84,17 +75,12 @@ const AllProjectsPage: React.FC = () => {
 
           <div className="h-[1px] bg-primary/40 mb-2"></div>
 
+          {/* Project List */}
           <div className="space-y-2">
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <div
                 key={project.title}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="
-                  group overflow-hidden rounded-md
-                  px-4 py-2 sm:py-6
-                  transition-colors
-                  hover:bg-base-200/60
-                "
+                className="group overflow-hidden rounded-md px-4 py-2 sm:py-6 transition-colors hover:bg-base-200/60"
               >
                 <div className="flex flex-col sm:flex-row gap-4">
                   {/* Image */}
@@ -104,14 +90,10 @@ const AllProjectsPage: React.FC = () => {
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 250px"
-                      priority={index === 0} // only first project image preloads
+                      priority={index === 0}
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      className="
-                        object-cover rounded-lg
-                        transition-transform duration-300
-                        group-hover:scale-105
-                      "
+                      className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
 
@@ -178,7 +160,7 @@ const AllProjectsPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -196,7 +178,7 @@ const AllProjectsPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <ProjectModal
         showModal={showModal}

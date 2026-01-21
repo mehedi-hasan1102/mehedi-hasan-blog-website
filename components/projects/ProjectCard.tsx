@@ -25,17 +25,15 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
-
   // Memoize project to prevent re-render on parent updates
   const memoProject = useMemo(() => project, [project]);
 
   return (
     <div
       className="
-        relative border border-primary/30  rounded-lg p-4 overflow-hidden
+        relative border border-primary/30 rounded-lg p-4 overflow-hidden
         shadow-sm transition-transform transition-shadow duration-300
-        transform-gpu will-change-transform
-        hover:shadow-xl hover:-translate-y-1 
+        hover:shadow-xl hover:-translate-y-1
       "
     >
       {/* Border Beam */}
@@ -48,7 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
       />
 
       {/* Media */}
-      <div className="overflow-hidden rounded-lg relative w-full h-32 sm:h-36 mb-2 hidden sm:block ">
+      <div className="overflow-hidden rounded-lg relative w-full h-32 sm:h-36 mb-2 hidden sm:block">
         {memoProject.videos?.length ? (
           <video
             src={memoProject.videos[0]}
@@ -66,14 +64,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
             alt={memoProject.title}
             fill
             style={{ objectFit: 'cover' }}
-            className="rounded-lg transition-transform duration-500 transform-gpu will-change-transform motion-safe:group-hover:scale-105"
+            className="rounded-lg transition-transform duration-300 hover:scale-105"
           />
         )}
       </div>
 
       {/* Info */}
-      <div className='space-y-2'>
-        <h3 className="font-medium ">{memoProject.title}</h3>
+      <div className="space-y-2">
+        <h3 className="font-medium">{memoProject.title}</h3>
         <p className="text-sm text-base-content/80 leading-relaxed">
           {memoProject.description.length > 64
             ? `${memoProject.description.slice(0, 64)}...`
@@ -85,7 +83,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
           {memoProject.techStack.slice(0, 3).map((tech, i) => (
             <span
               key={`${tech}-${i}`}
-              className="px-2 py-0 text-xs sm:text-xs rounded-full bg-base-100 shadow whitespace-nowrap border border-primary/30"
+              className="px-2 py-0 text-xs rounded-full bg-base-100 shadow whitespace-nowrap border border-primary/30"
             >
               {tech}
             </span>
@@ -98,14 +96,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
             href={memoProject.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-6 decoration-dashed hover:underline rounded-lg inline-flex items-center gap-1 hover:text-primary text-sm transition-transform duration-300 hover:translate-x-1"
+            className="inline-flex items-center gap-1 hover:text-primary hover:translate-x-1 transition-transform duration-300 underline-offset-6 decoration-dashed hover:underline"
           >
             <ArrowUpRight size={14} /> Live
           </a>
+
           <button
             onClick={() => onOpenModal(memoProject)}
             aria-label={`View details for ${memoProject.title}`}
-            className="underline-offset-6 decoration-dashed hover:underline rounded-lg inline-flex items-center gap-1 hover:text-primary text-sm transition-transform duration-300 hover:translate-x-1"
+            className="inline-flex items-center gap-1 hover:text-primary hover:translate-x-1 transition-transform duration-300 underline-offset-6 decoration-dashed hover:underline"
           >
             <Eye size={14} /> Details
           </button>

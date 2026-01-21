@@ -3,25 +3,12 @@
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { BlogMetaData } from "@/lib/blogs";
-import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useMemo } from "react";
 
 interface BlogHomePageProps {
   latestBlogs: BlogMetaData[];
 }
-
-/* ---------------- Entry Animation ---------------- */
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  },
-};
 
 export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
   // 🔹 Memoized blog items
@@ -31,11 +18,11 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
       return (
         <li
           key={blog.slug}
-          className="transition-transform duration-200 ease-out hover:translate-x-1 "
+          className="transition-transform duration-200 ease-out hover:translate-x-1"
         >
           <Link
             href={blogHref}
-            className="group flex flex-row gap-4 p-4 rounded-lg   border border-primary/30  transition-colors duration-200"
+            className="group flex flex-row gap-4 p-4 rounded-lg border border-primary/30 transition-colors duration-200"
           >
             {/* Image */}
             <div className="hidden sm:block w-32 h-24 relative flex-shrink-0">
@@ -67,15 +54,10 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
 
   return (
     <section className="text-base-content font-geist max-w-3xl mx-auto pt-1">
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        className="rounded-lg p-4   backdrop-blur-sm"
-      >
+      <div className="rounded-lg p-4 backdrop-blur-sm">
         {/* Header */}
         <div className="text-start m-4">
-          <p className="text-sm text-base-contentq">• Blog</p>
+          <p className="text-sm text-base-content">• Blog</p>
           <h2 className="text-2xl">
             Recent <span className="text-base-content/60">Updates</span>
           </h2>
@@ -83,11 +65,11 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
 
         {/* Blog List */}
         {latestBlogs.length === 0 ? (
-          <p className="text-sm text-base-content/50 text-center py-4 hover:bg-200">
+          <p className="text-sm text-base-content/50 text-center py-4">
             No blog posts available.
           </p>
         ) : (
-          <ul className="flex flex-col gap-4 ">{blogItems}</ul>
+          <ul className="flex flex-col gap-4">{blogItems}</ul>
         )}
 
         {/* Footer */}
@@ -103,7 +85,7 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
             />
           </Link>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

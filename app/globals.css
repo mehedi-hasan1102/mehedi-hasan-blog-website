@@ -6,7 +6,7 @@
 
 /* DaisyUI plugin with only selected themes */
 @plugin "daisyui" {
-  themes: lemonade, abyss;  /* Only use lemonade and abyss themes */
+  themes: light, dark;  /* Only use light and dark themes */
 }
 
 /* =====================================================
@@ -148,3 +148,5 @@ html.custom-cursor-active [data-show-cursor="pointer"] {
 html.custom-cursor-active textarea {
   cursor: text !important;
 } */
+
+

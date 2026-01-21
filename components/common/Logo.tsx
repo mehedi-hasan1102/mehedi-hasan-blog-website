@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import clsx from "clsx";
 import { Birthstone } from "next/font/google";
@@ -24,10 +23,10 @@ export default function Logo({
 }: LogoProps) {
   return (
     <Link href={href} className={clsx("inline-flex", className)}>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="flex items-center gap-2 cursor-pointer select-none"
+      <div
+        className="flex items-center gap-2 cursor-pointer select-none
+                   transition-transform duration-200 ease-out
+                   hover:scale-[1.03]"
       >
         {showIcon && (
           <Code2 size={22} className="text-primary" />
@@ -39,7 +38,7 @@ export default function Logo({
           Mehedi
           <span className="text-base-content/60"> Hasan</span>
         </span>
-      </motion.div>
+      </div>
     </Link>
   );
 }

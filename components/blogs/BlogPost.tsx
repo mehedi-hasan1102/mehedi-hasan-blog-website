@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { Blog } from "../../lib/blogs";
-import { motion } from "framer-motion";
 import { ScrollProgress } from "../ui/scroll-progress";
 import Image from "next/image";
 
@@ -60,14 +59,10 @@ export default function BlogPost({ blog }: Props) {
   }, [blog.fullContent]);
 
   return (
-    <div className="pt-1 max-w-3xl mx-auto ">
+    <div className="pt-1 max-w-3xl mx-auto">
       <ScrollProgress />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative overflow-hidden rounded-lg p-4  backdrop-blur-sm transition-shadow duration-300 font-geist"
-      >
+
+      <div className="relative overflow-hidden rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300 font-geist">
         {/* Title */}
         <h1 className="text-3xl my-4 leading-tight">{blog.title}</h1>
 
@@ -83,7 +78,7 @@ export default function BlogPost({ blog }: Props) {
               src={blog.image}
               alt={blog.title}
               fill
-              className="object-cover  rounded-xl transition-transform duration-500 hover:scale-105"
+              className="object-cover rounded-xl"
               quality={100}
             />
           </div>
@@ -109,7 +104,7 @@ export default function BlogPost({ blog }: Props) {
           "
           dangerouslySetInnerHTML={{ __html: blog.fullContent }}
         />
-      </motion.div>
+      </div>
     </div>
   );
 }

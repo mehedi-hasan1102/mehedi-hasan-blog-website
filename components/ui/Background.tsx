@@ -34,7 +34,7 @@ const Background: React.FC<LightRaysProps> = ({
       };
     }
     const theme = document.documentElement.getAttribute("data-theme");
-    const isDark = theme === "abyss";
+    const isDark = theme === "dark";
     return {
       borderColor: isDark ? "#333" : "#ccc",
       hoverFillColor: isDark ? "#222" : "#f0f0f0",

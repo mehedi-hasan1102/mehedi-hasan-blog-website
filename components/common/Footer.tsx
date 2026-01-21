@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
 import { Github, Linkedin } from "lucide-react";
 import { FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -20,11 +19,9 @@ interface NavLink {
   href: string;
 }
 
-
 const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL!;
 
 /* ---------------- Component ---------------- */
-
 
 const Footer = () => {
   const socialLinks: SocialLink[] = [
@@ -37,90 +34,56 @@ const Footer = () => {
   const mainPages: NavLink[] = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-   
     { label: "Projects", href: "/projects" },
-     { label: "Blog", href: "/blog" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
 
-  const ResourcesPages: NavLink[] = [
-    
+  const resourcesPages: NavLink[] = [
     { label: "Links", href: "/links" },
-   
-    // { label: "Resume", href: "/Resume_of_Mehedi_Hasan.pdf" },
-     { label: "Dashboard", href: "/dashboard" },
-    {
-  label: "Book a Meeting",
-  href: CALENDLY_URL,
-}
-
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Book a Meeting", href: CALENDLY_URL },
   ];
 
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="mx-auto max-w-3xl backdrop-blur-xl  mt-1 rounded-t-xl px-0 pt-0 pb-6 text-sm text-base-content"
-    >
+    <footer className="mx-auto max-w-3xl backdrop-blur-xl mt-1 rounded-t-xl px-0 pt-0 pb-6 text-sm text-base-content">
       {/* Divider */}
-      
-       <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: "100%" }}
-          transition={{ duration: 0.5 }}
-          className="h-px bg-primary/30 w-full mb-10"
-        />
-        
- {/* <motion.div
- initial={{ width: 0 }}
-          whileInView={{ width: "100%" }}
-          transition={{ duration: 0.5 }}
- className="mb-10 h-px w-full bg-base-content/10" /> */}
+      <div className="h-px bg-primary/30 w-full mb-10" />
 
+      {/* MOBILE */}
+      <div className="space-y-12 md:hidden px-4">
+        <div className="flex justify-between">
+          {/* Main Pages */}
+          <div>
+            <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
+              Main Pages
+            </p>
+            <div className="flex flex-col gap-3 text-base-content/70">
+              {mainPages.map((link) => (
+                <Link key={link.label} href={link.href} className="hover:text-primary transition">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-{/* <div className="mb-12 h-px w-full bg-base-content/10" /> */}
-
-      {/* ---------------- MOBILE (Peerlist style) ---------------- */}
-      <div className="space-y-12 md:hidden px-4 ">
-
-
-        <div className="flex  justify-between">
-          
-           {/* Main Pages */}
-        <div>
-          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
-            Main Pages
-          </p>
-          <div className="flex flex-col gap-3 text-base-content/70">
-            {mainPages.map((link) => (
-              <Link key={link.label} href={link.href} className="hover:text-primary transition">
-                {link.label}
-              </Link>
-            ))}
+          {/* Resources */}
+          <div>
+            <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
+              Resources
+            </p>
+            <div className="flex flex-col gap-3 text-base-content/70">
+              {resourcesPages.map((link) => (
+                <Link key={link.label} href={link.href} className="hover:text-primary transition">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Resources */}
-        <div>
-          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
-            Resources
-          </p>
-          <div className="flex flex-col gap-3 text-base-content/70">
-            {ResourcesPages.map((link) => (
-              <Link key={link.label} href={link.href} className="hover:text-primary transition">
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div></div>
-        
-
         {/* Brand */}
-        {/* <div className="border-t border-base-content/10 pt-6 "> */}
-         <div className="border-t border-base-content/10 pt-6 ">
-        
+        <div className="border-t border-base-content/10 pt-6">
           <Logo />
 
           <div className="mt-4 flex gap-4 text-base-content/70">
@@ -144,19 +107,16 @@ const Footer = () => {
           <p className="mt-4 text-xs text-base-content/40">
             © {new Date().getFullYear()} Mehedi Hasan
           </p>
-{/* this div use for available badge  */}
 
           <div className="mb-12"></div>
         </div>
       </div>
 
-      {/* ---------------- DESKTOP (3 columns) ---------------- */}
+      {/* DESKTOP */}
       <div className="hidden md:grid grid-cols-3 gap-12 px-4">
         {/* Brand */}
         <div className="flex flex-col gap-4">
           <Logo />
-         
-
 
           <div className="flex gap-4 text-base-content/70">
             {socialLinks.map((link) => {
@@ -168,7 +128,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="hover:text-primary transition  hover:rotate-12 "
+                  className="hover:text-primary transition hover:rotate-12"
                 >
                   <Icon size={18} />
                 </a>
@@ -176,18 +136,22 @@ const Footer = () => {
             })}
           </div>
 
-          <p className="text-xs text-base-content/40 ">
+          <p className="text-xs text-base-content/40">
             © {new Date().getFullYear()} Mehedi Hasan
           </p>
         </div>
 
         {/* Main Pages */}
         <div className="flex flex-col gap-3 text-base-content/70">
-        <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
+          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
             Main Pages
           </p>
           {mainPages.map((link) => (
-            <Link key={link.label} href={link.href} className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline">
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline"
+            >
               {link.label}
             </Link>
           ))}
@@ -195,17 +159,21 @@ const Footer = () => {
 
         {/* Resources */}
         <div className="flex flex-col gap-3 text-base-content/70">
-        <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40 ">
+          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
             Resources
           </p>
-          {ResourcesPages.map((link) => (
-            <Link key={link.label} href={link.href} className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline">
+          {resourcesPages.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline"
+            >
               {link.label}
             </Link>
           ))}
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 

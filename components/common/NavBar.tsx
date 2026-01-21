@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { Menu, X, Github, Linkedin } from "lucide-react";
 
 import Link from "next/link";
@@ -20,13 +19,15 @@ interface SocialLink {
 
 const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const pathname = usePathname();
 
-  const socialLinks: SocialLink[] = useMemo(() => [
-    { icon: Github, url: "https://github.com/mehedi-hasan1102", label: "GitHub" },
-    { icon: Linkedin, url: "https://www.linkedin.com/in/mehedi-hasan1102", label: "LinkedIn" },
-  ], []);
+  const socialLinks: SocialLink[] = useMemo(
+    () => [
+      { icon: Github, url: "https://github.com/mehedi-hasan1102", label: "GitHub" },
+      { icon: Linkedin, url: "https://www.linkedin.com/in/mehedi-hasan1102", label: "LinkedIn" },
+    ],
+    []
+  );
 
   const isActive = useCallback((route: string) => pathname === route, [pathname]);
 
@@ -49,10 +50,14 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
       <div className="w-full max-w-3xl mx-auto font-geist">
 
         {/* Desktop Navbar */}
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: -20 }}
-          animate={reduceMotion ? false : { opacity: 1, y: 0 }}
-          className="backdrop-blur-sm flex items-center justify-between border border-primary/30  text-base-content px-4 py-3 rounded-lg shadow-lg transition-shadow duration-300"
+        <div
+          className="backdrop-blur-sm flex items-center justify-between text-base-content px-4 py-3 border-b border-primary/30 duration-300
+                     transition-all"
+          style={
+            reduceMotion
+              ? {}
+              : { transform: "translateY(0)", opacity: 1 }
+          }
         >
           <Logo />
 
@@ -85,15 +90,15 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
             {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
-                <motion.a
+                <a
                   key={link.label}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:text-primary hover:rotate-12 transition"
+                  className="p-2 rounded-lg hover:text-primary transition-transform duration-200 hover:scale-105"
                 >
                   <Icon size={18} />
-                </motion.a>
+                </a>
               );
             })}
             <div className="ml-2 pl-2 border-l border-primary/30">
@@ -106,87 +111,78 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
             <SearchToggle blogs={blogs} />
             <ThemeToggle />
             {!menuOpen && (
-              <motion.button
+              <button
                 onClick={() => setMenuOpen(true)}
-                whileHover={reduceMotion ? {} : { scale: 1.05 }}
-                className="p-2 rounded-full hover:bg-base-200/30"
+                className="p-2 rounded-full hover:bg-base-200/30 transition duration-200"
               >
                 <Menu size={18} />
-              </motion.button>
+              </button>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* MOBILE DRAWER */}
-        <AnimatePresence>
-          {menuOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-20 md:hidden bg-black/20 backdrop-blur-sm"
-                onClick={() => setMenuOpen(false)}
-              />
+        {menuOpen && (
+          <>
+            <div
+              className="fixed inset-0 z-20 md:hidden bg-dark/20 backdrop-blur-sm"
+              onClick={() => setMenuOpen(false)}
+            />
 
-              <motion.div
-                initial={{ x: "-100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "-100%" }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="fixed top-0 left-0 h-full w-full max-w-[75%] bg-base-200 text-base-content z-100 shadow-2xl flex flex-col justify-between px-6 py-4 rounded-r-lg border-r border-t border-b border-primary/30"
-              >
-                <div className="flex items-center justify-between px-5 py-4 border-b border-primary/30">
-                  <Logo />
-                  <button
-                    onClick={() => setMenuOpen(false)}
-                    aria-label="Close menu"
-                    className="p-1 rounded-lg hover:scale-120 bg-base-200 text-red-500 shadow-md hover:bg-primary/20 hover:text-red-500 transition-all duration-200"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
+            <div
+              className="fixed top-0 left-0 h-full w-full max-w-[75%] bg-base-200 text-base-content z-30 shadow-2xl flex flex-col justify-between px-6 py-4 rounded-r-lg border-r border-t border-b border-primary/30
+                         transition-transform duration-300 ease-out"
+            >
+              <div className="flex items-center justify-between px-5 py-4 border-b border-primary/30">
+                <Logo />
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close menu"
+                  className="p-1 rounded-lg bg-base-200 text-red-500 shadow-md hover:bg-primary/20 hover:text-red-500 transition-all duration-200"
+                >
+                  <X size={18} />
+                </button>
+              </div>
 
-                <ul className="flex-1 flex flex-col gap-2 mt-4">
-                  {[
-                    { name: "Home", route: "/" },
-                    { name: "About", route: "/about" },
-                    { name: "Projects", route: "/projects" },
-                    { name: "Blog", route: "/blog" },
-                    { name: "Contact", route: "/contact" },
-                  ].map((item) => (
-                    <li key={item.route}>
-                      <Link
-                        href={item.route}
-                        onClick={() => setMenuOpen(false)}
-                        className="block w-full px-4 py-3 rounded-lg text-base font-medium hover:bg-primary/10 hover:text-primary transition"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <ul className="flex-1 flex flex-col gap-2 mt-4">
+                {[
+                  { name: "Home", route: "/" },
+                  { name: "About", route: "/about" },
+                  { name: "Projects", route: "/projects" },
+                  { name: "Blog", route: "/blog" },
+                  { name: "Contact", route: "/contact" },
+                ].map((item) => (
+                  <li key={item.route}>
+                    <Link
+                      href={item.route}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full px-4 py-3 rounded-lg text-base font-medium hover:bg-primary/10 hover:text-primary transition"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-                <div className="px-5 py-4 border-t border-primary/30 flex items-center gap-3 justify-center">
-                  {socialLinks.map((link) => {
-                    const Icon = link.icon;
-                    return (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-full hover:text-primary hover:bg-base-300/30 transition"
-                      >
-                        <Icon size={18} />
-                      </a>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+              <div className="px-5 py-4 border-t border-primary/30 flex items-center gap-3 justify-center">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full hover:text-primary hover:bg-base-300/30 transition"
+                    >
+                      <Icon size={18} />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );

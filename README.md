@@ -18,7 +18,7 @@ Blog Listing: Centralized blog section rendered from local content or MDX
 
 GitHub Contribution Calendar: Visual representation of my coding activity
 
-Theme Switcher: Abyss / Lemonade theme toggle using DaisyUI
+Theme Switcher: dark / light theme toggle using DaisyUI
 
 Responsive Layout: Fully optimized for all devices
 

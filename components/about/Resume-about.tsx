@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import {  ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import aboutDataJson from "@/data/resume.json";
-
 
 /* ---------------- Types ---------------- */
 interface ExperienceItem {
@@ -49,133 +47,113 @@ const ResumeAboutSections: React.FC = () => {
   );
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="text-base-content font-geist max-w-3xl mx-auto pt-6 px-0 space-y-8"
-    >
+    <section className="text-base-content font-geist max-w-3xl mx-auto pt-6 px-0 space-y-8">
       {/* ================= Experience ================= */}
-      <motion.div
-        className="relative  rounded-lg p-0 backdrop-blur-sm "
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
+      <div className="relative rounded-lg p-0 backdrop-blur-sm">
         <h3 className="flex items-center gap-3 text-xl mb-4">
           Experience
         </h3>
 
         <ul className="space-y-4">
           {aboutData.experience.map((item, idx) => (
-            <motion.li
-  key={idx}
-  transition={{ type: "spring", stiffness: 300 }}
-  className="
-    group p-4 rounded-lg
-    transition-colors transition-shadow
-    hover:bg-base-200
-  "
->
-  <p className="font-medium transition-colors ">
-    {item.title}
-  </p>
+            <li
+              key={idx}
+              className="
+                group p-4 rounded-lg
+                transition-colors transition-shadow
+                hover:bg-base-200
+              "
+            >
+              <p className="font-medium transition-colors">
+                {item.title}
+              </p>
 
-  {item.organization && (
-    <p className="mt-1 text-base-content/70 transition-colors ">
-      {item.organization}
-      {item.time && ` | ${item.time}`}
-    </p>
-  )}
+              {item.organization && (
+                <p className="mt-1 text-base-content/70 transition-colors">
+                  {item.organization}
+                  {item.time && ` | ${item.time}`}
+                </p>
+              )}
 
-  {item.description && (
-    <p className="mt-2 text-sm leading-relaxed text-base-content/60 transition-colors ">
-      {item.description}
-    </p>
-  )}
+              {item.description && (
+                <p className="mt-2 text-sm leading-relaxed text-base-content/60 transition-colors">
+                  {item.description}
+                </p>
+              )}
 
-  {item.profileLink && (
-    <a
-      href={item.profileLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        inline-flex mt-2 items-center gap-1 text-sm
-        text-base-content/70
-        transition-all
-        hover:text-primary
-        underline-offset-6 decoration-dashed
-        hover:underline
-      "
-    >
-      View Profile
-      <ArrowUpRight
-        size={14}
-        className="transition-transform group-hover:translate-x-1"
-      />
-    </a>
-  )}
-</motion.li>
-
+              {item.profileLink && (
+                <a
+                  href={item.profileLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex mt-2 items-center gap-1 text-sm
+                    text-base-content/70
+                    transition-all
+                    hover:text-primary
+                    underline-offset-6 decoration-dashed
+                    hover:underline
+                  "
+                >
+                  View Profile
+                  <ArrowUpRight
+                    size={14}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </a>
+              )}
+            </li>
           ))}
         </ul>
-      </motion.div>
+      </div>
 
       {/* ================= Education ================= */}
-      <motion.div
-        className="relative  rounded-lg p-0 backdrop-blur-sm "
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
+      <div className="relative rounded-lg p-0 backdrop-blur-sm">
         <h3 className="flex items-center gap-3 text-xl mb-4">
-           Education
+          Education
         </h3>
 
         <ul className="space-y-4">
           {aboutData.education.map((edu, idx) => (
-            <motion.li
-  key={idx}
-  transition={{ type: "spring", stiffness: 300 }}
-  className="group p-4 rounded-lg hover:bg-base-200 transition-colors"
->
-  <p className="font-medium transition-colors ">
-    {edu.institution}
-  </p>
+            <li
+              key={idx}
+              className="group p-4 rounded-lg hover:bg-base-200 transition-colors"
+            >
+              <p className="font-medium transition-colors">
+                {edu.institution}
+              </p>
 
-  <p className="mt-1 text-base-content/70 transition-colors ">
-    {edu.degree}
-    {edu.details && ` | ${edu.details}`}
-  </p>
+              <p className="mt-1 text-base-content/70 transition-colors">
+                {edu.degree}
+                {edu.details && ` | ${edu.details}`}
+              </p>
 
-  {edu.credentialLink && (
-    <a
-      href={edu.credentialLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-        inline-flex mt-2 items-center gap-1 text-sm
-        text-base-content/70
-        transition-all
-        hover:text-primary
-        underline-offset-6 decoration-dashed
-        hover:underline
-      "
-    >
-      View Credential
-      <ArrowUpRight
-        size={14}
-        className="transition-transform group-hover:translate-x-1"
-      />
-    </a>
-  )}
-</motion.li>
-
+              {edu.credentialLink && (
+                <a
+                  href={edu.credentialLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex mt-2 items-center gap-1 text-sm
+                    text-base-content/70
+                    transition-all
+                    hover:text-primary
+                    underline-offset-6 decoration-dashed
+                    hover:underline
+                  "
+                >
+                  View Credential
+                  <ArrowUpRight
+                    size={14}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </a>
+              )}
+            </li>
           ))}
         </ul>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 };
 

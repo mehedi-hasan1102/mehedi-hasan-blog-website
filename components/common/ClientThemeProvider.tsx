@@ -11,7 +11,7 @@ export const ClientThemeProvider = ({ children }: Props) => {
   // via the `ThemeToggle` component that manages `data-theme`.
   useEffect(() => {
     // Ensure the theme is applied on page load
-    const storedTheme = localStorage.getItem("theme") || "abyss";
+    const storedTheme = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", storedTheme);
   }, []);
 

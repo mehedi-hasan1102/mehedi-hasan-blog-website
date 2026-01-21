@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useMemo, useCallback } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { Blog } from "../../lib/blogs";
 
@@ -47,25 +46,17 @@ export function BlogContent({ years, structured }: BlogContentProps) {
   }, [years, structured]);
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="w-full  mx-auto font-geist rounded-lg backdrop-blur-sm transition-shadow p-4"
-    >
+    <section className="w-full mx-auto font-geist rounded-lg backdrop-blur-sm p-4">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        viewport={{ once: true }}
-        className="my-4 text-start "
-      >
+      <div className="my-4 text-start">
         <h2 className="text-3xl">Blog</h2>
-        <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed"> I've been programming for almost 2 years now. Throughout this year, I've worked with various technologies. I'm here to share just that. </h3>
-      </motion.div>
+        <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
+          I've been programming for almost 2 years now. Throughout this year, I've worked with various technologies. I'm here to share just that.
+        </h3>
+      </div>
 
       {sortedData.length === 0 ? (
-        <p className="text-center justify-center items-center text-base-content/60 mt-6">
+        <p className="text-center text-base-content/60 mt-6">
           No blogs found.
         </p>
       ) : (
@@ -82,12 +73,11 @@ export function BlogContent({ years, structured }: BlogContentProps) {
 
                 <div className="space-y-2">
                   {blogs.map((blog) => (
-                    <motion.div
+                    <div
                       key={blog.slug}
                       className="
                         group flex gap-2 sm:gap-4 rounded-lg
                         px-4 py-2 sm:py-6
-                        transition-all
                         hover:bg-base-200
                         cursor-pointer
                       "
@@ -99,38 +89,25 @@ export function BlogContent({ years, structured }: BlogContentProps) {
                           src={blog.image}
                           alt={blog.title}
                           fill
-                          className="
-                            object-cover
-                            transition-transform duration-300
-                            group-hover:scale-105
-                          "
+                          className="object-cover"
                         />
                       </div>
 
                       {/* Content */}
                       <div className="flex-1">
-                        <h3
-                          className="
-                            font-medium
-                            text-base-content
-                            transition-colors
-                            underline-offset-6 decoration-dashed
-                            group-hover:text-primary
-                            group-hover:underline
-                          "
-                        >
+                        <h3 className="font-medium text-base-content underline-offset-6 decoration-dashed group-hover:text-primary group-hover:underline">
                           {blog.title}
                         </h3>
 
-                        <p className="mt-1 flex items-center gap-2 text-sm text-base-content/60 transition-colors">
+                        <p className="mt-1 flex items-center gap-2 text-sm text-base-content/60">
                           {blog.date} • {blog.readTime}
                         </p>
 
-                        <p className="mt-2 text-sm text-base-content/80 transition-colors">
+                        <p className="mt-2 text-sm text-base-content/80">
                           {blog.description.slice(0, 60)}...
                         </p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -138,6 +115,6 @@ export function BlogContent({ years, structured }: BlogContentProps) {
           </div>
         ))
       )}
-    </motion.section>
+    </section>
   );
 }
