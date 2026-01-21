@@ -51,7 +51,7 @@ export function BlogContent({ years, structured }: BlogContentProps) {
       <div className="my-4 text-start">
         <h2 className="text-3xl">Blog</h2>
         <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
-          I've been programming for almost 2 years now. Throughout this year, I've worked with various technologies. I'm here to share just that.
+          I&apos;ve been programming for almost 2 years now. Throughout this year, I&apos;ve worked with various technologies. I&apos;m here to share just that.
         </h3>
       </div>
 

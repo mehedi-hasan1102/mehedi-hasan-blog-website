@@ -1,7 +1,6 @@
 'use client';
 
 import React from "react";
-import { motion } from "framer-motion";
 
 // React-icons imports
 import { FiGlobe, FiMail, FiFileText } from "react-icons/fi";
@@ -65,7 +64,7 @@ const socialCategories: SocialCategory[] = [
       { icon: FaDribbble, href: "https://dribbble.com/mehedi-hasan1102", label: "Dribbble" },
       { icon: FaFigma, href: "https://www.figma.com/files/team/1546370570397248215/user/1546370568436002861?fuid=1546370568436002861", label: "Figma" },
       { icon: FaMedium, href: "https://medium.com/@mehedihasan1102", label: "Medium" },
-      { icon: FaPinterest, href: "https://www.pinterest.com/mehedihasan11023/", label: "Pinterest" },
+      { icon: FaPinterest, href: "https://www.pinterest.com/mehedi11023/", label: "Pinterest" },
     ],
   },
   {
@@ -93,22 +92,12 @@ const socialCategories: SocialCategory[] = [
 /* ---------------- Links Page ---------------- */
 const LinksPage: React.FC = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="text-base-content font-geist max-w-3xl mx-auto pt-1"
-    >
-      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 bg-base-200 backdrop-blur-sm transition-shadow duration-300">
+    <section className="text-base-content font-geist max-w-3xl mx-auto pt-1">
+      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="my-4 text-start"
-        >
+        <div className="my-4 text-start">
           <h2 className="text-3xl">Links</h2>
-        </motion.div>
+        </div>
 
         {/* Categories */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
@@ -120,11 +109,7 @@ const LinksPage: React.FC = () => {
 
               <ul className="space-y-2">
                 {category.links.map((link, i) => (
-                  <motion.li
-                    key={i}
-                    whileHover={{ x: 2 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
+                  <li key={i}>
                     <a
                       href={link.href}
                       target="_blank"
@@ -134,14 +119,14 @@ const LinksPage: React.FC = () => {
                       <link.icon size={14} />
                       {link.label}
                     </a>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

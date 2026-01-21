@@ -1,7 +1,6 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import {
   PieChart,
@@ -9,7 +8,6 @@ import {
   Cell,
   Tooltip,
   ResponsiveContainer,
-  Legend,
 } from "recharts";
 
 interface Repo {
@@ -129,23 +127,13 @@ export default function DashboardPage() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FF4560", "#FF9F40"];
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="text-base-content font-geist max-w-3xl mx-auto pt-1"
-    >
-      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 bg-base-200 backdrop-blur-sm hover:shadow-primary/10 transition-shadow duration-300">
+    <section className="text-base-content font-geist max-w-3xl mx-auto pt-1">
+      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 backdrop-blur-sm hover:shadow-primary/10 transition-shadow duration-300">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="my-4 text-start"
-        >
+        <div className="my-4 text-start">
           <h2 className="text-3xl">Dashboard</h2>
-        </motion.div>
+        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -167,123 +155,109 @@ export default function DashboardPage() {
           ))}
         </div>
 
-
- {/* Contribution Graph */}
+        {/* Contribution Graph */}
         <div>
           <h3 className="text-xl my-3">Consistency & Open-Source Activity</h3>
           <img
             src={`https://ghchart.rshah.org/${USERNAME}`}
             alt="GitHub Contribution Graph"
-            className="w-full h-auto my-6  px-4 rounded-lg"
+            className="w-full h-auto my-6 px-4 rounded-lg"
             loading="lazy"
           />
         </div>
 
-
         {/* Language PieChart */}
-     
         {languagesData.length > 0 && (
-  <div className="pb-6 w-full rounded-lg">
-    <h3 className="text-xl my-3 text-start">Language Usage</h3>
+          <div className="pb-6 w-full rounded-lg">
+            <h3 className="text-xl my-3 text-start">Language Usage</h3>
 
-    {/* Pie Chart */}
-    <div className="w-full h-80 bg-">
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie
-            data={languagesData}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={80}
-            fill="#8884d8"
-            label
-          >
-            {languagesData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
+            {/* Pie Chart */}
+            <div className="w-full h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={languagesData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                  >
+                    {languagesData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
 
-    {/* Languages Names Below Chart - Centered */}
-    <div className="flex flex-wrap justify-center gap-2 ">
-      {languagesData.map((lang, index) => (
-        <div
-          key={index}
-          className="px-3 py-1 rounded text-sm text-white flex justify-center items-center"
-          style={{ backgroundColor: COLORS[index % COLORS.length] }}
-        >
-          {lang.name}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
-
+            {/* Languages Names Below Chart */}
+            <div className="flex flex-wrap justify-center gap-2">
+              {languagesData.map((lang, index) => (
+                <div
+                  key={index}
+                  className="px-3 py-1 rounded text-sm text-white flex justify-center items-center"
+                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                >
+                  {lang.name}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* GitHub Insights Image */}
         <div className="my-6">
-          <h3 className="text-xl my-3 text-start">Current GitHub Stats
-</h3>
-  <img src={`https://ghinsights.vercel.app/api/insight?username=${USERNAME}&theme=ocean&graph=false&languages=false&streak=true&stats=false&header=false&summary=false&profile=false`} alt="GitHub Insights" />
-
-           
-   
+          <h3 className="text-xl my-3 text-start">Current GitHub Stats</h3>
+          <img
+            src={`https://ghinsights.vercel.app/api/insight?username=${USERNAME}&theme=ocean&graph=false&languages=false&streak=true&stats=false&header=false&summary=false&profile=false`}
+            alt="GitHub Insights"
+          />
         </div>
 
-       
-
-
-
         {/* Latest Repos */}
-
         <div className="mb-6">
-  <h3 className="text-xl my-3">Latest Repositories</h3>
+          <h3 className="text-xl my-3">Latest Repositories</h3>
 
-  {repos.length === 0 ? (
-    <div className="bg-base-100 p-4 rounded-lg text-sm text-base-content/70">
-      Repositories are Loading !
-    </div>
-  ) : (
-    <ul className="space-y-3">
-      {repos.map((repo) => (
-        <a
-          key={repo.name}
-          href={repo.html_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group block p-4 rounded-lg hover:bg-base-200 transition-colors duration-200"
-        >
-          <div className="flex justify-between items-center">
-            <span>{repo.name}</span>
-            <motion.span
-              className="opacity-0 group-hover:opacity-100"
-              transition={{ duration: 0.2 }}
-            >
-              <ArrowUpRight size={16} />
-            </motion.span>
-          </div>
-          <p className="text-sm text-base-content/80 mt-1 line-clamp-2 break-words">
-            {repo.description || "No description"}
-          </p>
-          <div className="text-xs mt-2 flex gap-4 flex-wrap">
-            <span>⭐ {repo.stargazers_count}</span>
-            <span>🍴 {repo.forks_count}</span>
-            {repo.language && <span>🧠 {repo.language}</span>}
-          </div>
-        </a>
-      ))}
-    </ul>
-  )}
-</div>
-
+          {repos.length === 0 ? (
+            <div className="bg-base-100 p-4 rounded-lg text-sm text-base-content/70">
+              Repositories are Loading !
+            </div>
+          ) : (
+            <ul className="space-y-3">
+              {repos.map((repo) => (
+                <a
+                  key={repo.name}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-4 rounded-lg hover:bg-base-200 transition-colors duration-200"
+                >
+                  <div className="flex justify-between items-center">
+                    <span>{repo.name}</span>
+                    <span className="opacity-0 group-hover:opacity-100">
+                      <ArrowUpRight size={16} />
+                    </span>
+                  </div>
+                  <p className="text-sm text-base-content/80 mt-1 line-clamp-2 break-words">
+                    {repo.description || "No description"}
+                  </p>
+                  <div className="text-xs mt-2 flex gap-4 flex-wrap">
+                    <span>⭐ {repo.stargazers_count}</span>
+                    <span>🍴 {repo.forks_count}</span>
+                    {repo.language && <span>🧠 {repo.language}</span>}
+                  </div>
+                </a>
+              ))}
+            </ul>
+          )}
+        </div>
 
         {/* Recent Commits */}
         <div>
@@ -320,12 +294,9 @@ export default function DashboardPage() {
                       </p>
                     </div>
 
-                    <motion.span
-                      className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                      aria-hidden
-                    >
+                    <span className="mt-1 opacity-0 group-hover:opacity-100">
                       <ArrowUpRight size={16} />
-                    </motion.span>
+                    </span>
                   </div>
                 </a>
               ))}
@@ -334,6 +305,6 @@ export default function DashboardPage() {
         </div>
 
       </div>
-    </motion.section>
+    </section>
   );
 }
