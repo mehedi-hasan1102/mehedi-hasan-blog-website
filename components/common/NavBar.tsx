@@ -9,15 +9,11 @@ import SearchToggle from "@/components/blogs/SearchToggle";
 import { BlogMetaData } from "@/lib/blogs";
 import Logo from "@/components/common/Logo";
 
-/* ---------------- Types ---------------- */
-
 interface SocialLink {
   icon: React.ComponentType<{ size?: number }>;
   url: string;
   label: string;
 }
-
-/* ---------------- Component ---------------- */
 
 const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +32,6 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
     [pathname]
   );
 
-  /* Disable body scroll on mobile */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
     return () => {
@@ -46,15 +41,16 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto max-w-3xl font-geist">
+      {/* FULL width on mobile, max-w-3xl on desktop */}
+      <div className="w-full mx-auto max-w-3xl font-geist">
 
-        {/* ================= Desktop Navbar ================= */}
-        <div className="flex items-center justify-between px-4 py-3 backdrop-blur-sm border-b border-base-content/10">
+        {/* Desktop Navbar */}
+        <div className="flex items-center justify-between py-3 backdrop-blur-sm border-b border-base-content/10 px-4 md:px-6 ">
 
           <Logo />
 
-          {/* Navigation */}
-          <ul className="hidden md:flex flex-1 justify-center items-center gap-4 text-sm tracking-wide">
+          {/* Desktop nav */}
+          <ul className="hidden md:flex flex-1 justify-center items-center gap-2 text-sm tracking-wide ">
             {[
               { name: "Home", route: "/" },
               { name: "About", route: "/about" },
@@ -66,11 +62,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                 <Link
                   href={item.route}
                   className={`relative px-2 py-1 transition-colors duration-200
-                    ${
-                      isActive(item.route)
-                        ? "text-primary"
-                        : "text-base-content/70 hover:text-primary"
-                    }
+                    ${isActive(item.route) ? "text-primary" : "text-base-content/70 hover:text-primary"}
                   `}
                 >
                   {item.name}
@@ -117,7 +109,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
           </div>
         </div>
 
-        {/* ================= Mobile Drawer ================= */}
+        {/* Mobile Drawer */}
         {menuOpen && (
           <>
             <div
@@ -125,7 +117,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
               onClick={() => setMenuOpen(false)}
             />
 
-            <aside className="fixed top-0 left-0 z-30 h-full w-[75%] bg-base-200 border-r border-base-content/10 shadow-xl flex flex-col">
+            <aside className="fixed top-0 left-0 z-30 h-full w-[85%] max-w-sm bg-base-200 border-r border-base-content/10 shadow-xl flex flex-col">
               <div className="flex items-center justify-between px-5 py-4 border-b border-base-content/10">
                 <Logo />
                 <button
@@ -136,7 +128,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                 </button>
               </div>
 
-              <nav className="flex-1 px-4 py-4">
+              <nav className="flex-1 px-4 py-4 overflow-y-auto">
                 <ul className="flex flex-col gap-1">
                   {[
                     { name: "Home", route: "/" },
@@ -149,8 +141,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                       <Link
                         href={item.route}
                         onClick={() => setMenuOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-sm font-medium
-                                   text-base-content/80 hover:bg-primary/10 hover:text-primary transition"
+                        className="block rounded-lg px-4 py-3 text-sm font-medium text-base-content/80 hover:bg-primary/10 hover:text-primary transition"
                       >
                         {item.name}
                       </Link>

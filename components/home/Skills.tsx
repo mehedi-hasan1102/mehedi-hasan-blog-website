@@ -19,8 +19,6 @@ import {
   SiJavascript,
 } from "react-icons/si";
 
-/* ------------------ Types ------------------ */
-
 type TechIcon = {
   icon: React.ElementType;
   label: string;
@@ -30,8 +28,6 @@ type SkillCategory = {
   category: string;
   skills: string[];
 };
-
-/* ------------------ Static Data ------------------ */
 
 const techIconsRow1: TechIcon[] = [
   { icon: SiReact, label: "React" },
@@ -51,8 +47,6 @@ const techIconsRow2: TechIcon[] = [
   { icon: SiCss3, label: "CSS3" },
 ];
 
-/* ------------------ Component ------------------ */
-
 const SkillsSection: React.FC = () => {
   const skillItems = skillsData as SkillCategory[];
 
@@ -68,17 +62,17 @@ const SkillsSection: React.FC = () => {
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 items-start">
         {/* Marquee */}
         <div className="space-y-3">
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <Marquee
               direction="right"
               speed={18}
               pauseOnHover
               gradient={false}
             >
-              <div className="flex gap-5 pr-5">
+              <div className="flex gap-4 pr-5">
                 {marqueeRow1.map(({ icon: Icon, label }, idx) => (
                   <div
                     key={idx}
@@ -92,14 +86,14 @@ const SkillsSection: React.FC = () => {
             </Marquee>
           </div>
 
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <Marquee
               direction="left"
               speed={18}
               pauseOnHover
               gradient={false}
             >
-              <div className="flex gap-5 pr-5">
+              <div className="flex gap-4 pr-5">
                 {marqueeRow2.map(({ icon: Icon, label }, idx) => (
                   <div
                     key={idx}
