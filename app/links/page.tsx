@@ -1,8 +1,6 @@
 'use client';
 
 import React from "react";
-
-// React-icons imports
 import { FiGlobe, FiMail, FiFileText } from "react-icons/fi";
 import { Github, Linkedin, Facebook, Instagram } from "lucide-react";
 import {
@@ -23,7 +21,8 @@ import {
 import { FaThreads, FaXTwitter, FaHashnode } from "react-icons/fa6";
 import { SiBluesky, SiQuora, SiPeerlist } from "react-icons/si";
 
-/* ---------------- Social Links Data ---------------- */
+/* ---------------- Types ---------------- */
+
 interface SocialLink {
   icon: React.ComponentType<{ size?: number }>;
   href: string;
@@ -34,6 +33,8 @@ interface SocialCategory {
   title: string;
   links: SocialLink[];
 }
+
+/* ---------------- Data ---------------- */
 
 const socialCategories: SocialCategory[] = [
   {
@@ -52,7 +53,7 @@ const socialCategories: SocialCategory[] = [
     links: [
       { icon: Linkedin, href: "https://www.linkedin.com/in/mehedi-hasan1102/", label: "LinkedIn" },
       { icon: SiPeerlist, href: "https://peerlist.io/mehedihasan", label: "Peerlist" },
-      { icon: FiGlobe, href: "https://mehedi-h.vercel.app", label: "Portfolio Website" },
+      { icon: FiGlobe, href: "https://mehedi-h.vercel.app", label: "Portfolio" },
       { icon: FiFileText, href: "/Resume_of_Mehedi_Hasan.pdf", label: "Resume" },
       { icon: FiMail, href: "mailto:mehedi.hasan11023@gmail.com", label: "Email" },
     ],
@@ -62,7 +63,7 @@ const socialCategories: SocialCategory[] = [
     links: [
       { icon: FaBehance, href: "https://www.behance.net/mehedihasan1102", label: "Behance" },
       { icon: FaDribbble, href: "https://dribbble.com/mehedi-hasan1102", label: "Dribbble" },
-      { icon: FaFigma, href: "https://www.figma.com/files/team/1546370570397248215/user/1546370568436002861?fuid=1546370568436002861", label: "Figma" },
+      { icon: FaFigma, href: "https://www.figma.com/files/team/1546370570397248215/user/1546370568436002861", label: "Figma" },
       { icon: FaMedium, href: "https://medium.com/@mehedihasan1102", label: "Medium" },
       { icon: FaPinterest, href: "https://www.pinterest.com/mehedi11023/", label: "Pinterest" },
     ],
@@ -73,7 +74,7 @@ const socialCategories: SocialCategory[] = [
       { icon: Facebook, href: "https://facebook.com/mehedi.hasan1102", label: "Facebook" },
       { icon: Instagram, href: "https://instagram.com/mehedi.hasan1102", label: "Instagram" },
       { icon: FaThreads, href: "https://www.threads.com/@mehedi.hasan1102", label: "Threads" },
-      { icon: FaXTwitter, href: "https://x.com/mehedihasan1102", label: "Twitter/X" },
+      { icon: FaXTwitter, href: "https://x.com/mehedihasan1102", label: "Twitter / X" },
       { icon: SiBluesky, href: "https://bsky.app/profile/mehedihasan1102.bsky.social", label: "Bluesky" },
       { icon: SiQuora, href: "https://www.quora.com/profile/Mehedi-Hasan-19347-1", label: "Quora" },
       { icon: FaYoutube, href: "https://www.youtube.com/@MehediHasan11023", label: "YouTube" },
@@ -89,39 +90,44 @@ const socialCategories: SocialCategory[] = [
   },
 ];
 
-/* ---------------- Links Page ---------------- */
+/* ---------------- Component ---------------- */
+
 const LinksPage: React.FC = () => {
   return (
     <section className="text-base-content font-geist max-w-3xl mx-auto pt-20">
-      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300">
+      <div className="min-h-screen rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300">
         {/* Header */}
-       <div className="my-4 text-start">
+        <header className="mb-10">
           <h2 className="text-3xl">Links</h2>
-          <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
-              Connect with me across my social profiles and community platforms.
-          </h3>
-        </div>
-
-
+          <p className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
+            A curated list of places where you can find my work, writing, and online presence.
+          </p>
+        </header>
 
         {/* Categories */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          {socialCategories.map((category, idx) => (
-            <div key={idx}>
-              <h3 className="mb-3 text-sm tracking-widest uppercase text-base-content/60">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+          {socialCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className="mb-4 text-xs tracking-widest uppercase text-base-content/50">
                 {category.title}
               </h3>
 
-              <ul className="space-y-2">
-                {category.links.map((link, i) => (
-                  <li key={i}>
+              <ul className="space-y-3">
+                {category.links.map((link) => (
+                  <li key={link.label}>
                     <a
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm underline-offset-6 decoration-dashed hover:underline hover:text-primary transition-all duration-300"
+                      className="
+                        inline-flex items-center gap-2 text-sm
+                        text-base-content/80
+                        underline-offset-6 decoration-dashed
+                        hover:text-primary hover:underline
+                        transition-colors duration-200
+                      "
                     >
-                      <link.icon size={14} />
+                      <link.icon size={14} className="opacity-80" />
                       {link.label}
                     </a>
                   </li>

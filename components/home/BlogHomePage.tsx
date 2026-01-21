@@ -1,9 +1,9 @@
 'use client';
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
-import { BlogMetaData } from "@/lib/blogs";
 import Image from "next/image";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { BlogMetaData } from "@/lib/blogs";
 import { useMemo } from "react";
 
 interface BlogHomePageProps {
@@ -11,39 +11,44 @@ interface BlogHomePageProps {
 }
 
 export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
-  // 🔹 Memoized blog items
   const blogItems = useMemo(() => {
     return latestBlogs.map((blog) => {
       const blogHref = `/blog/${encodeURIComponent(blog.slug)}`;
+
       return (
-        <li
-          key={blog.slug}
-          className="transition-transform duration-200 ease-out hover:translate-x-1"
-        >
+        <li key={blog.slug} className="space-y-1">
           <Link
             href={blogHref}
-            className="group flex flex-row gap-4 p-4 rounded-lg border border-primary/30 transition-colors duration-200"
+            className="group flex gap-4 items-start"
           >
             {/* Image */}
-            <div className="hidden sm:block w-32 h-24 relative flex-shrink-0">
+            <div className="hidden sm:block w-28 h-20 relative flex-shrink-0">
               <Image
                 src={blog.image}
                 alt={blog.title}
                 fill
-                className="rounded-lg object-cover"
+                className="rounded-md object-cover"
               />
             </div>
 
-            {/* Text */}
-            <div className="flex flex-col justify-between">
-              <h3 className="font-medium leading-snug group-hover:text-primary break-words underline-offset-6 decoration-dashed group-hover:underline">
+            {/* Content */}
+            <div className="flex-1">
+              <h3
+                className="
+                  text-[15px] font-medium leading-snug tracking-tight
+                  text-base-content
+                  group-hover:text-primary transition-colors
+                "
+              >
                 {blog.title}
+                <ArrowUpRight
+                  size={13}
+                  className="inline-block ml-1 opacity-60 group-hover:opacity-100"
+                />
               </h3>
-              <p className="text-xs text-base-content/50 py-2">
+
+              <p className="text-xs text-base-content/45 mt-1">
                 {blog.date} • {blog.readTime} • {blog.category}
-              </p>
-              <p className="text-base-content/80 text-sm">
-                {blog.description.slice(0, 56)}...
               </p>
             </div>
           </Link>
@@ -53,38 +58,37 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
   }, [latestBlogs]);
 
   return (
-    <section className="text-base-content font-geist max-w-3xl mx-auto pt-1">
-      <div className="rounded-lg p-4 backdrop-blur-sm">
-        {/* Header */}
-        <div className="text-start m-4">
-          <p className="text-sm text-base-content">• Blog</p>
-          <h2 className="text-2xl">
-            Recent <span className="text-base-content/60">Updates</span>
-          </h2>
-        </div>
+    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist">
+      {/* Header */}
+      <div className="mb-5">
+        <h2 className="text-lg font-semibold tracking-tight">
+          Blog
+        </h2>
+      </div>
 
-        {/* Blog List */}
-        {latestBlogs.length === 0 ? (
-          <p className="text-sm text-base-content/50 text-center py-4">
-            No blog posts available.
-          </p>
-        ) : (
-          <ul className="flex flex-col gap-4">{blogItems}</ul>
-        )}
+      {/* Blog list */}
+      {latestBlogs.length === 0 ? (
+        <p className="text-sm text-base-content/50 text-center py-6">
+          No blog posts available.
+        </p>
+      ) : (
+        <ul className="space-y-7">
+          {blogItems}
+        </ul>
+      )}
 
-        {/* Footer */}
-        <div className="m-4 text-center">
-          <Link
-            href="/blog"
-            className="group inline-flex items-center gap-1 hover:text-primary text-sm transition-all hover:underline underline-offset-6 decoration-dashed"
-          >
-            See More
-            <ChevronDown
-              size={14}
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            />
-          </Link>
-        </div>
+      {/* Footer */}
+      <div className="pt-6">
+        <Link
+          href="/blog"
+          className="
+            inline-flex items-center gap-1 text-sm font-medium
+            text-primary hover:underline underline-offset-4
+          "
+        >
+          See all posts
+          <ChevronDown size={14} />
+        </Link>
       </div>
     </section>
   );

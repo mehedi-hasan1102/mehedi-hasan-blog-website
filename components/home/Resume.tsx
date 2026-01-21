@@ -43,31 +43,71 @@ const initializeAboutData = (data: typeof aboutDataJson): AboutData => {
   };
 };
 
-/* ---------------- Memoized List Item ---------------- */
+/* ---------------- List Item ---------------- */
 
-const ListItem: React.FC<{
-  title: string;
-  details?: string;
-  extra?: React.ReactNode;
-}> = React.memo(({ title, details, extra }) => (
-  <li
-    className="
-      border border-primary/30 rounded-lg p-4
-      transition-all duration-200 ease-out
-      hover:-translate-y-0.5 hover:shadow-md
-    "
-  >
-    <p className="font-medium">{title}</p>
-
-    {details && (
-      <p className="text-sm text-base-content/70 mt-1">
-        {details}
+const ListItem = React.memo(
+  ({
+    title,
+    subtitle,
+    meta,
+    description,
+    link,
+    linkLabel,
+  }: {
+    title: string;
+    subtitle?: string;
+    meta?: string;
+    description?: string;
+    link?: string | null;
+    linkLabel?: string;
+  }) => (
+    <li className="space-y-1">
+      <p className="font-medium text-base-content leading-snug">
+        {title}
       </p>
-    )}
 
-    {extra}
-  </li>
-));
+      {subtitle && (
+        <p className="text-sm text-base-content/80">
+          {subtitle}
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 ml-1 text-base-content/70 hover:text-primary transition-colors"
+            >
+              <ArrowUpRight size={13} />
+            </a>
+          )}
+        </p>
+      )}
+
+      {meta && (
+        <p className="text-xs text-base-content/50">
+          {meta}
+        </p>
+      )}
+
+      {description && (
+        <p className="text-sm text-base-content/60 leading-relaxed pt-1">
+          {description}
+        </p>
+      )}
+
+      {link && linkLabel && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-sm text-primary hover:underline underline-offset-4 pt-1"
+        >
+          {linkLabel}
+          <ArrowUpRight size={14} />
+        </a>
+      )}
+    </li>
+  )
+);
 
 ListItem.displayName = "ListItem";
 
@@ -77,57 +117,25 @@ const ResumeSections: React.FC = () => {
   const aboutData = useMemo(() => initializeAboutData(aboutDataJson), []);
 
   return (
-    <section className="text-base-content font-geist max-w-3xl mx-auto pt-1">
-      <div className="grid md:grid-cols-2 gap-1">
+    <section className="max-w-3xl mx-auto px-4 text-base-content font-geist">
+      <div className="grid md:grid-cols-2 gap-12">
 
         {/* ================= Experience ================= */}
-        <div className="relative overflow-hidden rounded-lg p-4">
-          <div className="text-start m-4">
-            <p className="text-sm text-base-content mb-0">• Experience</p>
-            <h2 className="text-2xl">
-              Career <span className="text-base-content/60">Highlights</span>
-            </h2>
-          </div>
+        <div>
+          <h2 className="text-lg font-semibold mb-4">
+            Experience
+          </h2>
 
-          <SimpleBar className="max-h-[300px] pr-2">
-            <ul className="space-y-4 list-none p-0">
+          <SimpleBar className="max-h-[360px] pr-3">
+            <ul className="space-y-6">
               {aboutData.experience.map((item) => (
                 <ListItem
-                  key={`${item.title}-${item.organization ?? "org"}`}
+                  key={`${item.title}-${item.organization}`}
                   title={item.title}
-                  details={
-                    item.organization
-                      ? `${item.organization}${item.time ? ` | ${item.time}` : ""}`
-                      : undefined
-                  }
-                  extra={
-                    (item.description || item.profileLink) && (
-                      <div className="mt-2">
-                        {item.description && (
-                          <p className="text-sm text-base-content/60 leading-relaxed">
-                            {item.description}
-                          </p>
-                        )}
-
-                        {item.profileLink && (
-                          <a
-                            href={item.profileLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex mt-1 group items-center gap-1 text-sm
-                                       transition-colors hover:text-primary
-                                       underline-offset-4 hover:underline"
-                          >
-                            View Profile
-                            <ArrowUpRight
-                              size={14}
-                              className="transition-transform group-hover:translate-x-0.5"
-                            />
-                          </a>
-                        )}
-                      </div>
-                    )
-                  }
+                  subtitle={item.organization}
+                  meta={item.time}
+                  description={item.description}
+                  link={item.profileLink}
                 />
               ))}
             </ul>
@@ -135,39 +143,20 @@ const ResumeSections: React.FC = () => {
         </div>
 
         {/* ================= Education ================= */}
-        <div className="relative overflow-hidden rounded-lg p-4">
-          <div className="text-start m-4">
-            <p className="text-sm text-base-content mb-0">• Education</p>
-            <h2 className="text-2xl">
-              Academic <span className="text-base-content/60">Background</span>
-            </h2>
-          </div>
+        <div>
+          <h2 className="text-lg font-semibold mb-4">
+            Education
+          </h2>
 
-          <SimpleBar className="max-h-[300px] pr-2">
-            <ul className="space-y-4 list-none mb-0">
+          <SimpleBar className="max-h-[360px] pr-3">
+            <ul className="space-y-6">
               {aboutData.education.map((edu) => (
                 <ListItem
                   key={`${edu.institution}-${edu.degree}`}
                   title={edu.institution}
-                  details={`${edu.degree}${edu.details ? ` | ${edu.details}` : ""}`}
-                  extra={
-                    edu.credentialLink && (
-                      <a
-                        href={edu.credentialLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex mt-1 group items-center gap-1 text-sm
-                                   transition-colors hover:text-primary
-                                   underline-offset-4 hover:underline"
-                      >
-                        View Credential
-                        <ArrowUpRight
-                          size={14}
-                          className="transition-transform group-hover:translate-x-0.5"
-                        />
-                      </a>
-                    )
-                  }
+                  subtitle={edu.degree}
+                  meta={edu.details}
+                  link={edu.credentialLink}
                 />
               ))}
             </ul>

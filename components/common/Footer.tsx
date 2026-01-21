@@ -24,10 +24,7 @@ const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL!;
 /* ---------------- Helpers ---------------- */
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 /* ---------------- Component ---------------- */
@@ -56,53 +53,55 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mx-auto max-w-3xl backdrop-blur-xl mt-1 rounded-t-xl px-0 pt-0 pb-6 text-sm text-base-content">
+    <footer className="mx-auto max-w-3xl mt-2 rounded-t-xl backdrop-blur-xl px-4 pb-8 text-sm text-base-content">
       
       {/* ---------------- MOBILE ---------------- */}
-      <div className="space-y-12 md:hidden px-4">
-        <div className="flex justify-between">
+      <div className="space-y-10 md:hidden">
+        <div className="flex justify-between gap-10">
           {/* Main Pages */}
-          <div>
-            <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
-              Main Pages
+          <nav>
+            <p className="mb-4 text-[11px] uppercase tracking-widest text-base-content/40">
+              Main
             </p>
-            <div className="flex flex-col gap-3 text-base-content/70">
+            <ul className="space-y-3">
               {mainPages.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="transition text-base-content/70 hover:text-primary"
-                >
-                  {link.label}
-                </Link>
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-base-content/70 transition hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
 
           {/* Resources */}
-          <div>
-            <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
+          <nav>
+            <p className="mb-4 text-[11px] uppercase tracking-widest text-base-content/40">
               Explore
             </p>
-            <div className="flex flex-col gap-3 text-base-content/70">
+            <ul className="space-y-3">
               {resourcesPages.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="transition text-base-content/70 hover:text-primary"
-                >
-                  {link.label}
-                </Link>
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-base-content/70 transition hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
         </div>
 
         {/* Brand */}
-        <div className="border-t border-base-content/10 pt-6">
+        <div className="border-t border-base-content/10 pt-6 space-y-4">
           <Logo />
 
-          <div className="mt-4 flex gap-4 text-base-content/70">
+          <div className="flex gap-4">
             {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -112,7 +111,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="transition text-base-content/70 hover:text-primary"
+                  className="text-base-content/60 transition hover:text-primary"
                 >
                   <Icon size={18} />
                 </a>
@@ -120,31 +119,27 @@ const Footer = () => {
             })}
           </div>
 
-          {/* Back to Top (Mobile) */}
           <button
             onClick={scrollToTop}
-            className="mt-6 inline-flex items-center gap-2
-                       rounded-md bg-base-200 px-4 py-2 text-xs
-                       text-base-content/80 shadow-sm
-                       transition hover:bg-base-300 hover:text-base-content"
-            aria-label="Back to top"
+            className="inline-flex items-center gap-2 rounded-md bg-base-200 px-4 py-2
+                       text-xs text-base-content/80 transition hover:bg-base-300"
           >
-            ↑ Back to Top
+            ↑ Back to top
           </button>
 
-          <p className="mt-4 text-xs text-base-content/40">
+          <p className="text-xs text-base-content/40">
             © {new Date().getFullYear()} Mehedi Hasan
           </p>
         </div>
       </div>
 
       {/* ---------------- DESKTOP ---------------- */}
-      <div className="hidden md:grid grid-cols-3 gap-12 px-4">
+      <div className="hidden md:grid grid-cols-3 gap-12 pt-6">
         {/* Brand */}
-        <div className="flex flex-col gap-4">
+        <div className="space-y-4">
           <Logo />
 
-          <div className="flex gap-4 text-base-content/70">
+          <div className="flex gap-4">
             {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -154,7 +149,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="transition text-base-content/70 hover:text-primary"
+                  className="text-base-content/60 transition hover:text-primary"
                 >
                   <Icon size={18} />
                 </a>
@@ -168,45 +163,49 @@ const Footer = () => {
         </div>
 
         {/* Main Pages */}
-        <div className="flex flex-col gap-6 text-base-content/70">
-          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
-            Main Pages
+        <nav>
+          <p className="mb-5 text-[11px] uppercase tracking-widest text-base-content/40">
+            Main
           </p>
-          {mainPages.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="transition text-base-content/70 hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+          <ul className="space-y-4">
+            {mainPages.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-base-content/70 transition hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {/* Resources */}
-        <div className="flex flex-col gap-6 text-base-content/70">
-          <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
+        <nav>
+          <p className="mb-5 text-[11px] uppercase tracking-widest text-base-content/40">
             Explore
           </p>
-          {resourcesPages.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="transition text-base-content/70 hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <ul className="space-y-4">
+            {resourcesPages.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-base-content/70 transition hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-          {/* Back to Top (Desktop) */}
           <button
             onClick={scrollToTop}
-            className="mt-4 w-fit text-xs text-base-content/60
-                       hover:text-primary transition flex items-center gap-1 "
+            className="mt-6 text-xs text-base-content/50 transition hover:text-primary"
           >
-            ↑ Back to Top
+            ↑ Back to top
           </button>
-        </div>
+        </nav>
       </div>
     </footer>
   );

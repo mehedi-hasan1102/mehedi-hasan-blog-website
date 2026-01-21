@@ -47,71 +47,77 @@ const AllProjectsPage: React.FC = () => {
 
   return (
     <>
-      <section className="text-base-content font-geist mx-auto pt-20 max-w-3xl">
-        <div className="relative overflow-hidden rounded-lg p-4 backdrop-blur-sm transition-shadow duration-300">
-          <div className="my-4 text-start">
-            <h2 className="text-3xl">Projects</h2>
-            <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
-              I’ve developed commercial projects as well as hobby projects. All projects are included (along with course related projects) here.
-            </h3>
+      <section className="font-geist text-base-content mx-auto pt-20 max-w-3xl">
+        <div className="rounded-lg p-4 backdrop-blur-sm">
+
+          {/* Header */}
+          <div className="m-4">
+            <p className="text-sm text-base-content mb-0">• Projects</p>
+            <h1 className="text-3xl">
+              All <span className="text-base-content/60">Works</span>
+            </h1>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex justify-center gap-2 mb-2 flex-wrap">
-            {["All", "Frontend", "Backend", "Full Stack"].map((type) => (
-              <button
-                key={type}
-                onClick={() => setFilter(type as FilterType)}
-                className={`
-                  px-3 py-2 rounded-lg text-sm font-geist transition duration-200
-                  hover:text-primary hover:scale-105
-                  ${filter === type ? "scale-105 underline underline-offset-6 decoration-wavy decoration-2 decoration-primary" : "text-base-content"}
-                `}
-              >
-                {type}
-              </button>
-            ))}
+          {/* Filters */}
+          <div className="flex justify-center gap-4 my-4 flex-wrap">
+            {(["All", "Frontend", "Backend", "Full Stack"] as FilterType[]).map(
+              (type) => (
+                <button
+                  key={type}
+                  onClick={() => setFilter(type)}
+                  className={`text-sm transition-all duration-200
+                    ${
+                      filter === type
+                        ? "text-primary underline underline-offset-6 decoration-dashed"
+                        : "text-base-content/70 hover:text-primary"
+                    }`}
+                >
+                  {type}
+                </button>
+              )
+            )}
           </div>
 
-          <div className="h-[1px] bg-primary/40 mb-2"></div>
+          <div className="h-px bg-primary/30 mb-4" />
 
-          {/* Project List */}
+          {/* Projects */}
           <div className="space-y-2">
             {filteredProjects.map((project, index) => (
-              <div
+              <article
                 key={project.title}
-                className="group overflow-hidden rounded-md px-4 py-2 sm:py-6 transition-colors hover:bg-base-200/60"
+                className="group rounded-md px-4 py-4 sm:py-6
+                           transition-colors hover:bg-base-200/50"
               >
                 <div className="flex flex-col sm:flex-row gap-4">
                   {/* Image */}
-                  <div className="relative w-full sm:w-[250px] aspect-[16/9] overflow-hidden rounded-lg hidden sm:block">
+                  <div className="relative hidden sm:block w-[250px] aspect-[16/9] overflow-hidden rounded-lg">
                     <Image
                       src={project.images[0]}
                       alt={project.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 250px"
+                      sizes="250px"
                       priority={index === 0}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="object-cover rounded-lg transition-transform duration-300 "
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </div>
 
+                  {/* Content */}
                   <div className="flex flex-col justify-between flex-1">
                     <div>
-                      <h3 className="text-base font-medium text-base-content">
+                      <h3 className="text-base font-medium">
                         {project.title}
                       </h3>
 
-                      <p className="mt-1 text-sm leading-relaxed text-base-content/80 line-clamp-2">
+                      <p className="mt-1 text-sm text-base-content/70 leading-relaxed line-clamp-2">
                         {project.description}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 my-4">
+                      <div className="flex flex-wrap gap-2 mt-4">
                         {project.techStack.map((tech, i) => (
                           <span
                             key={`${tech}-${i}`}
-                            className="px-2 text-xs rounded-full bg-base-100 border border-primary/30"
+                            className="px-2 py-[2px] text-xs rounded-full
+                                       border border-primary/30 bg-base-100"
                           >
                             {tech}
                           </span>
@@ -119,12 +125,15 @@ const AllProjectsPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-sm">
+                    {/* Actions */}
+                    <div className="flex flex-wrap gap-4 mt-4 text-sm">
                       <a
                         href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 hover:text-primary underline-offset-6 decoration-dashed hover:underline"
+                        className="inline-flex items-center gap-1
+                                   hover:text-primary underline-offset-6
+                                   decoration-dashed hover:underline"
                       >
                         <ArrowUpRight size={14} /> Live
                       </a>
@@ -134,7 +143,9 @@ const AllProjectsPage: React.FC = () => {
                           href={project.frontendRepo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 hover:text-primary underline-offset-6 decoration-dashed hover:underline"
+                          className="inline-flex items-center gap-1
+                                     hover:text-primary underline-offset-6
+                                     decoration-dashed hover:underline"
                         >
                           <Github size={14} /> Frontend
                         </a>
@@ -145,7 +156,9 @@ const AllProjectsPage: React.FC = () => {
                           href={project.backendRepo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 hover:text-primary underline-offset-6 decoration-dashed hover:underline"
+                          className="inline-flex items-center gap-1
+                                     hover:text-primary underline-offset-6
+                                     decoration-dashed hover:underline"
                         >
                           <Github size={14} /> Backend
                         </a>
@@ -153,27 +166,30 @@ const AllProjectsPage: React.FC = () => {
 
                       <button
                         onClick={() => openModal(project)}
-                        className="inline-flex items-center gap-1 hover:text-primary underline-offset-6 decoration-dashed hover:underline"
+                        className="inline-flex items-center gap-1
+                                   hover:text-primary underline-offset-6
+                                   decoration-dashed hover:underline"
                       >
                         <Eye size={14} /> Details
                       </button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
-          <div className="my-4 text-start">
-            <p className="text-sm sm:text-base text-base-content/80 leading-relaxed">
-              <span>This page highlights selected work. View the full project list on </span>
+          {/* Footer note */}
+          <div className="m-4 mt-6">
+            <p className="text-sm text-base-content/60">
+              More work available on{" "}
               <Link
                 href="https://github.com/mehedi-hasan1102"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium hover:text-primary underline underline-offset-6 decoration-dashed transition-all duration-300"
+                className="font-medium text-base-content hover:text-primary
+                           underline underline-offset-6 decoration-dashed"
               >
-                Github
+                GitHub
               </Link>.
             </p>
           </div>

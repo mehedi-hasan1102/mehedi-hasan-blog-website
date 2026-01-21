@@ -2,93 +2,57 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight} from 'lucide-react';
-
-
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-
 
 const GitHubActivitySection: React.FC = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.35 }}
       viewport={{ once: true }}
-      className="text-base-content font-geist max-w-3xl mx-auto pt-1"
+      className="max-w-3xl mx-auto px-4 text-base-content font-geist"
     >
-      <div className="rounded-lg p-2  backdrop-blur-sm">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="m-4 text-start"
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.08 }}
+        viewport={{ once: true }}
+        className="mb-4"
+      >
+        <h2 className="text-lg font-semibold tracking-tight">
+          GitHub Activity
+        </h2>
+      </motion.div>
+
+      {/* Contribution Graph */}
+      <div className="overflow-hidden">
+        <img
+          src="https://ghchart.rshah.org/mehedi-hasan1102"
+          alt="GitHub contribution graph"
+          className="w-full h-auto"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Footer link */}
+      <div className="pt-4">
+        <Link
+          href="https://github.com/mehedi-hasan1102"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center gap-1
+            text-sm font-medium
+            text-primary
+            hover:underline underline-offset-4
+          "
         >
-          <p className="text-sm text-base-content mb-0">• Contributions</p>
-          <h2 className="text-2xl">
-            GitHub <span className="text-base-content/60">Activity</span>
-          </h2>
-        </motion.div>
-
-        {/* Calendar Image */}
-        <div className=" rounded-lg overflow-hidden px-4">
-          <img
-            src="https://ghchart.rshah.org/mehedi-hasan1102"
-            alt="Mehedi Hasan's GitHub Contribution Graph"
-            className="w-full h-auto"
-            loading="lazy"
-          />
-
-      
-        </div>
-       
-<div className="my-4 px-4  text-center">
- {/* <p
-    className="
-      text-sm   leading-relaxed
-    "
-  >
-    <span>Explore </span>
-
-    <Link
-      href="https://github.com/mehedi-hasan1102"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
-          
-         font-medium hover:text-primary
-        hover:underline underline-offset-6 decoration-dashed
-         transition-all duration-300
-      "
-    >
-      Github ⤴
-    </Link> 
-   
-  </p> */}
-  <Link
-  href="https://github.com/mehedi-hasan1102"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="
-    group inline-flex items-center gap-1
-    text-sm
-    transition-all
-    hover:text-primary
-    hover:underline underline-offset-6 decoration-dashed
-  "
->
-  View GitHub
-  <ArrowUpRight  
-    size={14}
-    className="transition-transform duration-200 group-hover:translate-x-1"
-  />
-</Link>
-
-</div>
-
-
+          View GitHub profile
+          <ArrowUpRight size={14} />
+        </Link>
       </div>
     </motion.section>
   );
