@@ -73,7 +73,7 @@ html {
 /* Modal scrollbar: Firefox */
 .modal-scrollbar {
   scrollbar-width: thin;                 /* thin scrollbar */
-  scrollbar-color: #22c55e #1f2933;     /* thumb | track */
+  scrollbar-color: #695EFB #1f2933;     /* thumb | track */
 }
 
 /* Modal scrollbar: Chrome / Edge / Safari */
@@ -87,7 +87,7 @@ html {
 }
 
 .modal-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #22c55e;            /* thumb color */
+  background-color: #695EFB;            /* thumb color */
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
@@ -106,7 +106,7 @@ html {
 }
 
 .simplebar-scrollbar:before {
-  background-color: #22c55e !important; /* custom thumb color */
+  background-color: #695EFB !important; /* custom thumb color */
   border-radius: 10px !important;
 }
 
