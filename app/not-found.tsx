@@ -54,7 +54,7 @@ const NotFound = () => {
   }, []);
 
   return (
-    <section className="font-geist mx-auto px-0   max-w-3xl relative  overflow-hidden flex justify-center pt-0">
+    <section className="font-geist mx-auto px-0   max-w-3xl relative  overflow-hidden flex justify-center pt-20">
       {/* Particles */}
       <div className="absolute inset-0 pointer-events-none">
         {particles}
@@ -64,7 +64,7 @@ const NotFound = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 min-h-screen rounded-lg  p-4 bg-base-200  shadow-xl backdrop-blur-sm w-full mt-1"
+        className="relative z-10 min-h-screen rounded-lg  px-4 py-6  shadow-xl backdrop-blur-sm w-full mt-1"
       >
 
 <motion.div

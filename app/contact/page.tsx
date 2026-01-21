@@ -127,11 +127,11 @@ const ContactMe: React.FC = () => {
   ];
 
   return (
-    <section className="font-geist text-base-content mx-auto pt-20 max-w-3xl">
+    <section className="font-geist text-base-content mx-auto pt-20 max-w-3xl min-h-screen">
       <Toaster position="top-right" />
 
       {/* Background Accent */}
-      {/* <div className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block">
+      <div className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block">
         <Image
           src="/globe-outline-dark-2.svg"
           alt=""
@@ -140,7 +140,7 @@ const ContactMe: React.FC = () => {
           className="opacity-80"
           priority
         />
-      </div> */}
+      </div>
 
       <div className="rounded-lg p-4 backdrop-blur-sm space-y-10">
 
