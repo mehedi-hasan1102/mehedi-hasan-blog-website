@@ -93,7 +93,7 @@ const AllProjectsPage: React.FC = () => {
                       priority={index === 0}
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover rounded-lg transition-transform duration-300 "
                     />
                   </div>
 
