@@ -127,7 +127,9 @@ const LinksPage: React.FC = () => {
                         transition-colors duration-200
                       "
                     >
-                      <link.icon size={14} className="opacity-80" />
+                      <span className="opacity-80">
+                        <link.icon size={14} />
+                      </span>
                       {link.label}
                     </a>
                   </li>

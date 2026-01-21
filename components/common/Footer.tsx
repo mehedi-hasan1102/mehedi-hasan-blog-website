@@ -49,6 +49,7 @@ const Footer = () => {
     { label: "Links", href: "/links" },
     { label: "Dashboard", href: "/dashboard" },
     { label: "Resources", href: "/resources" },
+    { label: "Snippets", href: "/snippets" },
     { label: "Book a Meeting", href: CALENDLY_URL },
   ];
 

@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/* ---------------- Types ---------------- */
+
 interface Repo {
   name: string;
   html_url: string;
@@ -33,79 +35,84 @@ interface LanguageData {
   [key: string]: string | number;
 }
 
+/* ---------------- Component ---------------- */
+
 export default function DashboardPage() {
   const USERNAME = "mehedi-hasan1102";
-  const TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
   const [repos, setRepos] = useState<Repo[]>([]);
   const [commits, setCommits] = useState<Commit[]>([]);
+  const [languagesData, setLanguagesData] = useState<LanguageData[]>([]);
   const [stats, setStats] = useState({
     repos: 0,
     stars: 0,
     forks: 0,
     followers: 0,
   });
-  const [languagesData, setLanguagesData] = useState<LanguageData[]>([]);
 
   useEffect(() => {
-    const headers: HeadersInit = TOKEN ? { Authorization: `token ${TOKEN}` } : {};
-
     async function fetchGitHubData() {
       try {
-        // Profile
-        const profileRes = await fetch(`https://api.github.com/users/${USERNAME}`, { headers });
-        if (!profileRes.ok) throw new Error("Failed to fetch profile");
+        /* -------- Profile -------- */
+        const profileRes = await fetch(
+          `https://api.github.com/users/${USERNAME}`
+        );
+        if (!profileRes.ok) throw new Error("Profile fetch failed");
         const profile = await profileRes.json();
 
-        // Repos
+        /* -------- Repos -------- */
         const repoRes = await fetch(
-          `https://api.github.com/users/${USERNAME}/repos?per_page=100`,
-          { headers }
+          `https://api.github.com/users/${USERNAME}/repos?per_page=100`
         );
-        if (!repoRes.ok) throw new Error("Failed to fetch repos");
+        if (!repoRes.ok) throw new Error("Repo fetch failed");
         const repoData: Repo[] = await repoRes.json();
 
-        // Stats
-        const totalStars = repoData.reduce((acc, r) => acc + r.stargazers_count, 0);
-        const totalForks = repoData.reduce((acc, r) => acc + r.forks_count, 0);
+        const totalStars = repoData.reduce((a, r) => a + r.stargazers_count, 0);
+        const totalForks = repoData.reduce((a, r) => a + r.forks_count, 0);
 
-        // Latest 5 repos
-        const latestRepos = repoData
-          .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+        /* -------- Latest Repos -------- */
+        const latestRepos = [...repoData]
+          .sort(
+            (a, b) =>
+              new Date(b.updated_at).getTime() -
+              new Date(a.updated_at).getTime()
+          )
           .slice(0, 5);
 
-        // Latest commit per repo
-        const commitPromises = latestRepos.map(async (repo) => {
-          const res = await fetch(
-            `https://api.github.com/repos/${USERNAME}/${repo.name}/commits?per_page=1`,
-            { headers }
-          );
-          if (!res.ok) return null;
-          const data = await res.json();
-          if (!Array.isArray(data) || data.length === 0) return null;
+        /* -------- Commits -------- */
+        const commitResults = await Promise.all(
+          latestRepos.map(async (repo) => {
+            const res = await fetch(
+              `https://api.github.com/repos/${USERNAME}/${repo.name}/commits?per_page=1`
+            );
+            if (!res.ok) return null;
+            const data = await res.json();
+            if (!Array.isArray(data) || !data[0]) return null;
 
-          const c = data[0];
-          return {
-            message: c.commit.message,
-            url: c.html_url,
-            date: c.commit.author.date,
-            repo: repo.name,
-          } as Commit;
-        });
-
-        const commitResults = (await Promise.all(commitPromises)).filter(
-          (c): c is Commit => c !== null
+            const c = data[0];
+            return {
+              message: c.commit.message,
+              url: c.html_url,
+              date: c.commit.author.date,
+              repo: repo.name,
+            } as Commit;
+          })
         );
 
-        // Language PieChart
+        /* -------- Languages -------- */
         const langMap: Record<string, number> = {};
         repoData.forEach((r) => {
-          if (r.language) langMap[r.language] = (langMap[r.language] || 0) + 1;
+          if (r.language) {
+            langMap[r.language] = (langMap[r.language] || 0) + 1;
+          }
         });
-        const langArr: LanguageData[] = Object.entries(langMap).map(([name, value]) => ({
-          name,
-          value,
-        }));
+
+        setLanguagesData(
+          Object.entries(langMap).map(([name, value]) => ({
+            name,
+            value,
+          }))
+        );
 
         setStats({
           repos: profile.public_repos,
@@ -113,85 +120,89 @@ export default function DashboardPage() {
           forks: totalForks,
           followers: profile.followers,
         });
+
         setRepos(latestRepos);
-        setCommits(commitResults);
-        setLanguagesData(langArr);
-      } catch (err) {
-        console.error(err);
+        setCommits(commitResults.filter(Boolean) as Commit[]);
+      } catch (error) {
+        console.error("GitHub dashboard error:", error);
       }
     }
 
     fetchGitHubData();
-  }, [TOKEN]);
+  }, []);
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FF4560", "#FF9F40"];
+  const COLORS = [
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#AF19FF",
+    "#FF4560",
+    "#FF9F40",
+  ];
 
   return (
     <section className="text-base-content font-geist max-w-3xl mx-auto pt-20">
-      <div className="w-full max-w-3xl mx-auto min-h-screen rounded-lg p-4 backdrop-blur-sm hover:shadow-primary/10 transition-shadow duration-300">
+      <div className="min-h-screen rounded-lg p-4 backdrop-blur-sm transition-shadow">
 
         {/* Header */}
-         <div className="my-4 text-start">
+        <header className="mb-8">
           <h2 className="text-3xl">Dashboard</h2>
-          <h3 className="mt-4 text-sm sm:text-base text-base-content/80 leading-relaxed">
-              View my GitHub activity and recent contributions in one place.
-          </h3>
-        </div>
+          <p className="mt-4 text-sm sm:text-base text-base-content/80">
+            A snapshot of my GitHub activity, repositories, and contributions.
+          </p>
+        </header>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {[
-            { label: "Github Repos", value: stats.repos },
-            { label: "Github Stars", value: stats.stars },
-            { label: "Github Forks", value: stats.forks },
-            { label: "Github Followers", value: stats.followers },
+            { label: "Repositories", value: stats.repos },
+            { label: "Stars", value: stats.stars },
+            { label: "Forks", value: stats.forks },
+            { label: "Followers", value: stats.followers },
           ].map((item) => (
             <div
               key={item.label}
-              className=" p-4 rounded-lg border border-context/60 transition-all"
+              className="rounded-lg border border-primary/30 p-4 text-center"
             >
-              <p className="text-sm text-base-content/70 mb-2 text-center">
+              <p className="text-sm text-base-content/60 mb-1">
                 {item.label}
               </p>
-              <p className="text-2xl text-center">{item.value}</p>
+              <p className="text-2xl font-medium">{item.value}</p>
             </div>
           ))}
         </div>
 
         {/* Contribution Graph */}
-        <div>
-          <h3 className="text-xl my-3">Consistency & Open-Source Activity</h3>
+        <section className="mb-10">
+          <h3 className="text-xl mb-4">Contribution Activity</h3>
           <img
             src={`https://ghchart.rshah.org/${USERNAME}`}
-            alt="GitHub Contribution Graph"
-            className="w-full h-auto my-6 px-4 rounded-lg"
+            alt="GitHub Contributions"
+            className="w-full rounded-lg"
             loading="lazy"
           />
-        </div>
+        </section>
 
-        {/* Language PieChart */}
+        {/* Language Chart */}
         {languagesData.length > 0 && (
-          <div className="pb-6 w-full rounded-lg">
-            <h3 className="text-xl my-3 text-start">Language Usage</h3>
+          <section className="mb-10">
+            <h3 className="text-xl mb-4">Language Usage</h3>
 
-            {/* Pie Chart */}
-            <div className="w-full h-80">
+            <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={languagesData}
                     dataKey="value"
                     nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    fill="#8884d8"
+                    outerRadius={90}
                     label
                   >
-                    {languagesData.map((entry, index) => (
+                    {languagesData.map((_, i) => (
                       <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
+                        key={i}
+                        fill={COLORS[i % COLORS.length]}
                       />
                     ))}
                   </Pie>
@@ -200,113 +211,91 @@ export default function DashboardPage() {
               </ResponsiveContainer>
             </div>
 
-            {/* Languages Names Below Chart */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {languagesData.map((lang, index) => (
-                <div
-                  key={index}
-                  className="px-3 py-1 rounded text-sm text-white flex justify-center items-center"
-                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              {languagesData.map((lang, i) => (
+                <span
+                  key={lang.name}
+                  className="px-3 py-1 rounded-full text-xs text-base-content"
+                  style={{ backgroundColor: COLORS[i % COLORS.length] }}
                 >
                   {lang.name}
-                </div>
+                </span>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* GitHub Insights Image */}
-        <div className="my-6">
-          <h3 className="text-xl my-3 text-start">Current GitHub Stats</h3>
-          <img
-            src={`https://ghinsights.vercel.app/api/insight?username=${USERNAME}&theme=ocean&graph=false&languages=false&streak=true&stats=false&header=false&summary=false&profile=false`}
-            alt="GitHub Insights"
-          />
-        </div>
-
         {/* Latest Repos */}
-        <div className="mb-6">
-          <h3 className="text-xl my-3">Latest Repositories</h3>
+        <section className="mb-10">
+          <h3 className="text-xl mb-4">Latest Repositories</h3>
 
-          {repos.length === 0 ? (
-            <div className="bg-base-100 p-4 rounded-lg text-sm text-base-content/70">
-              Repositories are Loading !
-            </div>
-          ) : (
-            <ul className="space-y-3">
-              {repos.map((repo) => (
-                <a
-                  key={repo.name}
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block p-4 rounded-lg hover:bg-base-200 transition-colors duration-200"
-                >
-                  <div className="flex justify-between items-center">
-                    <span>{repo.name}</span>
-                    <span className="opacity-0 group-hover:opacity-100">
-                      <ArrowUpRight size={16} />
-                    </span>
-                  </div>
-                  <p className="text-sm text-base-content/80 mt-1 line-clamp-2 break-words">
-                    {repo.description || "No description"}
-                  </p>
-                  <div className="text-xs mt-2 flex gap-4 flex-wrap">
-                    <span>⭐ {repo.stargazers_count}</span>
-                    <span>🍴 {repo.forks_count}</span>
-                    {repo.language && <span>🧠 {repo.language}</span>}
-                  </div>
-                </a>
-              ))}
-            </ul>
-          )}
-        </div>
+          <ul className="space-y-3">
+            {repos.map((repo) => (
+              <a
+                key={repo.name}
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-lg p-4 hover:bg-base-200 transition"
+              >
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{repo.name}</span>
+                  <ArrowUpRight
+                    size={16}
+                    className="opacity-0 group-hover:opacity-100"
+                  />
+                </div>
+
+                <p className="text-sm text-base-content/80 mt-1 line-clamp-2">
+                  {repo.description || "No description provided"}
+                </p>
+
+                <div className="text-xs mt-2 flex gap-4">
+                  <span>⭐ {repo.stargazers_count}</span>
+                  <span>🍴 {repo.forks_count}</span>
+                  {repo.language && <span>{repo.language}</span>}
+                </div>
+              </a>
+            ))}
+          </ul>
+        </section>
 
         {/* Recent Commits */}
-        <div>
-          <h3 className="text-xl my-3">Recent Commits</h3>
+        <section>
+          <h3 className="text-xl mb-4">Recent Commits</h3>
 
-          {commits.length === 0 ? (
-            <div className="bg-base-100 p-4 rounded-lg text-sm text-base-content/70">
-              Commits are Loading !
-            </div>
-          ) : (
-            <ul className="space-y-3">
-              {commits.map((commit, idx) => (
-                <a
-                  key={idx}
-                  href={commit.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block p-4 rounded-lg hover:bg-base-200 transition-colors duration-200"
-                >
-                  <div className="flex justify-between items-start gap-3">
-                    <div className="flex-1 min-w-0">
-                      <p
-                        title={commit.message}
-                        className="text-sm font-medium line-clamp-2 break-words"
-                      >
-                        <span className="text-base-content/70">
-                          [{commit.repo}]
-                        </span>{" "}
-                        {commit.message.split("\n")[0]}
-                      </p>
+          <ul className="space-y-3">
+            {commits.map((commit, i) => (
+              <a
+                key={i}
+                href={commit.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-lg p-4 hover:bg-base-200 transition"
+              >
+                <div className="flex justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium line-clamp-2">
+                      <span className="text-base-content/60">
+                        [{commit.repo}]
+                      </span>{" "}
+                      {commit.message.split("\n")[0]}
+                    </p>
 
-                      <p className="text-xs text-base-content/60 mt-1">
-                        {new Date(commit.date).toLocaleString()}
-                      </p>
-                    </div>
-
-                    <span className="mt-1 opacity-0 group-hover:opacity-100">
-                      <ArrowUpRight size={16} />
-                    </span>
+                    <p className="text-xs text-base-content/60 mt-1">
+                      {new Date(commit.date).toLocaleString()}
+                    </p>
                   </div>
-                </a>
-              ))}
-            </ul>
-          )}
-        </div>
 
+                  <ArrowUpRight
+                    size={16}
+                    className="opacity-0 group-hover:opacity-100 mt-1"
+                  />
+                </div>
+              </a>
+            ))}
+          </ul>
+        </section>
       </div>
     </section>
   );
