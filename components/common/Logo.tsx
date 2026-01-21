@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import clsx from "clsx";
@@ -22,21 +22,21 @@ export default function Logo({
   showIcon = true,
 }: LogoProps) {
   return (
-    <Link href={href} className={clsx("inline-flex", className)}>
+    <Link href={href} className={clsx("inline-flex items-center", className)}>
       <div
         className="flex items-center gap-2 cursor-pointer select-none
                    transition-transform duration-200 ease-out
-                   hover:scale-[1.03]"
+                   hover:scale-105"
       >
         {showIcon && (
-          <Code2 size={22} className="text-primary" />
+          <Code2 size={24} className="text-primary" />
         )}
 
         <span
-          className={`${birthstone.className} text-lg sm:text-2xl leading-none text-primary`}
+          className={`${birthstone.className} text-xl sm:text-2xl font-semibold leading-none`}
         >
           Mehedi
-          <span className="text-base-content/60"> Hasan</span>
+          <span className="text-base-content/60 ml-1">Hasan</span>
         </span>
       </div>
     </Link>
