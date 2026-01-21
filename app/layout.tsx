@@ -23,7 +23,7 @@ import { Toaster } from "react-hot-toast";
 // METADATA (SEO / SOCIAL SHARING)
 // ================================================
 export const metadata = {
-  title: "Mehedi Hasan | Developer, Technical Storyteller & Writer",
+  title: "Mehedi Hasan | Full-Stack Developer, Technical Storyteller & Writer",
   description:
     "Mehedi Hasan is a Full-Stack Developer, Technical Storyteller, and Writer. Explore a portfolio of Next.js, React, TypeScript, Node.js, and modern web applications with case studies and technical articles.",
   keywords: [
