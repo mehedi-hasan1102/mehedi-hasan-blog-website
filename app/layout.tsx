@@ -23,36 +23,44 @@ import { Toaster } from "react-hot-toast";
 // METADATA (SEO / SOCIAL SHARING)
 // ================================================
 export const metadata = {
-  title: "Mehedi Hasan | Full-Stack Developer & Web Engineer",
+  title: "Mehedi Hasan | Full-Stack Developer, Technical Storyteller & Writer",
   description:
-    "Portfolio of Mehedi Hasan – Full-Stack Developer specializing in Next.js, React, TypeScript, and modern web applications.",
+    "Mehedi Hasan is a Full-Stack Developer, Technical Storyteller, and Writer. Explore a portfolio of Next.js, React, TypeScript, Node.js, and modern web applications with case studies and technical articles.",
   keywords: [
     "Mehedi Hasan",
     "Full-Stack Developer",
-    "Frontend Developer",
-    "Backend Developer",
-    "MERN Developer",
     "Web Developer",
     "Next.js Developer",
     "React Developer",
-    "JavaScript Developer",
     "TypeScript Developer",
+    "JavaScript Developer",
     "Node.js Developer",
-    "Express.js Developer",
-    "MongoDB Developer",
-    "Portfolio",
+    "MERN Developer",
+    "Frontend Developer",
+    "Backend Developer",
     "Web Engineer",
     "Software Engineer",
-    "ReactJS Portfolio",
+    "Technical Writer",
+    "Technical Storyteller",
+    "Content Writer",
+    "Developer Portfolio",
     "Next.js Portfolio",
+    "React Portfolio",
+    "Web Application Developer",
     "Full-Stack Web Developer",
-    "Web Application Developer"
+    "Software Development Portfolio",
+    "Programming Portfolio",
+    "Case Study Portfolio",
+    "Technical Blog",
+    "Coding Case Studies",
+    "Web Development Case Studies"
   ],
   authors: [{ name: "Mehedi Hasan" }],
   openGraph: {
-    title: "Mehedi Hasan | Full-Stack Developer",
-    description: "Portfolio of Mehedi Hasan – React & Next.js Developer",
-    url: "https://m-hasan.vercel.app",
+    title: "Mehedi Hasan | Full-Stack Developer, Technical Storyteller & Writer",
+    description:
+      "Portfolio of Mehedi Hasan — Full-Stack Developer, Technical Storyteller, and Writer. Discover Next.js and React projects, case studies, and technical articles.",
+    url: "https://mehedi-hasan.me",
     siteName: "Mehedi Hasan Portfolio",
     images: [
       {
@@ -68,13 +76,15 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mehedi Hasan | Full-Stack Developer",
-    description: "Portfolio of Mehedi Hasan – React & Next.js Developer",
+    title: "Mehedi Hasan | Full-Stack Developer, Technical Storyteller & Writer",
+    description:
+      "Portfolio of Mehedi Hasan — Full-Stack Developer, Technical Storyteller, and Writer. Discover Next.js and React projects, case studies, and technical articles.",
     images: ["/og-image.png"],
   },
   robots: "index, follow",
   icons: { icon: "./favicon.ico" },
 };
+
 
 // ================================================
 // ROOT LAYOUT (SERVER COMPONENT)
