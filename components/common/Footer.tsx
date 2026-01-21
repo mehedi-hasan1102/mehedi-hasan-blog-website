@@ -68,7 +68,11 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-3 text-base-content/70">
               {mainPages.map((link) => (
-                <Link key={link.label} href={link.href} className="hover:text-primary transition">
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition text-base-content/70 hover:text-primary"
+                >
                   {link.label}
                 </Link>
               ))}
@@ -82,7 +86,11 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-3 text-base-content/70">
               {resourcesPages.map((link) => (
-                <Link key={link.label} href={link.href} className="hover:text-primary transition">
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition text-base-content/70 hover:text-primary"
+                >
                   {link.label}
                 </Link>
               ))}
@@ -104,7 +112,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="hover:text-primary transition"
+                  className="transition text-base-content/70 hover:text-primary"
                 >
                   <Icon size={18} />
                 </a>
@@ -118,7 +126,7 @@ const Footer = () => {
             className="mt-6 inline-flex items-center gap-2
                        rounded-md bg-base-200 px-4 py-2 text-xs
                        text-base-content/80 shadow-sm
-                       transition hover:bg-base-300 hover:text-primary"
+                       transition hover:bg-base-300 hover:text-base-content"
             aria-label="Back to top"
           >
             ↑ Back to Top
@@ -146,7 +154,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="hover:text-primary transition hover:rotate-12"
+                  className="transition text-base-content/70 hover:text-primary"
                 >
                   <Icon size={18} />
                 </a>
@@ -160,7 +168,7 @@ const Footer = () => {
         </div>
 
         {/* Main Pages */}
-        <div className="flex flex-col gap-3 text-base-content/70">
+        <div className="flex flex-col gap-6 text-base-content/70">
           <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
             Main Pages
           </p>
@@ -168,7 +176,7 @@ const Footer = () => {
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline"
+              className="transition text-base-content/70 hover:text-primary"
             >
               {link.label}
             </Link>
@@ -176,7 +184,7 @@ const Footer = () => {
         </div>
 
         {/* Resources */}
-        <div className="flex flex-col gap-3 text-base-content/70">
+        <div className="flex flex-col gap-6 text-base-content/70">
           <p className="mb-4 text-xs uppercase tracking-widest text-base-content/40">
             Explore
           </p>
@@ -184,7 +192,7 @@ const Footer = () => {
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-primary transition underline-offset-6 decoration-dashed hover:underline"
+              className="transition text-base-content/70 hover:text-primary"
             >
               {link.label}
             </Link>
@@ -194,7 +202,7 @@ const Footer = () => {
           <button
             onClick={scrollToTop}
             className="mt-4 w-fit text-xs text-base-content/60
-                       hover:text-primary transition flex items-center gap-1"
+                       hover:text-primary transition flex items-center gap-1 "
           >
             ↑ Back to Top
           </button>
