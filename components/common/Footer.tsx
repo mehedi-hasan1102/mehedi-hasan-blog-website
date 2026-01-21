@@ -54,10 +54,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mx-auto max-w-3xl mt-2 rounded-t-xl backdrop-blur-xl px-4 pb-8 text-sm text-base-content">
+    <footer className="mx-auto max-w-3xl mt-12  backdrop-blur-xl px-4 pb-0 text-sm text-base-content border-t border-base-content/10">
       
       {/* ---------------- MOBILE ---------------- */}
-      <div className="space-y-10 md:hidden">
+      <div className="space-y-10 md:hidden py-6">
         <div className="flex justify-between gap-10">
           {/* Main Pages */}
           <nav>
@@ -135,7 +135,7 @@ const Footer = () => {
       </div>
 
       {/* ---------------- DESKTOP ---------------- */}
-      <div className="hidden md:grid grid-cols-3 gap-12 pt-6">
+      <div className="hidden md:grid grid-cols-3 gap-12 py-6">
         {/* Brand */}
         <div className="space-y-4">
           <Logo />

@@ -104,7 +104,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline-offset-6 decoration-dashed hover:underline rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
+                className=" rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
               >
                 <ArrowUpRight size={14} />
                 Live
@@ -115,7 +115,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                   href={project.frontendRepo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline-offset-6 decoration-dashed hover:underline rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
+                  className=" rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
                 >
                   <Github size={14} />
                   Frontend
@@ -127,7 +127,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                   href={project.backendRepo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline-offset-6 decoration-dashed hover:underline rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
+                  className=" rounded-lg group inline-flex items-center gap-1 hover:text-primary font-geist text-sm cursor-pointer transition-all duration-300"
                 >
                   <Github size={14} />
                   Backend

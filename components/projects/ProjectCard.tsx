@@ -33,15 +33,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
       className="
         relative border border-primary/30 rounded-lg p-4 overflow-hidden
         shadow-sm transition-transform transition-shadow duration-300
-        hover:shadow-xl hover:-translate-y-1
+         hover:-translate-y-1
       "
     >
       {/* Border Beam */}
       <BorderBeam
         size={32}
         duration={8}
-        colorFrom="#22c55e"
-        colorTo="#16a34a"
         className="absolute top-0 left-0"
       />
 
@@ -96,7 +94,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
             href={memoProject.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-primary hover:translate-x-1 transition-transform duration-300 underline-offset-6 decoration-dashed hover:underline"
+            className="inline-flex items-center gap-1 hover:text-primary  "
           >
             <ArrowUpRight size={14} /> Live
           </a>
@@ -104,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
           <button
             onClick={() => onOpenModal(memoProject)}
             aria-label={`View details for ${memoProject.title}`}
-            className="inline-flex items-center gap-1 hover:text-primary hover:translate-x-1 transition-transform duration-300 underline-offset-6 decoration-dashed hover:underline"
+            className="inline-flex items-center gap-1 hover:text-primary "
           >
             <Eye size={14} /> Details
           </button>

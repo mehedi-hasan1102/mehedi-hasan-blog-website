@@ -25,7 +25,7 @@ export default async function Home() {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen font-geist relative">
+    <div className="min-h-screen font-geist relative pt-20">
 
       {/* ================================================
           SCROLL PROGRESS INDICATOR
