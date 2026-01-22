@@ -26,6 +26,25 @@ html {
 }
 
 
+/* =====================================================
+   SIMPLEBAR SCROLLBAR CUSTOMIZATION
+===================================================== */
+
+.simplebar-track {
+  background: transparent !important; /* ensure override */
+}
+
+.simplebar-scrollbar:before {
+  background-color: #695EFB !important; /* custom thumb color */
+  border-radius: 10px !important;
+}
+
+.simplebar-scrollbar:hover:before {
+  background-color: #695EFB !important; /* hover color */
+}
+
+
+
 
 
 /* =====================================================
