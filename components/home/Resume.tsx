@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import SimpleBar from "simplebar-react";
 import aboutDataJson from "@/data/resume.json";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 /* ---------------- Types ---------------- */
 
@@ -116,6 +116,17 @@ ListItem.displayName = "ListItem";
 const ResumeSections: React.FC = () => {
   const aboutData = useMemo(() => initializeAboutData(aboutDataJson), []);
 
+  const [showAllExperience, setShowAllExperience] = useState(false);
+  const [showAllEducation, setShowAllEducation] = useState(false);
+
+  const visibleExperience = showAllExperience
+    ? aboutData.experience
+    : aboutData.experience.slice(0, 3);
+
+  const visibleEducation = showAllEducation
+    ? aboutData.education
+    : aboutData.education.slice(0, 3);
+
   return (
     <section className="max-w-3xl mx-auto px-4 text-base-content font-geist py-6">
       <div className="flex flex-col gap-12">
@@ -126,20 +137,28 @@ const ResumeSections: React.FC = () => {
             Experience
           </h2>
 
-          <SimpleBar className="max-h-[360px] pr-3">
-            <ul className="space-y-6">
-              {aboutData.experience.map((item) => (
-                <ListItem
-                  key={`${item.title}-${item.organization}`}
-                  title={item.title}
-                  subtitle={item.organization}
-                  meta={item.time}
-                  description={item.description}
-                  link={item.profileLink}
-                />
-              ))}
-            </ul>
-          </SimpleBar>
+          <ul className="space-y-6">
+            {visibleExperience.map((item) => (
+              <ListItem
+                key={`${item.title}-${item.organization}`}
+                title={item.title}
+                subtitle={item.organization}
+                meta={item.time}
+                description={item.description}
+                link={item.profileLink}
+              />
+            ))}
+          </ul>
+
+          {aboutData.experience.length > 3 && (
+            <button
+              className="mt-6 mx-auto flex items-center gap-2 text-sm hover:text-primary "
+              onClick={() => setShowAllExperience((prev) => !prev)}
+            >
+              {showAllExperience ? "See less" : "See more"}
+              {showAllExperience ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            </button>
+          )}
         </div>
 
         {/* ================= Education ================= */}
@@ -148,19 +167,27 @@ const ResumeSections: React.FC = () => {
             Education
           </h2>
 
-          <SimpleBar className="max-h-[360px] pr-3">
-            <ul className="space-y-6">
-              {aboutData.education.map((edu) => (
-                <ListItem
-                  key={`${edu.institution}-${edu.degree}`}
-                  title={edu.institution}
-                  subtitle={edu.degree}
-                  meta={edu.details}
-                  link={edu.credentialLink}
-                />
-              ))}
-            </ul>
-          </SimpleBar>
+          <ul className="space-y-6">
+            {visibleEducation.map((edu) => (
+              <ListItem
+                key={`${edu.institution}-${edu.degree}`}
+                title={edu.institution}
+                subtitle={edu.degree}
+                meta={edu.details}
+                link={edu.credentialLink}
+              />
+            ))}
+          </ul>
+
+          {aboutData.education.length > 3 && (
+            <button
+  className="mt-6 mx-auto flex items-center gap-2 text-sm hover:text-primary "
+  onClick={() => setShowAllEducation((prev) => !prev)}
+>
+  {showAllEducation ? "See less" : "See more"}
+  {showAllEducation ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+</button>
+          )}
         </div>
 
       </div>
