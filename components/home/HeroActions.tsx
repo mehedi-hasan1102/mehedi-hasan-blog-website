@@ -7,14 +7,18 @@ const HeroActions = () => {
   return (
     <div className="mt-5 flex flex-wrap items-center gap-4">
       {/* Resume */}
-      <Link
-        href="/Resume_of_Mehedi_Hasan.pdf"
-        target="_blank"
-        className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
-      >
-        <Download size={16} />
-        Resume
-      </Link>
+      <a
+  href="/Resume_of_Mehedi_Hasan.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
+>
+  <Download size={16} />
+  Resume
+</a>
+
+
+
 
       {/* Hire Me */}
       <Link

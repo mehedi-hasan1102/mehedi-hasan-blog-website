@@ -3,18 +3,9 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-const SkillsAboutSection = dynamic(
-  () => import("@/components/about/Skills-about"),
-  { ssr: false }
-);
-const ResumeAboutSection = dynamic(
-  () => import("@/components/about/Resume-about"),
-  { ssr: false }
-);
-const GitHubAboutSection = dynamic(
-  () => import("@/components/about/GitHub-about"),
-  { ssr: false }
-);
+const SkillsAboutSection = dynamic(() => import("@/components/about/Skills-about"), { ssr: false });
+const ResumeAboutSection = dynamic(() => import("@/components/about/Resume-about"), { ssr: false });
+const GitHubAboutSection = dynamic(() => import("@/components/about/GitHub-about"), { ssr: false });
 
 export default function AboutPage() {
   return (
@@ -32,9 +23,7 @@ export default function AboutPage() {
         {/* Intro */}
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 px-4">
           {/* Image */}
-          <div className="relative w-40 h-56 sm:w-48 sm:h-64 md:w-56 md:h-72
-                          mx-auto md:mx-0 overflow-hidden rounded-2xl
-                          shadow-md flex-shrink-0">
+          <div className="relative w-40 h-56 sm:w-48 sm:h-64 md:w-56 md:h-72 mx-auto md:mx-0 overflow-hidden rounded-2xl shadow-md flex-shrink-0">
             <Image
               src="/assets/images/about.png"
               alt="Mehedi Hasan"
@@ -72,9 +61,7 @@ export default function AboutPage() {
                 href="https://www.linkedin.com/in/mehedi-hasan1102/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium hover:text-primary
-                           underline underline-offset-6
-                           decoration-dashed transition-colors"
+                className="font-medium hover:text-primary underline underline-offset-6 decoration-dashed transition-colors"
               >
                 LinkedIn
               </a>.
