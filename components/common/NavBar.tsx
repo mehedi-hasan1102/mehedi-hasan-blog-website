@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { Menu, X, Github, Linkedin } from "lucide-react";
+
+import { FiMenu, FiX } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -21,8 +24,8 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
 
   const socialLinks: SocialLink[] = useMemo(
     () => [
-      { icon: Github, url: "https://github.com/mehedi-hasan1102", label: "GitHub" },
-      { icon: Linkedin, url: "https://www.linkedin.com/in/mehedi-hasan1102", label: "LinkedIn" },
+      { icon: FaGithub, url: "https://github.com/mehedi-hasan1102", label: "GitHub" },
+      { icon: FaLinkedin, url: "https://www.linkedin.com/in/mehedi-hasan1102", label: "LinkedIn" },
     ],
     []
   );
@@ -103,7 +106,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                 onClick={() => setMenuOpen(true)}
                 className="p-2 rounded-lg hover:bg-base-200/40 transition"
               >
-                <Menu size={18} />
+                <FiMenu size={18} />
               </button>
             )}
           </div>
@@ -124,7 +127,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                   onClick={() => setMenuOpen(false)}
                   className="p-2 rounded-lg hover:bg-base-300/40 transition"
                 >
-                  <X size={18} />
+                  <FiX size={18} />
                 </button>
               </div>
 

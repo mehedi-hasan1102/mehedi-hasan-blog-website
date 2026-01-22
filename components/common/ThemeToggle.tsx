@@ -2,7 +2,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
+import { FiMoon, FiSun } from "react-icons/fi";
+
 
 interface ThemeToggleProps {
   className?: string;
@@ -33,7 +34,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className }) => {
       className={`p-2 rounded-lg hover:text-primary hover:rotate-12  transition ${className || ""}`}
       aria-label="Toggle Theme"
     >
-      {mounted ? (theme === "dark" ? <Sun size={18} /> : <Moon size={18} />) : (
+      {mounted ? (theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />) : (
         <div style={{ width: 16, height: 16 }} />
       )}
     </button>

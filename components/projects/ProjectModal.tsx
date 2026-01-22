@@ -3,7 +3,11 @@
 'use client';
 
 import { useEffect, useMemo } from "react";
-import { ArrowUpRight, Github, X } from "lucide-react";
+
+import { FiArrowUpRight } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
+import { FiX } from "react-icons/fi";
+
 import Image from "next/image";
 
 interface Project {
@@ -68,7 +72,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           className="absolute top-2 right-4 z-30 rounded-lg p-2 sm:p-1 text-red-500 hover:bg-primary/20 transition-all"
           aria-label="Close modal"
         >
-          <X size={14} />
+          <FiX size={14} />
         </button>
 
         <div className="flex-1 overflow-y-scroll modal-scrollbar p-6 md:p-8 space-y-6">
@@ -106,7 +110,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition"
               >
-                <ArrowUpRight size={14} />
+                <FiArrowUpRight size={14} />
                 Live
               </a>
 
@@ -117,7 +121,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition"
                 >
-                  <Github size={14} />
+                  <FaGithub size={14} />
                   Frontend
                 </a>
               )}
@@ -129,7 +133,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-base-content/80 hover:text-primary transition"
                 >
-                  <Github size={14} />
+                  <FaGithub size={14} />
                   Backend
                 </a>
               )}

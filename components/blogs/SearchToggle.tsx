@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { FiSearch } from "react-icons/fi";
+
 import SearchBar from "./SearchBar";
 import { BlogMetaData } from "@/lib/blogs";
 
@@ -18,7 +19,7 @@ const SearchToggle: React.FC<SearchToggleProps> = ({ blogs }) => {
         onClick={() => setOpen(true)}
         className="p-2 rounded-lg hover:hover:rotate-12 hover:text-primary transition"
       >
-        <Search size={18} />
+        <FiSearch size={18} />
       </button>
 
       {open && <SearchBar onClose={() => setOpen(false)} blogs={blogs} />}

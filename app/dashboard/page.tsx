@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
+
 import {
   PieChart,
   Pie,
@@ -240,7 +241,7 @@ export default function DashboardPage() {
               >
                 <div className="flex justify-between items-center">
                   <span className="font-medium">{repo.name}</span>
-                  <ArrowUpRight
+                  <FiArrowUpRight
                     size={16}
                     className="opacity-0 group-hover:opacity-100"
                   />
@@ -287,7 +288,7 @@ export default function DashboardPage() {
                     </p>
                   </div>
 
-                  <ArrowUpRight
+                  <FiArrowUpRight
                     size={16}
                     className="opacity-0 group-hover:opacity-100 mt-1"
                   />

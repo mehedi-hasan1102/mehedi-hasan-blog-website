@@ -3,7 +3,8 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { Birthstone } from "next/font/google";
-import { Code2 } from "lucide-react";
+import { FiCode } from "react-icons/fi";
+
 
 const birthstone = Birthstone({
   weight: "400",
@@ -29,7 +30,7 @@ export default function Logo({
                    hover:scale-105"
       >
         {showIcon && (
-          <Code2 size={24} className="text-primary" />
+          <FiCode size={24} className="text-primary" />
         )}
 
         <span

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { FiChevronDown, FiArrowUpRight } from "react-icons/fi";
+
 import { BlogMetaData } from "@/lib/blogs";
 
 interface BlogHomePageProps {
@@ -45,7 +46,7 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
                   <div className="flex-1">
                     <h3 className="text-[15px] font-medium leading-snug tracking-tight text-base-content group-hover:text-primary transition-colors">
                       {blog.title}
-                      <ArrowUpRight
+                      <FiArrowUpRight
                         size={13}
                         className="inline-block ml-1 opacity-60 group-hover:opacity-100"
                       />
@@ -65,7 +66,7 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
       <div className="pt-6 text-center">
         <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary">
           See all posts
-          <ChevronDown size={14} />
+          <FiChevronDown size={14} />
         </Link>
       </div>
     </section>

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
+
 
 const WHATSAPP_NUMBER = "8801747874773"; // without +
 
@@ -67,7 +68,7 @@ const ContactHomePage: React.FC = () => {
           "
         >
           Send
-          <ArrowUpRight size={14} />
+          <FiArrowUpRight size={14} />
         </button>
       </div>
 

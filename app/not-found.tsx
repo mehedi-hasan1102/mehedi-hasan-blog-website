@@ -1,138 +1,50 @@
-
-"use client";
+'use client';
 
 import Link from "next/link";
-import React, { useEffect, useState, useMemo, JSX } from "react";
-import { motion, Variants } from "framer-motion";
-import { Zap, Home } from "lucide-react";
+
 import Image from "next/image";
+import { SiHomebrew } from "react-icons/si";
 
 const NotFound = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const iconVariants: Variants = {
-    animate: {
-      rotate: [0, -10, 10, -5, 5, 0],
-      transition: { repeat: Infinity, duration: 3, ease: "easeInOut" },
-    },
-  };
-
-  // Particles
-  const Particle: React.FC<{ id: number }> = ({ id }) => {
-    const { startX, startY, animX, animY, opacity, duration } = useMemo(() => {
-      return {
-        startX: Math.random() * 400 - 200,
-        startY: Math.random() * 400 - 200,
-        animX: Math.random() * 40 - 20,
-        animY: Math.random() * 40 - 20,
-        opacity: 0.15 + Math.random() * 0.2,
-        duration: 4 + Math.random() * 4,
-      };
-    }, [id]);
-
-    return (
-      <motion.div
-        className="absolute w-1 h-1 rounded-full bg-primary/40"
-        initial={{ x: startX, y: startY, opacity }}
-        animate={{ x: [startX, animX, startX], y: [startY, animY, startY] }}
-        transition={{ repeat: Infinity, duration, ease: "easeInOut" }}
-      />
-    );
-  };
-
-  const [particles, setParticles] = useState<JSX.Element[]>([]);
-
-  useEffect(() => {
-    setParticles(Array.from({ length: 25 }, (_, i) => <Particle key={i} id={i} />));
-  }, []);
-
   return (
-    <section className="font-geist mx-auto px-0   max-w-3xl relative  overflow-hidden flex justify-center pt-20">
-      {/* Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles}
-      </div>
+    <section className="font-geist mx-auto px-4 max-w-3xl relative overflow-hidden flex justify-center pt-20">
+      <div className="relative z-10 min-h-screen w-full mt-1 py-6">
+        <div className="my-4 text-start">
+          <h2 className="text-3xl ">Oops! Page not found !</h2>
+        </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 min-h-screen rounded-lg  px-4 py-6  shadow-xl backdrop-blur-sm w-full mt-1"
-      >
-
-<motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="my-4 text-start "
-        >
-          <h2 className="text-3xl ">Oops Error !</h2>
-        </motion.div>
-        
       
-        {/* Icon */}
-        <motion.div className="flex justify-center mb-6" variants={iconVariants} animate="animate">
-          <Zap size={80} className="text-primary drop-shadow-lg" />
-        </motion.div>
-
-        {/* 404 text */}
-        {/* <h1 className="text-7xl sm:text-8xl 
-          bg-clip-text text-transparent 
-          bg-gradient-to-r from-primary to-secondary 
-          text-center mb-2">
-          404
-        </h1> */}
+       
         {/* 404 Image */}
-<div className="flex justify-center mb-4">
-  <Image
-    src="/404.png"   // তোমার image path
-    alt="404 Not Found"
-    width={420}
-    height={420}
-    className="w-[260px] sm:w-[340px] md:w-[420px] h-auto"
-    priority
-  />
-</div>
-
-
- 
-
-
-    
+        <div className="flex justify-center mb-4">
+          <Image
+            src="/404.png"
+            alt="404 Not Found"
+            width={420}
+            height={420}
+            className="w-[260px] sm:w-[340px] md:w-[420px] h-auto"
+            priority
+          />
+        </div>
 
         {/* Button */}
         <div className="flex justify-center py-8">
-
-
-       
-        
-          <Link
-            href="/"
-            
-          >
-            <span>  The page you’re looking for doesn’t exist or has been moved.
-Let’s get you back to something useful.
-</span>
-            <span className="underline-offset-6 decoration-dashed hover:underline p-2 rounded-lg group inline-flex items-center gap-2 text-primary  font-geist text-sm cursor-pointer transition-all duration-300">
-             
-               Go Home 
-               <Home size={16} className="group-hover:translate-x-1 transition-transform duration-300 " />
+          <Link href="/" className="inline-flex flex-col items-center text-start">
+            <span className="text-sm text-base-content/70">
+              The page you’re looking for doesn’t exist or has been moved.
+              Let’s get you back to something useful. <span className="mt-3 inline-flex items-center gap-2 hover:text-primary font-medium text-sm ">
+              Go Home <SiHomebrew size={16} />
             </span>
+            </span>
+
+            
           </Link>
         </div>
 
         <p className="text-start text-sm text-base-content/50 mt-4">
           You can explore my projects, skills, or contact section from the homepage.
         </p>
-      </motion.div>
+      </div>
     </section>
   );
 };

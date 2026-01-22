@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Download, Mail } from "lucide-react";
+import { FiDownload, FiMail } from "react-icons/fi";
+
 
 const HeroActions = () => {
   return (
@@ -13,7 +14,7 @@ const HeroActions = () => {
   rel="noopener noreferrer"
   className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
 >
-  <Download size={16} />
+  <FiDownload size={16} />
   Resume
 </a>
 
@@ -25,7 +26,7 @@ const HeroActions = () => {
         href="/#hire-me"
         className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
       >
-        <Mail size={16} />
+        <FiMail size={16} />
         Hire Me
       </Link>
     </div>

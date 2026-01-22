@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
 import aboutDataJson from "@/data/resume.json";
 
 /* ---------------- Types ---------------- */
@@ -96,7 +96,7 @@ const ResumeAboutSections: React.FC = () => {
                   "
                 >
                   View Profile
-                  <ArrowUpRight
+                  <FiArrowUpRight
                     size={14}
                     className="transition-transform group-hover:translate-x-1"
                   />
@@ -143,7 +143,7 @@ const ResumeAboutSections: React.FC = () => {
                   "
                 >
                   View Credential
-                  <ArrowUpRight
+                  <FiArrowUpRight
                     size={14}
                     className="transition-transform group-hover:translate-x-1"
                   />

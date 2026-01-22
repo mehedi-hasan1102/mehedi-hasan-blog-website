@@ -3,15 +3,15 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import {
-  ArrowUpRight,
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
-  Copy,
-  CheckCircle,
-  XCircle,
-} from "lucide-react";
+  AiOutlineArrowRight,
+  AiOutlinePhone,
+  AiOutlineMail,
+  AiOutlineEnvironment,
+  AiOutlineCalendar,
+  AiOutlineCopy,
+  AiOutlineCheckCircle,
+  AiOutlineCloseCircle,
+} from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 
@@ -42,7 +42,7 @@ const ContactMe: React.FC = () => {
   const successToast = (message: string) =>
     toast.custom(() => (
       <div className="flex items-center gap-3 rounded-lg border border-primary/30 bg-base-200 px-4 py-2 shadow-lg">
-        <CheckCircle size={18} className="text-green-500" />
+        <AiOutlineCheckCircle size={18} className="text-green-500" />
         <span className="text-sm font-medium">{message}</span>
       </div>
     ));
@@ -50,7 +50,7 @@ const ContactMe: React.FC = () => {
   const errorToast = (message: string) =>
     toast.custom(() => (
       <div className="flex items-center gap-3 rounded-lg border border-primary/30 bg-base-200 px-4 py-2 shadow-lg">
-        <XCircle size={18} className="text-red-500" />
+        <AiOutlineCloseCircle size={18} className="text-red-500" />
         <span className="text-sm font-medium">{message}</span>
       </div>
     ));
@@ -83,12 +83,12 @@ const ContactMe: React.FC = () => {
 
   const contactItems: ContactItem[] = [
     {
-      icon: <Phone size={18} />,
+      icon: <AiOutlinePhone size={18} />,
       label: "Phone",
       value: CONTACT_PHONE,
     },
     {
-      icon: <Mail size={18} />,
+      icon: <AiOutlineMail size={18} />,
       label: "Email",
       value: (
         <button
@@ -98,17 +98,17 @@ const ContactMe: React.FC = () => {
                      hover:underline hover:text-primary transition"
         >
           {CONTACT_EMAIL}
-          <Copy size={14} />
+          <AiOutlineCopy size={14} />
         </button>
       ),
     },
     {
-      icon: <MapPin size={18} />,
+      icon: <AiOutlineEnvironment size={18} />,
       label: "Location",
       value: "Dhaka, Bangladesh",
     },
     {
-      icon: <Calendar size={18} />,
+      icon: <AiOutlineCalendar size={18} />,
       label: "Meeting",
       value: (
         <a
@@ -120,7 +120,7 @@ const ContactMe: React.FC = () => {
                      hover:underline hover:text-primary transition"
         >
           Schedule on Calendly
-          <ArrowUpRight size={14} />
+          <AiOutlineArrowRight size={14} />
         </a>
       ),
     },
@@ -185,7 +185,7 @@ const ContactMe: React.FC = () => {
                            hover:underline hover:text-primary transition"
               >
                 Send Message
-                <ArrowUpRight size={14} />
+                <AiOutlineArrowRight size={14} />
               </button>
             </form>
           </div>

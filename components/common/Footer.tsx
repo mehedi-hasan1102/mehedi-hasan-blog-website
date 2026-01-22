@@ -1,6 +1,7 @@
 'use client';
 
-import { Github, Linkedin } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 import { FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
@@ -31,8 +32,8 @@ const scrollToTop = () => {
 
 const Footer = () => {
   const socialLinks: SocialLink[] = [
-    { icon: Github, href: "https://github.com/mehedi-hasan1102", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/mehedi-hasan1102/", label: "LinkedIn" },
+    { icon: FaGithub, href: "https://github.com/mehedi-hasan1102", label: "GitHub" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/mehedi-hasan1102/", label: "LinkedIn" },
     { icon: FaEnvelope, href: "mailto:mehedi.hasan11023@gmail.com", label: "Email" },
     { icon: FaXTwitter, href: "https://x.com/mehedihasan1102", label: "Twitter" },
   ];

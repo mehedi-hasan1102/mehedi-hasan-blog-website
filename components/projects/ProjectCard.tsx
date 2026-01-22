@@ -5,7 +5,9 @@
 
 import React, { useMemo } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, Eye } from 'lucide-react';
+
+import { FiArrowUpRight, FiEye } from "react-icons/fi";
+
 import { BorderBeam } from '@/components/ui/border-beam';
 
 export interface Project {
@@ -100,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-base-content/80 hover:text-primary transition"
           >
-            <ArrowUpRight size={14} /> Live
+            <FiArrowUpRight size={14} /> Live
           </a>
 
           <button
@@ -108,7 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
             aria-label={`View details for ${memoProject.title}`}
             className="inline-flex items-center gap-1 text-base-content/80 hover:text-primary transition"
           >
-            <Eye size={14} /> Details
+            <FiEye size={14} /> Details
           </button>
         </div>
       </div>

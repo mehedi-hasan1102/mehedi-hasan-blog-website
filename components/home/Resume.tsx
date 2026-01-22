@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useMemo, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
 import aboutDataJson from "@/data/resume.json";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+
 
 /* ---------------- Types ---------------- */
 
@@ -76,7 +77,7 @@ const ListItem = React.memo(
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 ml-1 text-base-content/70 hover:text-primary transition-colors"
             >
-              <ArrowUpRight size={13} />
+              <FiArrowUpRight size={13} />
             </a>
           )}
         </p>
@@ -102,7 +103,7 @@ const ListItem = React.memo(
           className="inline-flex items-center gap-1 text-sm text-primary hover:underline underline-offset-4 pt-1"
         >
           {linkLabel}
-          <ArrowUpRight size={14} />
+          <FiArrowUpRight size={14} />
         </a>
       )}
     </li>
@@ -156,7 +157,7 @@ const ResumeSections: React.FC = () => {
               onClick={() => setShowAllExperience((prev) => !prev)}
             >
               {showAllExperience ? "See less" : "See more"}
-              {showAllExperience ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              {showAllExperience ? <FiChevronUp size={14} /> : <FiChevronDown size={14} />}
             </button>
           )}
         </div>
@@ -185,7 +186,7 @@ const ResumeSections: React.FC = () => {
   onClick={() => setShowAllEducation((prev) => !prev)}
 >
   {showAllEducation ? "See less" : "See more"}
-  {showAllEducation ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+  {showAllEducation ? <FiChevronUp size={14} /> : <FiChevronDown size={14} />}
 </button>
           )}
         </div>

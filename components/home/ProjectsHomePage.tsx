@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import projectsData from "@/data/projects.json";
 import ProjectCard, { Project } from "@/components/projects/ProjectCard";
 import ProjectModal from "@/components/projects/ProjectModal";
-import { ChevronDown } from "lucide-react";
+import { FiChevronDown } from "react-icons/fi";
+
 import Link from "next/link";
 
 const ProjectsHomePage: React.FC = () => {
@@ -56,7 +57,7 @@ const ProjectsHomePage: React.FC = () => {
             "
           >
             See all projects
-            <ChevronDown size={14} />
+            <FiChevronDown size={14} />
           </Link>
         </div>
       </section>

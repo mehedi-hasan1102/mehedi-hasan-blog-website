@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { X, Search } from "lucide-react";
+import { FiX, FiSearch } from "react-icons/fi";
+
 import { BlogMetaData } from "@/lib/blogs";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
@@ -51,7 +52,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
         {/* Search Input */}
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center gap-4 w-full rounded-lg transition">
-            <Search className="text-primary w-5 h-5" />
+            <FiSearch className="text-primary w-5 h-5" />
             <input
               autoFocus
               type="text"
@@ -65,7 +66,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
             onClick={onClose}
             className="hover:bg-primary/30 text-red-500 ml-3 p-1 rounded-lg transition hover:scale-120"
           >
-            <X size={16} />
+            <FiX size={16} />
           </button>
         </div>
 
