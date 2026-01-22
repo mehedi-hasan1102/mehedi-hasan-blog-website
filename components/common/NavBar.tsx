@@ -78,7 +78,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
           </ul>
 
           {/* Right Actions */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-0">
             {socialLinks.map(({ icon: Icon, label, url }) => (
               <a
                 key={label}
@@ -91,14 +91,14 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
               </a>
             ))}
 
-            <div className="ml-2 pl-3 border-l border-base-content/10 flex items-center gap-1">
+            <div className="ml-2 pl-1 border-l border-base-content/10 flex items-center gap-0">
               <SearchToggle blogs={blogs} />
               <ThemeToggle />
             </div>
           </div>
 
           {/* Mobile Controls */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-0 md:hidden">
             <SearchToggle blogs={blogs} />
             <ThemeToggle />
             {!menuOpen && (
@@ -153,7 +153,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                 </ul>
               </nav>
 
-              <div className="flex justify-center gap-3 px-5 py-4 border-t border-base-content/10">
+              <div className="flex justify-center gap-0 px-5 py-4 border-t border-base-content/10">
                 {socialLinks.map(({ icon: Icon, label, url }) => (
                   <a
                     key={label}

@@ -1,7 +1,11 @@
 'use client';
 
 import React, { useMemo, useState, useCallback } from "react";
-import { Eye, ArrowUpRight, Github } from "lucide-react";
+
+import { FiEye } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
+
 import projectsData from "../../data/projects.json";
 import ProjectModal from "@/components/projects/ProjectModal";
 import Image from "next/image";
@@ -135,7 +139,7 @@ const AllProjectsPage: React.FC = () => {
                                    hover:text-primary underline-offset-6
                                    decoration-dashed hover:underline"
                       >
-                        <ArrowUpRight size={14} /> Live
+                        <FiArrowUpRight size={14} /> Live
                       </a>
 
                       {project.frontendRepo && (
@@ -147,7 +151,7 @@ const AllProjectsPage: React.FC = () => {
                                      hover:text-primary underline-offset-6
                                      decoration-dashed hover:underline"
                         >
-                          <Github size={14} /> Frontend
+                          <FaGithub size={14} /> Frontend
                         </a>
                       )}
 
@@ -160,7 +164,7 @@ const AllProjectsPage: React.FC = () => {
                                      hover:text-primary underline-offset-6
                                      decoration-dashed hover:underline"
                         >
-                          <Github size={14} /> Backend
+                          <FaGithub size={14} /> Backend
                         </a>
                       )}
 
@@ -170,7 +174,7 @@ const AllProjectsPage: React.FC = () => {
                                    hover:text-primary underline-offset-6
                                    decoration-dashed hover:underline"
                       >
-                        <Eye size={14} /> Details
+                        <FiEye size={14} /> Details
                       </button>
                     </div>
                   </div>
