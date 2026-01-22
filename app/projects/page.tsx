@@ -56,28 +56,31 @@ const AllProjectsPage: React.FC = () => {
 
           {/* Header */}
           <div className="m-4">
-            <p className="text-sm text-base-content mb-0">• Projects</p>
-            <h1 className="text-3xl">
-              All <span className="text-base-content/60">Works</span>
+            
+            <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
+              Projects 
             </h1>
+            <p className="text-base mt-2  mb-0 text-base-content/75">I’ve worked on both commercial and personal projects, including course-related work. You can explore them all here. While you’re visiting, feel free to check out my blog, where I write about technology, learning, and memes.</p>
           </div>
 
           {/* Filters */}
           <div className="flex justify-center gap-4 my-4 flex-wrap">
             {(["All", "Frontend", "Backend", "Full Stack"] as FilterType[]).map(
               (type) => (
+               
                 <button
-                  key={type}
-                  onClick={() => setFilter(type)}
-                  className={`text-sm transition-all duration-200
-                    ${
-                      filter === type
-                        ? "text-primary underline underline-offset-6 decoration-dashed"
-                        : "text-base-content/70 hover:text-primary"
-                    }`}
-                >
-                  {type}
-                </button>
+  key={type}
+  onClick={() => setFilter(type)}
+  className={`text-sm transition-all duration-200
+    ${
+      filter === type
+        ? "text-primary underline underline-offset-6 decoration-2"
+        : "text-base-content/70 hover:text-primary"
+    }`}
+>
+  {type}
+</button>
+
               )
             )}
           </div>
@@ -90,7 +93,7 @@ const AllProjectsPage: React.FC = () => {
               <article
                 key={project.title}
                 className="group rounded-md px-4 py-4 sm:py-6
-                           transition-colors hover:bg-base-200/50"
+                           transition-colors "
               >
                 <div className="flex flex-col sm:flex-row gap-4">
                   {/* Image */}
@@ -101,7 +104,7 @@ const AllProjectsPage: React.FC = () => {
                       fill
                       sizes="250px"
                       priority={index === 0}
-                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      className="object-cover transition-transform duration-300 "
                     />
                   </div>
 
@@ -190,8 +193,8 @@ const AllProjectsPage: React.FC = () => {
               <Link
                 href="https://github.com/mehedi-hasan1102"
                 target="_blank"
-                className="font-medium text-base-content hover:text-primary
-                           underline underline-offset-6 decoration-dashed"
+                className="font-medium  hover:text-primary text-base-content/60
+                           underline underline-offset-6 "
               >
                 GitHub
               </Link>.
