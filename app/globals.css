@@ -2,8 +2,10 @@
    IMPORTS
 ===================================================== */
 @import "tailwindcss";
+
+/* DaisyUI plugin with only selected themes */
 @plugin "daisyui" {
-  themes: light, dark;  
+  themes: light, dark;  /* Only use light and dark themes */
 }
 
 /* =====================================================
@@ -24,12 +26,13 @@ html {
 
 
 
+
 /* =====================================================
-   CUSTOM FONT: GEIST MONO
+   CUSTOM FONT IMPORTS
 ===================================================== */
 
 @font-face {
-  font-family: "Geist Mono", monospace;
+  font-family: "Geist Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
