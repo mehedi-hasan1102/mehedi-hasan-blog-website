@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import { FiCopy, FiCheck } from "react-icons/fi";
+
 
 type Snippet = {
   title: string;
@@ -75,7 +75,7 @@ const SnippetsPage: React.FC = () => {
         {snippets.map((snippet, index) => (
           <article
             key={index}
-            className="rounded-lg border border-base-300 bg-base-100 overflow-hidden"
+            className="rounded-lg border border-primary/20 bg-base-100 overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-4 p-4">
@@ -106,18 +106,18 @@ const SnippetsPage: React.FC = () => {
                   inline-flex items-center gap-1
                   text-xs font-medium
                   px-2 py-1 rounded
-                  bg-primary text-primary-content
+                   text-primary-content
                   opacity-80 hover:opacity-100
                   transition
                 "
               >
                 {copiedIndex === index ? (
                   <>
-                    <FiCheck size={14} /> Copied
+                    ✓ Copied
                   </>
                 ) : (
                   <>
-                    <FiCopy size={14} /> Copy
+                    ⧉ Copy
                   </>
                 )}
               </button>

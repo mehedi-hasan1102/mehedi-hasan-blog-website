@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from "react";
@@ -20,7 +21,7 @@ export default function BlogPost({ blog }: Props) {
       if (!codeEl) return;
 
       const button = document.createElement("button");
-      button.textContent = "Copy";
+      button.textContent = "  ⧉ Copy";
       button.className = "copy-btn";
 
       Object.assign(button.style, {
@@ -34,19 +35,21 @@ export default function BlogPost({ blog }: Props) {
         background: "var(--p)",
         color: "var(--b1)",
         cursor: "pointer",
-        opacity: "0",
-        transition: "opacity 0.2s ease",
+        opacity: "1",            // always visible
+        transition: "none",      // no hover effect
       });
 
       pre.style.position = "relative";
 
-      pre.addEventListener("mouseenter", () => (button.style.opacity = "1"));
-      pre.addEventListener("mouseleave", () => (button.style.opacity = "0"));
+      // Remove hover behavior
+      // pre.addEventListener("mouseenter", () => (button.style.opacity = "1"));
+      // pre.addEventListener("mouseleave", () => (button.style.opacity = "0"));
 
       button.onclick = async () => {
         await navigator.clipboard.writeText(codeEl.innerText);
-        button.textContent = "Copied";
-        setTimeout(() => (button.textContent = "Copy"), 2000);
+        button.textContent = "✓ Copied";
+
+        setTimeout(() => (button.textContent = "  ⧉ Copy"), 2000);
       };
 
       pre.appendChild(button);
@@ -113,7 +116,9 @@ export default function BlogPost({ blog }: Props) {
             [&_blockquote]:italic
             [&_blockquote]:text-base-content/80
 
-            [&_pre]:bg-base-100
+            [&_pre]:border              
+            [&_pre]:border-primary/20
+            [&_pre]:bg-base-200
             [&_pre]:rounded-lg
             [&_pre]:p-6
             [&_pre]:overflow-x-auto
