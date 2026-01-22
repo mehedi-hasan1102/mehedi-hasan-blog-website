@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiChevronDown, FiArrowUpRight } from 'react-icons/fi';
+import { FiChevronDown} from 'react-icons/fi';
 import { BlogMetaData } from '@/lib/blogs';
 
 interface BlogHomePageProps {
@@ -50,12 +50,10 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
                     {/* title  */}
 <div className="group-hover:underline underline-offset-4 inline-flex items-center">
   <h3 className="text-[15px] font-medium leading-snug tracking-tight">
-    {blog.title}
+    {blog.title} ↗
   </h3>
-  <FiArrowUpRight
-    size={13}
-    className="ml-1 opacity-60 shrink-0"
-  />
+  
+
 </div>
 
                     {/* Meta (resume-style) */}

@@ -49,7 +49,7 @@ const ResourcesPage: React.FC = () => {
               {category.items.map((item) => (
                 <li
                   key={item.title}
-                  className="group rounded-lg py-2 text-base transition-colors"
+                  className="group rounded-lg py-2 transition-colors"
                 >
                   <a
                     href={item.href}
@@ -64,7 +64,7 @@ const ResourcesPage: React.FC = () => {
                       transition-colors
                     "
                   >
-                    {item.title}
+                    {item.title} ↗
                   </a>
 
                   {item.description && (

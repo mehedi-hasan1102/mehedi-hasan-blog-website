@@ -3,7 +3,7 @@
 import React, { useMemo, useCallback } from "react";
 import Image from "next/image";
 import { Blog } from "../../lib/blogs";
-import { FiArrowUpRight } from "react-icons/fi";
+
 
 const MONTH_ORDER: Record<string, number> = {
   January: 1,
@@ -128,12 +128,9 @@ export function BlogContent({ years, structured }: BlogContentProps) {
                             {/* Title + Arrow (resume-style) */}
                             <div className="inline-flex items-center group-hover:underline underline-offset-4">
                               <h4 className="text-[15px] font-medium leading-snug tracking-tight">
-                                {blog.title}
+                                {blog.title} ↗
                               </h4>
-                              <FiArrowUpRight
-                                size={13}
-                                className="ml-1 opacity-60 shrink-0"
-                              />
+                              
                             </div>
 
                             {/* Meta */}
