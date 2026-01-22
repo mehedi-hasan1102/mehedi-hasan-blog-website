@@ -1,9 +1,13 @@
 "use client";
 
 import { Download, Mail } from "lucide-react";
-import { Link as ScrollLink } from "react-scroll";
 
 const HeroActions = () => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    document.getElementById("hire-me")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="mt-5 flex flex-wrap items-center gap-4">
       <a
@@ -16,15 +20,14 @@ const HeroActions = () => {
         Resume
       </a>
 
-      <ScrollLink
-        to="hire-me"
-        smooth
-        duration={500}
-        className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary cursor-pointer transition-colors"
+      <a
+        href="#hire-me"
+        onClick={handleScroll}
+        className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
       >
         <Mail size={16} />
         Hire Me
-      </ScrollLink>
+      </a>
     </div>
   );
 };
