@@ -4,6 +4,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { FaArrowUpRightDots } from 'react-icons/fa6';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 const GitHubActivitySection: React.FC = () => {
   return (
@@ -36,7 +37,7 @@ const GitHubActivitySection: React.FC = () => {
           className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary"
         >
           View GitHub profile
-          <FaArrowUpRightDots size={14} />
+          <FiArrowUpRight size={14} />
         </Link>
       </div>
     </section>
