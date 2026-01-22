@@ -52,19 +52,27 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
         {/* Search Input */}
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center gap-4 w-full rounded-lg transition">
-            <FiSearch className="text-primary w-5 h-5" />
-            <input
-              autoFocus
-              type="text"
-              className="w-full p-2 input input-bordered focus:border-primary rounded-lg focus:outline-none"
-              placeholder="Search blogs..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
+            <FiSearch className=" w-5 h-5" />
+           <div className="border-b border-base-content/20">
+  <input
+    autoFocus
+    type="text"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    placeholder="Search blogs..."
+    className="
+      w-full bg-transparent outline-none
+      text-sm text-base-content
+      placeholder:text-base-content/50
+      py-2
+    "
+  />
+</div>
+
           </div>
           <button
             onClick={onClose}
-            className="hover:bg-primary/30 text-red-500 ml-3 p-1 rounded-lg transition hover:scale-120"
+            className="cursor-pointer hover:text-primary ml-3 p-1 rounded-lg transition hover:scale-120"
           >
             <FiX size={16} />
           </button>
