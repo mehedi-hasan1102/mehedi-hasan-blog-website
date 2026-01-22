@@ -60,8 +60,14 @@ const AllProjectsPage: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
               Projects 
             </h1>
-            <p className="text-base mt-2  mb-0 text-base-content/75">I’ve worked on both commercial and personal projects, including course-related work. You can explore them all here. While you’re visiting, feel free to check out my blog, where I write about technology, learning, and memes.</p>
-          </div>
+           <p className="text-base mt-2 mb-0 text-base-content/75">
+  I’ve worked on both commercial and personal projects, including course-related work. You can explore them all here. While you’re visiting, feel free to check out my{" "}
+  <Link href="/blog" className=" underline underline-offset-4">
+    blog
+  </Link>
+  , where I write about technology, learning, and memes.
+</p>
+  </div>
 
           {/* Filters */}
           <div className="flex justify-center gap-4 my-4 flex-wrap">
