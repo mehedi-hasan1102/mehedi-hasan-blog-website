@@ -57,10 +57,12 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
           <ul className="hidden md:flex flex-1 justify-center items-center gap-2 text-sm tracking-wide ">
             {[
               { name: "Home", route: "/" },
-              { name: "About", route: "/about" },
+              // { name: "About", route: "/about" },
               { name: "Projects", route: "/projects" },
               { name: "Blog", route: "/blog" },
-              { name: "Contact", route: "/contact" },
+              { name: "Snippets", route: "/snippets" },
+               { name: "Resources", route: "/resources" },
+              // { name: "Contact", route: "/contact" },
             ].map((item) => (
               <li key={item.route}>
                 <Link
@@ -153,8 +155,17 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
           { name: "Home", route: "/" },
           { name: "About", route: "/about" },
           { name: "Projects", route: "/projects" },
-          { name: "Blog", route: "/blog" },
+           { name: "Blog", route: "/blog" },       
+           { name: "Snippets", route: "/snippets" },
+  { name: "Resources", route: "/resources" },
           { name: "Contact", route: "/contact" },
+
+
+
+
+
+
+
         ].map((item) => {
           const active = isActive(item.route);
 
