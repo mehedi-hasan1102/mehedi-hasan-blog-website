@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { FiArrowUpRight, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import {  FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import aboutDataJson from '@/data/resume.json';
 
 /* ---------------- Types ---------------- */
@@ -76,7 +76,7 @@ const ResumeItem = ({
           {subtitle && (
             <div className="mt-0.5 inline-flex items-center gap-1 text-sm text-base-content/70 group-hover:underline underline-offset-4">
               <span>{subtitle}</span>
-              <FiArrowUpRight size={13} className="opacity-60" />
+              <span>↗</span>
             </div>
           )}
 

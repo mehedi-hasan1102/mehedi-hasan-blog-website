@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenModal }) => {
       <BorderBeam size={32} duration={8} className="absolute top-0 left-0" />
 
       {/* Media */}
-      <div className="overflow-hidden rounded-lg relative w-full aspect-[16/9] mb-3">
+      <div className="overflow-hidden rounded-lg relative w-full aspect-[16/9] mb-3 hidden sm:block">
         <Image
           src={memoProject.images?.[0] ?? '/fallback-image.jpg'}
           alt={memoProject.title}

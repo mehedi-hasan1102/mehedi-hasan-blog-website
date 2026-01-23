@@ -138,7 +138,7 @@ const LinksPage: React.FC = () => {
                         inline-flex items-center gap-2 text-sm
                         text-base-content/80
                         underline-offset-6 
-                        hover:text-primary hover:underline
+                         hover:underline
                         transition-colors duration-200
                       "
                     >
@@ -146,6 +146,7 @@ const LinksPage: React.FC = () => {
                         <link.icon size={14} />
                       </span>
                       {link.label}
+                      {/* <span>↗</span> */}
                     </a>
                   </li>
                 ))}

@@ -58,7 +58,7 @@ const ResourcesPage: React.FC = () => {
                     className="
                       font-medium
                       text-base-content
-                      group-hover:text-primary
+                      
                       group-hover:underline
                       underline-offset-4
                       transition-colors
