@@ -148,17 +148,19 @@ export default async function RootLayout({
         <link rel="canonical" href="https://www.mehedi-hasan.me" />
       </head>
 
-      <body>
-        {/* SERVER NAVBAR (NO client JS pollution) */}
-        <Navbar blogs={allBlogsData} />
+    <>
+  {/* SERVER NAVBAR */}
+  <Navbar blogs={allBlogsData} />
 
-        {/* PAGE CONTENT (SERVER by default) */}
-        <main className="px-2 lg:px-0">{children}</main>
+  {/* PAGE CONTENT */}
+  <main className="px-2 lg:px-0">{children}</main>
 
-        <FloatingContactCTA />
+  {/* FLOATING CHAT */}
+  <FloatingContactCTA />
 
-        <Footer />
-      </body>
+  <Footer />
+</>
+
     </html>
   );
 }
