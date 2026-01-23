@@ -55,12 +55,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
   return (
     <div
-      className="font-geist fixed inset-0 backdrop-blur-sm z-[99] p-4 flex items-center justify-center"
+      className="font-geist fixed inset-0 backdrop-blur-[2px] z-[99] p-4 flex items-center justify-center"
       onClick={closeModal}
     >
       <div
         className="bg-base-200 border border-primary/30 rounded-br-none rounded-tr-none rounded-2xl shadow-2xl
-                   w-full max-h-[85vh] overflow-hidden flex flex-col relative max-w-2xl mx-auto
+                   w-full max-h-[80vh] overflow-hidden flex flex-col relative max-w-2xl mx-auto
                    transition-transform duration-200 ease-out"
         onClick={(e) => e.stopPropagation()}
       >

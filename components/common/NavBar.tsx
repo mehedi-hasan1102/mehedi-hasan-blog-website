@@ -48,7 +48,8 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
       <div className="w-full mx-auto max-w-3xl font-geist">
 
         {/* Desktop Navbar */}
-        <div className="flex items-center justify-between py-3 backdrop-blur-sm border-b border-base-content/10 px-4 md:px-6 ">
+    
+<div className="flex items-center justify-between py-3 backdrop-blur-[2px] bg-base-100/40 border-b border-base-content/10 px-4 md:px-6">
 
           <Logo />
 
@@ -120,84 +121,86 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
         </div>
 
         {/* Mobile Drawer */}
-        {menuOpen && (
-          <>
-            <div
-              className="fixed inset-0 z-20 md:hidden"
-              onClick={() => setMenuOpen(false)}
-            />
+        {/* Mobile Drawer */}
+<>
+  {/* Overlay */}
+  <div
+    className={`fixed inset-0 z-20 md:hidden transition-opacity duration-300 ${
+      menuOpen ? "opacity-100 pointer-events-auto backdrop-blur-[2px] bg-base-100/20" : "opacity-0 pointer-events-none"
+    }`}
+    onClick={() => setMenuOpen(false)}
+  />
 
-            <aside className="fixed top-0 left-0 z-30 h-full w-[75%] max-w-sm bg-base-200 border-r border-base-content/10 shadow-xl flex flex-col rounded-r-xl">
-              <div className="flex items-center justify-between px-5 py-3 border-b border-base-content/10">
-                <Logo />
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="p-2 rounded-lg hover:text-primary transition"
-                >
-                  <FiX size={18} />
-                </button>
-              </div>
+  {/* Drawer */}
+  <aside
+    className={`fixed top-0 left-0 z-30 h-full w-[75%] max-w-sm bg-base-200 border-r border-base-content/10 shadow-xl flex flex-col rounded-r-xl transition-transform duration-300 ${
+      menuOpen ? "translate-x-0" : "-translate-x-full"
+    }`}
+  >
+    <div className="flex items-center justify-between px-5 py-3 border-b border-base-content/10">
+      <Logo />
+      <button
+        onClick={() => setMenuOpen(false)}
+        className="p-2 rounded-lg hover:text-primary transition"
+      >
+        <FiX size={18} />
+      </button>
+    </div>
 
-            
+    <nav className="flex-1 px-4 py-4 overflow-y-auto">
+      <ul className="flex flex-col gap-1">
+        {[
+          { name: "Home", route: "/" },
+          { name: "About", route: "/about" },
+          { name: "Projects", route: "/projects" },
+          { name: "Blog", route: "/blog" },
+          { name: "Contact", route: "/contact" },
+        ].map((item) => {
+          const active = isActive(item.route);
 
-              <nav className="flex-1 px-4 py-4 overflow-y-auto">
-  <ul className="flex flex-col gap-1">
-    {[
-      { name: "Home", route: "/" },
-      { name: "About", route: "/about" },
-      { name: "Projects", route: "/projects" },
-      { name: "Blog", route: "/blog" },
-      { name: "Contact", route: "/contact" },
-    ].map((item) => {
-      const active = isActive(item.route);
+          return (
+            <li key={item.route}>
+              <Link
+                href={item.route}
+                onClick={() => setMenuOpen(false)}
+                className={`relative inline-flex flex-col items-center px-4 py-3 text-sm font-medium transition
+                  ${
+                    active
+                      ? "text-primary"
+                      : "text-base-content/80 hover:text-primary"
+                  }
+                `}
+              >
+                <span className="relative">
+                  {item.name}
+                  {active && (
+                    <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-primary rounded-full" />
+                  )}
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
 
-      return (
-        <li key={item.route}>
-          <Link
-            href={item.route}
-            onClick={() => setMenuOpen(false)}
-            className={`relative inline-flex flex-col items-center px-4 py-3 text-sm font-medium transition
-              ${
-                active
-                  ? "text-primary"
-                  : "text-base-content/80 hover:text-primary"
-              }
-            `}
-          >
-            {/* Text */}
-            <span className="relative">
-              {item.name}
+    <div className="flex justify-center gap-0 px-5 py-3 border-t border-base-content/10">
+      {socialLinks.map(({ icon: Icon, label, url }) => (
+        <a
+          key={label}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          className="p-2 rounded-full text-base-content/70 hover:text-primary hover:bg-base-300/40 transition"
+        >
+          <Icon size={18} />
+        </a>
+      ))}
+    </div>
+  </aside>
+</>
 
-              {/* Underline = text width */}
-              {active && (
-                <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-primary rounded-full" />
-              )}
-            </span>
-          </Link>
-        </li>
-      );
-    })}
-  </ul>
-</nav>
-
-
-              <div className="flex justify-center gap-0 px-5 py-3 border-t border-base-content/10">
-                {socialLinks.map(({ icon: Icon, label, url }) => (
-                  <a
-                    key={label}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}  
-                    className="p-2 rounded-full text-base-content/70 hover:text-primary hover:bg-base-300/40 transition"
-                  >
-                    <Icon size={18} />
-                  </a>
-                ))}
-              </div>
-            </aside>
-          </>
-        )}
       </div>
     </header>
   );
