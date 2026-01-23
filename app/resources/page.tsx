@@ -58,7 +58,7 @@ const ResourcesPage: React.FC = () => {
                     className="
                       font-medium
                       text-base-content
-                      
+                      text-[15px] 
                       group-hover:underline
                       underline-offset-4
                       transition-colors
@@ -68,7 +68,7 @@ const ResourcesPage: React.FC = () => {
                   </a>
 
                   {item.description && (
-                    <p className="mt-2 text-sm text-base-content/45 leading-relaxed">
+                    <p className="mt-0 text-sm text-base-content/45 leading-relaxed">
                       {item.description}
                     </p>
                   )}

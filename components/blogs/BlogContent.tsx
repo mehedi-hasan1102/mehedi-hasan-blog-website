@@ -62,7 +62,7 @@ export function BlogContent({ years, structured }: BlogContentProps) {
           Blog
         </h1>
         <p className="text-base mt-2 mb-0 text-base-content/75">
-          I have been programming for nearly six years. Over the past year, I’ve worked with a variety of technologies, and I’m here to share my experience. You can also read my tweets on {" "}
+          I have been programming for nearly two years. Over the past year, I’ve worked with a variety of technologies, and I’m here to share my experience. You can also read my tweets on {" "}
           <a
             href="https://x.com/mehedihasan1102"
             target="_blank"

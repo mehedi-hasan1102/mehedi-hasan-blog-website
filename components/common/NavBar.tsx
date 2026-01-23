@@ -80,6 +80,37 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
             ))}
           </ul>
 
+{/* underline only active link  */}
+{/* <ul className="hidden md:flex flex-1 justify-center items-center gap-0 text-sm tracking-wide ">
+  {[
+    { name: "Home", route: "/" },
+    { name: "Projects", route: "/projects" },
+    { name: "Blog", route: "/blog" },
+    { name: "Snippets", route: "/snippets" },
+    { name: "Resources", route: "/resources" },
+  ].map((item) => (
+    <li key={item.route}>
+      <Link
+        href={item.route}
+        className={`relative inline-block px-2 py-1 transition-colors duration-200
+          ${isActive(item.route) ? "text-primary" : "text-base-content/70 hover:text-primary"}
+        `}
+      >
+        <span className="relative">
+          {item.name}
+          {isActive(item.route) && (
+            <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-primary rounded-full" />
+          )}
+        </span>
+      </Link>
+    </li>
+  ))}
+</ul> */}
+
+
+
+          
+
           {/* Right Actions */}
           <div className="hidden md:flex items-center gap-0">
             {socialLinks.map(({ icon: Icon, label, url }) => (
@@ -122,7 +153,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
 
         </div>
 
-        {/* Mobile Drawer */}
+      
         {/* Mobile Drawer */}
 <>
   {/* Overlay */}
