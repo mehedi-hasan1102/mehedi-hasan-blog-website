@@ -85,6 +85,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
+                 aria-label={label}   
                 className="p-2 rounded-lg text-base-content/70 hover:text-primary transition"
               >
                 <Icon size={18} />
@@ -166,6 +167,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
+                     aria-label={label}   
                     className="p-2 rounded-full text-base-content/70 hover:text-primary hover:bg-base-300/40 transition"
                   >
                     <Icon size={18} />
