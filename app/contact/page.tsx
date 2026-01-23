@@ -171,31 +171,37 @@ const ContactMe: React.FC = () => {
           <div className="w-full md:w-1/2">
             <form ref={formRef} onSubmit={sendEmail} className="space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <input name="name" required placeholder="Your name" className="  flex-1 bg-transparent border border-base-content/20
-        rounded-md px-3 py-2 text-sm
-        placeholder:text-base-content/50
-        focus:border-primary focus:ring-1 focus:ring-primary
-        outline-none transition-colors
-      " />
-                <input name="phone" placeholder="Phone" className="  flex-1 bg-transparent border border-base-content/20
-        rounded-md px-3 py-2 text-sm
-        placeholder:text-base-content/50
-        focus:border-primary focus:ring-1 focus:ring-primary
-        outline-none transition-colors
-      " />
-                <input name="email" type="email" required placeholder="Email" className="  flex-1 bg-transparent border border-base-content/20
-        rounded-md px-3 py-2 text-sm
-        placeholder:text-base-content/50
-        focus:border-primary focus:ring-1 focus:ring-primary
-        outline-none transition-colors
-      " />
-                <input name="subject" placeholder="Subject" className="  flex-1 bg-transparent border border-base-content/20
-        rounded-md px-3 py-2 text-sm
-        placeholder:text-base-content/50
-        focus:border-primary focus:ring-1 focus:ring-primary
-        outline-none transition-colors
-      " />
-              </div>
+            <input
+  name="name"
+  required
+  placeholder="Your name"
+  className="flex-1 bg-transparent border border-base-content/20 rounded-md px-3 py-2 text-sm placeholder:text-base-content/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+/>
+
+<input
+  name="phone"
+  required
+  type="tel"
+  pattern="[0-9]{10}"
+  placeholder="Phone"
+  className="flex-1 bg-transparent border border-base-content/20 rounded-md px-3 py-2 text-sm placeholder:text-base-content/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+/>
+
+<input
+  name="email"
+  required
+  type="email"
+  placeholder="Email"
+  className="flex-1 bg-transparent border border-base-content/20 rounded-md px-3 py-2 text-sm placeholder:text-base-content/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+/>
+
+<input
+  name="subject"
+  required
+  placeholder="Subject"
+  className="flex-1 bg-transparent border border-base-content/20 rounded-md px-3 py-2 text-sm placeholder:text-base-content/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+/>
+ </div>
 
               <textarea
                 name="message"
