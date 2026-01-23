@@ -3,7 +3,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { Birthstone } from "next/font/google";
-import { FiCode } from "react-icons/fi";
+import { IoCodeSlashOutline } from "react-icons/io5";
 
 
 const birthstone = Birthstone({
@@ -26,11 +26,12 @@ export default function Logo({
     <Link href={href} className={clsx("inline-flex items-center", className)}>
       <div
         className="flex items-center gap-2 cursor-pointer select-none
-                   transition-transform duration-200 ease-out
-                   hover:scale-105"
+                   
+                   "
       >
         {showIcon && (
-          <FiCode size={24} className="text-primary" />
+         
+          <IoCodeSlashOutline size={24} className="text-primary"  />
         )}
 
         <span
