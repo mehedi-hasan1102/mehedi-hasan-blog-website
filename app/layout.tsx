@@ -11,6 +11,7 @@ import { ReactNode } from "react";
 import Footer from "@/components/common/Footer";
 import Navbar from "@/components/common/NavBar";
 import { getSortedBlogsData } from "@/lib/blogs";
+import FloatingContactCTA from "@/components/common/FloatingContactCTA";
 // ================================================
 // METADATA (SEO / SOCIAL SHARING)
 // ================================================
@@ -153,6 +154,8 @@ export default async function RootLayout({
 
         {/* PAGE CONTENT (SERVER by default) */}
         <main className="px-2 lg:px-0">{children}</main>
+
+        <FloatingContactCTA />
 
         <Footer />
       </body>
