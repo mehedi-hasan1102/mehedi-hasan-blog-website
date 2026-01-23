@@ -39,7 +39,7 @@ const SnippetsPage: React.FC = () => {
         {snippets.map((snippet, index) => (
           <article
             key={index}
-            className="rounded-lg border border-primary/20 bg-base-100 overflow-hidden"
+            className="rounded-lg border border-primary/20 bg-base-100  overflow-hidden"
           >
             <div className="flex items-start justify-between gap-4 p-4">
               <div>

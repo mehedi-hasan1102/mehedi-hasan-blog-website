@@ -193,7 +193,7 @@ export default function DashboardClient() {
         </div>
 
         {/* Contribution Graph */}
-        <section className="mb-10">
+        <section className="mb-10 mx-4">
           <h3 className="text-xl mb-4">Contribution Activity</h3>
           <img
             src={`https://ghchart.rshah.org/${USERNAME}`}
@@ -205,7 +205,7 @@ export default function DashboardClient() {
 
         {/* Language Chart */}
         {languagesData.length > 0 && (
-          <section className="mb-10">
+          <section className="mb-10 mx-4">
             <h3 className="text-xl mb-4">Language Usage</h3>
 
             <div className="h-80">
@@ -230,7 +230,7 @@ export default function DashboardClient() {
               </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
+            <div className="flex flex-wrap justify-center gap-2  mt-4">
               {languagesData.map((lang, i) => (
                 <span
                   key={lang.name}
