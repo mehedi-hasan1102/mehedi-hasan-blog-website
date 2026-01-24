@@ -20,7 +20,7 @@ interface NavLink {
   href: string;
 }
 
-const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL!;
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact' ;
 
 /* ---------------- Helpers ---------------- */
 

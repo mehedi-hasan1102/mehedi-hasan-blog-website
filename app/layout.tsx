@@ -148,7 +148,9 @@ export default async function RootLayout({
         <link rel="canonical" href="https://www.mehedi-hasan.me" />
       </head>
 
-    <>
+
+
+<body>
   {/* SERVER NAVBAR */}
   <Navbar blogs={allBlogsData} />
 
@@ -159,7 +161,9 @@ export default async function RootLayout({
   <FloatingContactCTA />
 
   <Footer />
-</>
+</body>
+
+
 
     </html>
   );
