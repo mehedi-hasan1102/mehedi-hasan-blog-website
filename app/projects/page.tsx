@@ -145,8 +145,8 @@ const AllProjectsPage: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1
-                                   hover:text-primary underline-offset-6
-                                    hover:underline"
+                                   hover:text-primary 
+                                    "
                       >
                         <FiArrowUpRight size={14} /> Live
                       </a>
@@ -157,8 +157,8 @@ const AllProjectsPage: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1
-                                     hover:text-primary underline-offset-6
-                                     hover:underline"
+                                     hover:text-primary 
+                                    "
                         >
                           <FaGithub size={14} /> Frontend
                         </a>
@@ -170,8 +170,8 @@ const AllProjectsPage: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1
-                                     hover:text-primary underline-offset-6
-                                     hover:underline"
+                                     hover:text-primary 
+                                     "
                         >
                           <FaGithub size={14} /> Backend
                         </a>
@@ -180,8 +180,8 @@ const AllProjectsPage: React.FC = () => {
                       <button
                         onClick={() => openModal(project)}
                         className="inline-flex items-center gap-1
-                                   hover:text-primary underline-offset-6
-                                   hover:underline"
+                                   hover:text-primary 
+                                   "
                       >
                         <FiEye size={14} /> Details
                       </button>
