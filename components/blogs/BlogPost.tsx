@@ -138,7 +138,7 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
             {blog.title}
           </h1>
           
-          <div className="flex items-center gap-6 text-sm text-base-content/70 border-t border-base-300 pt-4">
+          <div className="flex items-center gap-6 text-sm text-base-content/70 border-t border-base-content/10 pt-4">
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -180,6 +180,12 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
   [&_blockquote]:my-4 [&_blockquote]:pl-4 [&_blockquote]:border-l-2 [&_blockquote]:border-primary/50
   [&_pre]:my-4 [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:bg-base-200
   [&_code:not(pre_code)]:my-2 [&_code:not(pre_code)]:px-2 [&_code:not(pre_code)]:py-1 [&_code:not(pre_code)]:rounded-md [&_code:not(pre_code)]:bg-base-200/60 [&_code:not(pre_code)]:text-primary
+
+  [&_hr]:my-8
+[&_hr]:border-0
+[&_hr]:border-t
+[&_hr]:border-base-content/10
+
 ">
 
 
