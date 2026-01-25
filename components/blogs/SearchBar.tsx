@@ -89,11 +89,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
               key={blog.slug}
               href={`/blog/${blog.slug}`}
               onClick={onClose}
-              className="block p-2 rounded-lg hover:bg-base-200 shadow-sm transition"
+              className="group block p-3 rounded-lg hover:bg-base-300/50 transition-all duration-200"
             >
-              <h3 className="text-primary font-medium">{blog.title}</h3>
-              <p className="text-sm text-base-content/60 mt-1">{blog.date} • {blog.readTime}</p>
-              <p className="text-sm text-base-content/80 mt-1">{blog.description.slice(0, 100)}...</p>
+              <div className="group-hover:underline underline-offset-4 inline-flex items-center">
+                <h3 className="text-[15px] font-medium leading-snug tracking-tight text-base-content">
+                  {blog.title} ↗
+                </h3>
+              </div>
+              <p className="text-xs text-base-content/45 mt-1">
+                {blog.date} • {blog.readTime} • {blog.category}
+              </p>
+              <p className="text-sm text-base-content/80 mt-2">
+                {blog.description.slice(0, 100)}…
+              </p>
             </a>
           ))}
         </SimpleBar>
