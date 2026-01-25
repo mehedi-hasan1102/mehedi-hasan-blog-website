@@ -79,7 +79,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
         </div>
 
         {/* Results */}
-        <SimpleBar className="max-h-80 space-y-3 pr-2">
+        <SimpleBar className="max-h-100 space-y-3 pr-2">
           {results.length === 0 && debouncedQuery && (
             <p className="text-base-content/60 text-sm">No results found.</p>
           )}
