@@ -8,6 +8,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import ContactHomePage from '../home/ContactHomePage';
 
 // Props for BlogPost
 interface Props {
@@ -189,27 +190,14 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
           </div>
         )}
 
-        {/* Footer */}
-        <footer className="mt-14 pt-8 pb-16 max-w-3xl border-t border-base-300">
-          <div className="bg-base-200/50 rounded-xl p-8 space-y-4">
-            <p className="text-sm text-base-content/70">
-              <span className="font-semibold">Published:</span> {new Date(blog.date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </p>
-            <p className="text-sm text-base-content/70">
-              <span className="font-semibold">Reading time:</span> {blog.readTime}
-            </p>
-            <p className="text-sm text-base-content/70">
-              <span className="font-semibold">Category:</span> 
-              <span className="badge badge-sm badge-primary ml-2">{blog.category}</span>
-            </p>
-          </div>
-        </footer>
       </div>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<ContactHomePage />
+
+      </div>
+       
     </article>
+   
   );
 };
 
