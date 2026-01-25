@@ -99,9 +99,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClose, blogs }) => {
               <p className="text-xs text-base-content/45 mt-1">
                 {blog.date} • {blog.readTime} • {blog.category}
               </p>
-              <p className="text-sm text-base-content/80 mt-2">
+              {/* <p className="text-sm text-base-content/80 mt-2">
                 {blog.description.slice(0, 100)}…
-              </p>
+              </p> */}
             </a>
           ))}
         </SimpleBar>
