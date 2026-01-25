@@ -173,11 +173,13 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
     <div className="flex items-center justify-between px-5 py-3 border-b border-base-content/10">
       <Logo />
       <button
-        onClick={() => setMenuOpen(false)}
-        className="p-2 rounded-lg hover:text-primary transition"
-      >
-        <FiX size={18} />
-      </button>
+  onClick={() => setMenuOpen(false)}
+  className="p-2 rounded-lg hover:text-primary transition"
+  aria-label="Close menu"
+>
+  <FiX size={18} />
+</button>
+
     </div>
 
     <nav className="flex-1 px-4 py-4 overflow-y-auto">
