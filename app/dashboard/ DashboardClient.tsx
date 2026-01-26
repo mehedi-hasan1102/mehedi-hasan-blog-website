@@ -1,13 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
 import { HiEye, HiCodeBracket, HiStar, HiArrowPathRoundedSquare, HiUsers } from "react-icons/hi2";
 
 /* ============= Types ============= */
@@ -188,80 +181,15 @@ export default function DashboardClient() {
             <StatCard label="Followers" value={stats.followers} icon={<HiUsers />} />
           </div>
 
-          {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-            {/* Contributions & Commits Column */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Contributions */}
-              <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 hover:border-(--border)/80 transition-colors">
-                <h3 className="text-base font-semibold mb-4 text-base-content">Contributions</h3>
-                <img
-                  src={`https://ghchart.rshah.org/${USERNAME}`}
-                  alt="GitHub Contributions"
-                  className="w-full rounded-md"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Commit History */}
-              {commits.length > 0 && (
-                <div>
-                  <h3 className="text-base font-semibold mb-4 text-base-content">Commit History</h3>
-                  <div className="space-y-3">
-                    {commits.slice(0, 3).map((commit, idx) => (
-                      <a
-                        key={idx}
-                        href={commit.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-3 rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-4 hover:border-(--border)/80 transition-colors group"
-                      >
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-primary/10 text-primary">
-                              {commit.repo}
-                            </span>
-                          </div>
-                          <p className="text-sm text-base-content line-clamp-1 group-hover:text-primary transition-colors">
-                            {commit.message.split("\n")[0]}
-                          </p>
-                          <p className="text-xs text-base-content/50 mt-1">{formatDate(commit.date)}</p>
-                        </div>
-                        <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">↗</div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Languages */}
-            {languagesData.length > 0 && (
-              <div className="h-full">
-                <div className="h-full flex flex-col rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 hover:border-(--border)/80 transition-colors">
-                  <h3 className="text-base font-semibold mb-4 text-base-content">Languages</h3>
-                  <div className="flex-1 min-h-[240px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie data={languagesData} dataKey="value" nameKey="name" outerRadius={65} label={false}>
-                          {languagesData.map((_, i) => (
-                            <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                          ))}
-                        </Pie>
-                        <Tooltip contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: 'none', borderRadius: '6px', color: '#fff', fontSize: '12px' }} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {languagesData.slice(0, 4).map((lang, i) => (
-                      <span key={lang.name} className="px-2 py-1 rounded-md text-xs font-medium text-white" style={{ backgroundColor: COLORS[i % COLORS.length] }}>
-                        {lang.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
+          {/* Contributions */}
+          <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 hover:border-(--border)/80 transition-colors">
+            <h3 className="text-base font-semibold mb-4 text-base-content">Contributions</h3>
+            <img
+              src={`https://ghchart.rshah.org/${USERNAME}`}
+              alt="GitHub Contributions"
+              className="w-full rounded-md"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
