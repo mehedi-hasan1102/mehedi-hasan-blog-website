@@ -115,7 +115,12 @@ export default function DashboardClient() {
         followers: profile.followers,
       });
       setRepos(latestRepos);
-      setCommits(commitResults.filter(Boolean) as Commit[]);
+
+      const cleanedCommits = (commitResults.filter(Boolean) as Commit[])
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 5);
+
+      setCommits(cleanedCommits);
     } catch (error) {
       console.error("Dashboard fetch error:", error);
     }
@@ -190,6 +195,40 @@ export default function DashboardClient() {
               className="w-full rounded-md"
               loading="lazy"
             />
+          </div>
+
+          {/* Recent Commits */}
+          <div className="rounded-lg border border-(--border) bg-base-100/60 p-5 mt-6">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-base font-semibold text-base-content">Recent commits</h3>
+              <span className="text-xs text-base-content/60">Last 5</span>
+            </div>
+
+            {commits.length === 0 ? (
+              <p className="text-sm text-base-content/60">No commit data available.</p>
+            ) : (
+              <ul className="divide-y divide-(--border)/70">
+                {commits.map((commit) => (
+                  <li key={`${commit.repo}-${commit.url}`} className="py-3 flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-base-content/90 truncate">{commit.message}</p>
+                      <p className="text-xs text-base-content/60 truncate mt-1">{commit.repo}</p>
+                    </div>
+                    <div className="text-right flex flex-col items-end gap-1 shrink-0">
+                      <span className="text-xs text-base-content/60">{formatDate(commit.date)}</span>
+                      <a
+                        href={commit.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs font-medium text-primary/80 hover:text-primary"
+                      >
+                        View
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
