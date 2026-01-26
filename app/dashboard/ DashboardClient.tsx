@@ -8,8 +8,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { HiEye, HiCodeBracket, HiStar, HiArrowPathRoundedSquare, HiUsers } from "react-icons/hi2";
 
-/* ---------------- Types ---------------- */
+/* ============= Types ============= */
 
 interface Repo {
   name: string;
@@ -34,285 +35,184 @@ interface LanguageData {
   [key: string]: string | number;
 }
 
-/* ---------------- Component ---------------- */
+/* ============= Component ============= */
 
 export default function DashboardClient() {
   const USERNAME = "mehedi-hasan1102";
-
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [commits, setCommits] = useState<Commit[]>([]);
-  const [languagesData, setLanguagesData] = useState<LanguageData[]>([]);
-  const [stats, setStats] = useState({
-    repos: 0,
-    stars: 0,
-    forks: 0,
-    followers: 0,
-  });
-
-  useEffect(() => {
-    async function fetchGitHubData() {
-      try {
-        /* -------- Profile -------- */
-        const profileRes = await fetch(
-          `https://api.github.com/users/${USERNAME}`
-        );
-        if (!profileRes.ok) throw new Error("Profile fetch failed");
-        const profile = await profileRes.json();
-
-        /* -------- Repos -------- */
-        const repoRes = await fetch(
-          `https://api.github.com/users/${USERNAME}/repos?per_page=100`
-        );
-        if (!repoRes.ok) throw new Error("Repo fetch failed");
-        const repoData: Repo[] = await repoRes.json();
-
-        const totalStars = repoData.reduce(
-          (a, r) => a + r.stargazers_count,
-          0
-        );
-        const totalForks = repoData.reduce(
-          (a, r) => a + r.forks_count,
-          0
-        );
-
-        /* -------- Latest Repos -------- */
-        const latestRepos = [...repoData]
-          .sort(
-            (a, b) =>
-              new Date(b.updated_at).getTime() -
-              new Date(a.updated_at).getTime()
-          )
-          .slice(0, 5);
-
-        /* -------- Commits -------- */
-        const commitResults = await Promise.all(
-          latestRepos.map(async (repo) => {
-            const res = await fetch(
-              `https://api.github.com/repos/${USERNAME}/${repo.name}/commits?per_page=1`
-            );
-            if (!res.ok) return null;
-            const data = await res.json();
-            if (!Array.isArray(data) || !data[0]) return null;
-
-            const c = data[0];
-            return {
-              message: c.commit.message,
-              url: c.html_url,
-              date: c.commit.author.date,
-              repo: repo.name,
-            } as Commit;
-          })
-        );
-
-        /* -------- Languages -------- */
-        const langMap: Record<string, number> = {};
-        repoData.forEach((r) => {
-          if (r.language) {
-            langMap[r.language] = (langMap[r.language] || 0) + 1;
-          }
-        });
-
-        setLanguagesData(
-          Object.entries(langMap).map(([name, value]) => ({
-            name,
-            value,
-          }))
-        );
-
-        setStats({
-          repos: profile.public_repos,
-          stars: totalStars,
-          forks: totalForks,
-          followers: profile.followers,
-        });
-
-        setRepos(latestRepos);
-        setCommits(commitResults.filter(Boolean) as Commit[]);
-      } catch (error) {
-        console.error("GitHub dashboard error:", error);
-      }
-    }
-
-    fetchGitHubData();
-  }, []);
-
   const COLORS = [
-    "#0088FE",
-    "#00C49F",
-    "#FFBB28",
-    "#FF8042",
-    "#AF19FF",
-    "#FF4560",
-    "#FF9F40",
+    "#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF",
+    "#FF4560", "#FF9F40", "#8B5FBF", "#FF6B9D", "#4ECDC4",
   ];
 
+  const [repos, setRepos] = useState<Repo[]>([]);
+  const [languagesData, setLanguagesData] = useState<LanguageData[]>([]);
+  const [stats, setStats] = useState({ repos: 0, stars: 0, forks: 0, followers: 0 });
+  const [totalVisitors, setTotalVisitors] = useState(0);
+
+  /* ============= Effects ============= */
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  /* ============= Helpers ============= */
+
+  const fetchDashboardData = async () => {
+    try {
+      // Fetch total visitors
+      const visitorsRes = await fetch("/api/total-visitors");
+      if (visitorsRes.ok) {
+        const { totalVisitors } = await visitorsRes.json();
+        setTotalVisitors(totalVisitors || 0);
+      }
+
+      // Fetch GitHub profile
+      const profileRes = await fetch(`https://api.github.com/users/${USERNAME}`);
+      if (!profileRes.ok) throw new Error("Profile fetch failed");
+      const profile = await profileRes.json();
+
+      // Fetch repositories
+      const repoRes = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100`);
+      if (!repoRes.ok) throw new Error("Repo fetch failed");
+      const repoData: Repo[] = await repoRes.json();
+
+      const totalStars = repoData.reduce((sum, r) => sum + r.stargazers_count, 0);
+      const totalForks = repoData.reduce((sum, r) => sum + r.forks_count, 0);
+
+      // Process languages
+      const langMap: Record<string, number> = {};
+      repoData.forEach((r) => {
+        if (r.language) langMap[r.language] = (langMap[r.language] || 0) + 1;
+      });
+
+      setLanguagesData(Object.entries(langMap).map(([name, value]) => ({ name, value })));
+      setStats({
+        repos: profile.public_repos,
+        stars: totalStars,
+        forks: totalForks,
+        followers: profile.followers,
+      });
+      setRepos(repoData.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).slice(0, 5));
+    } catch (error) {
+      console.error("Dashboard fetch error:", error);
+    }
+  };
+
+  /* ============= Render ============= */
+
   return (
-    <section className="text-base-content font-geist max-w-3xl mx-auto pt-20">
-      <div className="min-h-screen rounded-lg p-4 backdrop-blur-sm transition-shadow">
-
+    <section className="font-geist text-base-content mx-auto pt-20 max-w-3xl">
+      <div className="rounded-lg p-4 backdrop-blur-sm">
+        
         {/* Header */}
-        <div className="m-4">
-          <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
-            Dashboard
-          </h1>
-
-          <p className="text-base mt-2 mb-0 text-base-content/75">
-            Explore my GitHub projects, contributions, and open-source work. This dashboard
-            highlights my recent repositories, activity, and ongoing experiments.
-            Feel free to star, fork, or connect with me on{" "}
-            <a
-              href="https://github.com/mehedi-hasan1102"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium hover:text-primary underline underline-offset-6 transition-colors"
-            >
-              GitHub
-            </a>
-            .
+        <div className="m-4 mb-6">
+          <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">Dashboard</h1>
+          <p className="text-base mt-2 text-base-content/75">
+            Overview of my website and GitHub metrics.
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 mt-12 mx-4">
-          {[
-            { label: "Repositories", value: stats.repos },
-            { label: "Stars", value: stats.stars },
-            { label: "Forks", value: stats.forks },
-            { label: "Followers", value: stats.followers },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="rounded-lg border border-primary/30 p-4 text-center"
-            >
-              <p className="text-sm text-base-content/60 mb-1">
-                {item.label}
-              </p>
-              <p className="text-2xl font-medium">{item.value}</p>
+        <div className="h-px bg-(--border) mx-4 mb-10" />
+
+        {/* SECTION 1: WEBSITE DATA */}
+        <div className="m-4 mb-16">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-base-content">Website Data</h2>
+            <p className="text-sm text-base-content/60 mt-1">Website visitors and engagement metrics</p>
+          </div>
+          
+          <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-8 hover:border-(--border)/80 transition-colors">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm font-medium text-base-content/60 mb-3">Total Visitors</p>
+                <p className="text-5xl font-bold text-base-content mb-2">{totalVisitors.toLocaleString()}</p>
+                <p className="text-xs text-base-content/50">All-time website visitors</p>
+              </div>
+              <div className="text-5xl text-base-content/20"><HiEye /></div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Contribution Graph */}
-        <section className="mb-10 mx-4">
-          <h3 className="text-xl mb-4">Contribution Activity</h3>
-          <img
-            src={`https://ghchart.rshah.org/${USERNAME}`}
-            alt="GitHub Contributions"
-            className="w-full rounded-lg"
-            loading="lazy"
-          />
-        </section>
+        {/* SECTION 2: GITHUB DATA */}
+        <div className="m-4">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-base-content">GitHub Activity</h2>
+            <p className="text-sm text-base-content/60 mt-1">Development metrics and contributions</p>
+          </div>
 
-        {/* Language Chart */}
-        {languagesData.length > 0 && (
-          <section className="mb-10 mx-4">
-            <h3 className="text-xl mb-4">Language Usage</h3>
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <StatCard label="Repositories" value={stats.repos} icon={<HiCodeBracket />} />
+            <StatCard label="Stars" value={stats.stars} icon={<HiStar />} />
+            <StatCard label="Forks" value={stats.forks} icon={<HiArrowPathRoundedSquare />} />
+            <StatCard label="Followers" value={stats.followers} icon={<HiUsers />} />
+          </div>
 
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={languagesData}
-                    dataKey="value"
-                    nameKey="name"
-                    outerRadius={90}
-                    label
-                  >
-                    {languagesData.map((_, i) => (
-                      <Cell
-                        key={i}
-                        fill={COLORS[i % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Contributions */}
+            <div className="lg:col-span-2">
+              <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 hover:border-(--border)/80 transition-colors">
+                <h3 className="text-base font-semibold mb-4 text-base-content">Contributions</h3>
+                <img
+                  src={`https://ghchart.rshah.org/${USERNAME}`}
+                  alt="GitHub Contributions"
+                  className="w-full rounded-md"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2  mt-4">
-              {languagesData.map((lang, i) => (
-                <span
-                  key={lang.name}
-                  className="px-3 py-1 rounded-full text-xs text-base-content"
-                  style={{ backgroundColor: COLORS[i % COLORS.length] }}
-                >
-                  {lang.name}
-                </span>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Latest Repos */}
-        <section className="mb-10">
-          <h3 className="text-xl mb-4 px-4">Latest Repositories</h3>
-
-          <ul className="space-y-3">
-            {repos.map((repo) => (
-              <a
-                key={repo.name}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-lg p-4 transition-colors "
-              >
-                <div className="flex justify-between items-center">
-                  <div className="inline-flex items-center group-hover:underline underline-offset-4">
-                    <span className="font-medium">{repo.name}</span>
-                    <span className="ml-2">↗</span>
+            {/* Languages */}
+            {languagesData.length > 0 && (
+              <div>
+                <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 hover:border-(--border)/80 transition-colors">
+                  <h3 className="text-base font-semibold mb-4 text-base-content">Languages</h3>
+                  <div className="h-48">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie data={languagesData} dataKey="value" nameKey="name" outerRadius={65} label={false}>
+                          {languagesData.map((_, i) => (
+                            <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip contentStyle={{ backgroundColor: 'rgba(0,0,0,0.8)', border: 'none', borderRadius: '6px', color: '#fff', fontSize: '12px' }} />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
-                </div>
-
-                <p className="text-sm text-base-content/80 mt-1 line-clamp-2">
-                  {repo.description || "No description provided"}
-                </p>
-
-                <div className="text-xs mt-2 flex gap-4">
-                  <span>⭐ {repo.stargazers_count}</span>
-                  <span>🍴 {repo.forks_count}</span>
-                  {repo.language && <span>{repo.language}</span>}
-                </div>
-              </a>
-            ))}
-          </ul>
-        </section>
-
-        {/* Recent Commits */}
-        <section>
-          <h3 className="text-xl mb-4 px-4">Recent Commits</h3>
-
-          <ul className="space-y-3">
-            {commits.map((commit, i) => (
-              <a
-                key={i}
-                href={commit.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-lg p-4 transition-colors "
-              >
-                <div className="flex justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium line-clamp-2">
-                      <span className="text-base-content/60">
-                        [{commit.repo}]
-                      </span>{" "}
-                      <span className="inline-flex items-center group-hover:underline underline-offset-4">
-                        {commit.message.split("\n")[0]}{" "}
-                        <span className="ml-2">↗</span>
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {languagesData.slice(0, 4).map((lang, i) => (
+                      <span key={lang.name} className="px-2 py-1 rounded-md text-xs font-medium text-white" style={{ backgroundColor: COLORS[i % COLORS.length] }}>
+                        {lang.name}
                       </span>
-                    </p>
-
-                    <p className="text-xs text-base-content/60 mt-1">
-                      {new Date(commit.date).toLocaleString()}
-                    </p>
+                    ))}
                   </div>
                 </div>
-              </a>
-            ))}
-          </ul>
-        </section>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+/* ============= Sub Components ============= */
+
+interface StatCardProps {
+  label: string;
+  value: number;
+  icon: React.ReactNode;
+}
+
+function StatCard({ label, value, icon }: StatCardProps) {
+  return (
+    <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-4 hover:border-(--border)/80 transition-colors">
+      <p className="text-sm font-medium text-base-content/60 mb-2">{label}</p>
+      <div className="flex items-end justify-between">
+        <p className="text-3xl font-bold text-base-content">{value}</p>
+        <div className="text-2xl text-base-content/30">{icon}</div>
+      </div>
+    </div>
   );
 }
