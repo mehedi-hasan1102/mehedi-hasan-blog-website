@@ -106,7 +106,7 @@ const Footer = () => {
 
         {/* Brand */}
         <div className="border-t border-(--border) pt-6 space-y-4">
-          <Logo showIcon={false} />
+          <Logo  />
 
  <div className="flex gap-4">
             {socialLinks.map((link) => {
@@ -162,7 +162,7 @@ const Footer = () => {
       <div className="hidden md:grid grid-cols-3 gap-12 py-6">
         {/* Brand */}
         <div className="space-y-4">
-          <Logo showIcon={false} />
+          <Logo  />
 
           <div className="flex gap-4">
             {socialLinks.map((link) => {
