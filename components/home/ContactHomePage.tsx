@@ -42,7 +42,7 @@ const ContactHomePage: React.FC = () => {
           mt-4 flex items-center gap-2
           rounded-md border border-(--border)
           px-2 py-1.5
-          focus-within:border-primary
+          focus-within:border-primary focus-within:ring-1 focus-within:ring-primary
           transition-colors
         "
       >
