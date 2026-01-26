@@ -53,6 +53,14 @@ export default function FloatingContactBot() {
     <>
       <Toaster position="top-right" />
 
+      {/* BACKDROP OVERLAY */}
+      {open && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
       {/* CHAT PANEL */}
       <div
         className={`
@@ -60,7 +68,7 @@ export default function FloatingContactBot() {
           w-[340px] max-w-[90vw]
           rounded-xl
           border border-(--border)
-          bg-base-200/95 backdrop-blur-lg
+          bg-base-200
           shadow-2xl
           transition-all duration-300 ease-out
           ${open ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
