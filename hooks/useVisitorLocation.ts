@@ -11,20 +11,9 @@ export const useVisitorLocation = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchWithTimeout = async (url: string, timeoutMs = 2500) => {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const resp = await fetch(url, { signal: controller.signal });
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        return await resp.json();
-      } finally {
-        clearTimeout(timer);
-      }
-    };
-
     const fetchLocation = async () => {
       try {
+        // Always prioritize cached/previous location
         const cached = localStorage.getItem("visitorLocation");
         if (cached) {
           setLocation(JSON.parse(cached));
@@ -32,17 +21,30 @@ export const useVisitorLocation = () => {
           return;
         }
 
+        // Only fetch new location if no cache exists
         if (typeof navigator !== "undefined" && !navigator.onLine) {
           setLoading(false);
           return;
         }
+
+        const fetchWithTimeout = async (url: string, timeoutMs = 2500) => {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), timeoutMs);
+          try {
+            const resp = await fetch(url, { signal: controller.signal });
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            return await resp.json();
+          } finally {
+            clearTimeout(timer);
+          }
+        };
 
         let data: any;
         try {
           // Primary provider
           data = await fetchWithTimeout("https://ipapi.co/json/");
         } catch {
-          // Fallback provider (no API key, CORS-friendly)
+          // Fallback provider
           data = await fetchWithTimeout("https://ipwho.is/");
         }
 
