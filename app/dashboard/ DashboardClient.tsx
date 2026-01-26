@@ -42,6 +42,7 @@ export default function DashboardClient() {
   const [languagesData, setLanguagesData] = useState<LanguageData[]>([]);
   const [stats, setStats] = useState({ repos: 0, stars: 0, forks: 0, followers: 0 });
   const [totalVisitors, setTotalVisitors] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   /* ============= Effects ============= */
 
@@ -53,6 +54,7 @@ export default function DashboardClient() {
 
   const fetchDashboardData = async () => {
     try {
+      setIsLoading(true);
       const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
       const headers: Record<string, string> = githubToken ? { Authorization: `Bearer ${githubToken}` } : {};
 
@@ -123,6 +125,8 @@ export default function DashboardClient() {
       setCommits(cleanedCommits);
     } catch (error) {
       console.error("Dashboard fetch error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -152,8 +156,61 @@ export default function DashboardClient() {
 
         <div className="h-px bg-(--border) mx-4 mb-10" />
 
-        {/* SECTION 1: WEBSITE DATA */}
-        <div className="m-4 mb-16">
+        {/* Loading State */}
+        {isLoading ? (
+          <div className="space-y-16 m-4">
+            {/* Website Data Skeleton */}
+            <div>
+              <div className="mb-6">
+                <div className="h-7 w-40 bg-base-200 rounded animate-pulse mb-2"></div>
+                <div className="h-4 w-64 bg-base-200 rounded animate-pulse"></div>
+              </div>
+              <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-8">
+                <div className="h-4 w-32 bg-base-200 rounded animate-pulse mb-4"></div>
+                <div className="h-12 w-48 bg-base-200 rounded animate-pulse mb-3"></div>
+                <div className="h-3 w-40 bg-base-200 rounded animate-pulse"></div>
+              </div>
+            </div>
+
+            {/* GitHub Activity Skeleton */}
+            <div>
+              <div className="mb-6">
+                <div className="h-7 w-48 bg-base-200 rounded animate-pulse mb-2"></div>
+                <div className="h-4 w-56 bg-base-200 rounded animate-pulse"></div>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-4">
+                    <div className="h-3 w-24 bg-base-200 rounded animate-pulse mb-3"></div>
+                    <div className="h-8 w-16 bg-base-200 rounded animate-pulse"></div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-lg border border-(--border) bg-base-100/40 backdrop-blur-[2px] p-6 mb-6">
+                <div className="h-4 w-32 bg-base-200 rounded animate-pulse mb-4"></div>
+                <div className="h-32 w-full bg-base-200 rounded animate-pulse"></div>
+              </div>
+
+              <div className="rounded-lg border border-(--border) bg-base-100/60 p-5">
+                <div className="h-4 w-36 bg-base-200 rounded animate-pulse mb-4"></div>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="py-3 flex items-start justify-between gap-3 border-t border-(--border)/70">
+                    <div className="flex-1">
+                      <div className="h-4 w-3/4 bg-base-200 rounded animate-pulse mb-2"></div>
+                      <div className="h-3 w-1/3 bg-base-200 rounded animate-pulse"></div>
+                    </div>
+                    <div className="h-3 w-16 bg-base-200 rounded animate-pulse"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* SECTION 1: WEBSITE DATA */}
+            <div className="m-4 mb-16">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-base-content">Website Data</h2>
             <p className="text-sm text-base-content/60 mt-1">Website visitors and engagement metrics</p>
@@ -220,9 +277,9 @@ export default function DashboardClient() {
                         href={commit.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs font-medium text-primary/80 hover:text-primary"
+                        className="text-xs font-medium text-primary/80 hover:text-primary inline-flex items-center gap-0.5"
                       >
-                        View
+                        View ↗
                       </a>
                     </div>
                   </li>
@@ -231,6 +288,8 @@ export default function DashboardClient() {
             )}
           </div>
         </div>
+          </>
+        )}
       </div>
     </section>
   );
