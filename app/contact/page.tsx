@@ -210,7 +210,7 @@ const ContactMe: React.FC = () => {
                 className="textarea textarea-bordered rounded-lg w-full flex-1 bg-transparent border border-(--border)
         placeholder:text-base-content/50
         focus:border-primary focus:ring-1 focus:ring-primary
-        outline-none transition-colors
+        outline-none transition-colors p-2
       "
               />
 
