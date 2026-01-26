@@ -55,7 +55,7 @@ const Footer = () => {
     { label: "Dashboard", href: "/dashboard" },
     { label: "Resources", href: "/resources" },
     { label: "Snippets", href: "/snippets" },
-    { label: "Resume", href: "/Resume_of_Mehedi_Hasan.pdf" },
+    { label: "Resume", href: "/resume" },
     { label: "Book a Meeting", href: CALENDLY_URL },
   ];
 
