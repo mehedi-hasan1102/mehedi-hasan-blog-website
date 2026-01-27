@@ -113,7 +113,7 @@ export default function FloatingContactBot() {
 
           <button
             type="submit"
-            className="w-full rounded-md bg-primary text-primary-content py-2 text-sm font-medium hover:opacity-90 transition flex items-center justify-center gap-1 cursor-pointer"
+            className="w-full rounded-md bg-primary text-base-content/70  py-2 text-sm font-medium hover:text-primary transition flex items-center justify-center gap-1 cursor-pointer"
           >
             Send Message <FiArrowUpRight size={14} />
           </button>

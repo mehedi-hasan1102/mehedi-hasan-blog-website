@@ -80,14 +80,14 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
   };
 
   return (
-    <article className="min-h-screen bg-base-100">
+    <article className="min-h-screen bg-base-100 ">
       <ScrollProgress />
 
       {/* Hero Section */}
      
       {blog.image && (
   <div className="flex justify-center mb-16 overflow-hidden mt-16">
-    <div className="relative w-full max-w-3xl h-80 sm:h-96 lg:h-[480px]">
+    <div className="relative w-full max-w-3xl h-80 sm:h-96 lg:h-[480px] ">
       <Image
         src={blog.image}
         alt={blog.title}
@@ -107,11 +107,11 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
 
 
       {/* Main Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 ">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 cursor-pointer text-sm font-medium hover:text-primary  transition-colors mb-6"
+          className="text-base-content/70 flex items-center gap-2 cursor-pointer text-sm font-medium hover:text-primary  transition-colors mb-6"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -120,9 +120,9 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
         </button>
 
         {/* Header Section */}
-        <header className="mb-10 max-w-3xl">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="badge badge-sm badge-primary font-medium uppercase tracking-wide">
+        <header className="mb-10 max-w-3xl ">
+          <div className="mb-4 flex items-center gap-3 ">
+            <span className="badge badge-sm badge-primary font-medium uppercase tracking-wide text-base-content/70 ">
               {blog.category}
             </span>
             <span className="text-sm text-base-content/60">
@@ -168,7 +168,7 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
        
 
 <div className="
-  max-w-3xl mx-auto px-4 text-base-content text-base leading-7
+  max-w-3xl mx-auto px-4 text-base-content/70 text-base leading-7 
 
   [&_p]:my-4
   [&_h1]:mt-8 [&_h1]:mb-4 [&_h1]:text-3xl [&_h1]:font-semibold
