@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { HiEye, HiCodeBracket, HiStar, HiArrowPathRoundedSquare, HiUsers } from "react-icons/hi2";
-
+import { HiCodeBracket, HiStar, HiArrowPathRoundedSquare, HiUsers } from "react-icons/hi2";
+import Image from "next/image";
 /* ============= Types ============= */
 
 interface Repo {
@@ -223,7 +223,9 @@ export default function DashboardClient() {
                 <p className="text-5xl font-bold text-base-content mb-2">{totalVisitors.toLocaleString()}</p>
                 <p className="text-xs text-base-content/50">All-time website visitors</p>
               </div>
-              <div className="text-5xl text-base-content/20"><HiEye /></div>
+              <div className="text-5xl text-base-content/20">
+  <Image src="/User.png" alt="User Logo" width={80} height={80} />
+</div>
             </div>
           </div>
         </div>
