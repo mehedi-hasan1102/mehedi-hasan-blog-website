@@ -15,12 +15,12 @@ const NotFound = () => {
             Oops! Page Not Found
           </h1>
 
-          <p className="text-base mt-3 mb-0 text-base-content/75">
+          <p className="text-base mt-3 mb-0 text-base-content/70">
             The page you are looking for doesn’t exist or may have been moved. 
             Check the URL or return to the{" "}
             <Link
               href="/"
-              className="font-medium hover:text-primary underline underline-offset-4 transition-colors"
+              className="font-medium hover:text-primary underline underline-offset-4 transition-colors text-base-content/70"
             >
               homepage
             </Link>.

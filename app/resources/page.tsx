@@ -26,7 +26,7 @@ const ResourcesPage: React.FC = () => {
     Resources
   </h1>
 
-  <p className="text-base mt-2 mb-0 text-base-content/75">
+  <p className="text-base mt-2 mb-0 text-base-content/70">
     A curated list of tools, libraries, and learning materials that I frequently use.
     This page is designed to help you discover useful resources for web development,
     programming, and software engineering.

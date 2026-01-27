@@ -60,9 +60,9 @@ const AllProjectsPage: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
               Projects 
             </h1>
-           <p className="text-base mt-2 mb-0 text-base-content/75">
+           <p className="text-base mt-2 mb-0 text-base-content/70">
   I’ve worked on both commercial and personal projects, including course-related work. You can explore them all here. While you’re visiting, feel free to check out my{" "}
-  <Link href="/blog" className=" underline underline-offset-4 hover:text-primary">
+  <Link href="/blog" className=" underline underline-offset-4 hover:text-primary text-base-content/70">
     blog
   </Link>
   , where I write about technology, learning, and memes.
@@ -101,7 +101,7 @@ const AllProjectsPage: React.FC = () => {
                 className="group rounded-md px-4 py-4 sm:py-6
                            transition-colors "
               >
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 ">
                   {/* Image */}
                   <div className="relative hidden sm:block w-[250px] aspect-[16/9] overflow-hidden rounded-lg">
                     <Image
@@ -145,7 +145,7 @@ const AllProjectsPage: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1
-                                   hover:text-primary 
+                                   hover:text-primary text-base-content/70
                                     "
                       >
                         <FiArrowUpRight size={14} /> Live
@@ -157,7 +157,7 @@ const AllProjectsPage: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1
-                                     hover:text-primary 
+                                     hover:text-primary text-base-content/70
                                     "
                         >
                           <FaGithub size={14} /> Frontend
@@ -170,7 +170,7 @@ const AllProjectsPage: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1
-                                     hover:text-primary 
+                                     hover:text-primary text-base-content/70
                                      "
                         >
                           <FaGithub size={14} /> Backend
@@ -180,7 +180,7 @@ const AllProjectsPage: React.FC = () => {
                       <button
                         onClick={() => openModal(project)}
                         className="inline-flex items-center gap-1
-                                   hover:text-primary 
+                                   hover:text-primary text-base-content/70 cursor-pointer
                                    "
                       >
                         <FiEye size={14} /> Details

@@ -29,13 +29,13 @@ const GitHubAboutSection: React.FC = () => {
 
         {/* Footer */}
         <div className="text-start">
-          <p className="text-sm text-base-content/80 leading-relaxed">
+          <p className="text-sm text-base-content/70 leading-relaxed">
             My coding journey, day by day, in open-source. Check out my{" "}
             <a
               href="https://github.com/mehedi-hasan1102"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium hover:text-primary underline underline-offset-4 transition-colors"
+              className="font-medium hover:text-primary text-base-content/70 underline underline-offset-4 transition-colors"
             >
               GitHub
             </a>

@@ -30,7 +30,7 @@ const SnippetsClient: React.FC<Props> = ({ snippets }) => {
           <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
             Snippets
           </h1>
-          <p className="text-base mt-2 mb-0 text-base-content/75">
+          <p className="text-base mt-2 mb-0 text-base-content/70">
             A collection of reusable code snippets and small utilities.
           </p>
         </div>

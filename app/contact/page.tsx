@@ -117,7 +117,7 @@ const ContactMe: React.FC = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-sm
                      
-                     hover:text-primary transition"
+                     hover:text-primary transition text-base-content/70"
         >
           Schedule on Calendly
           <FiArrowUpRight size={14} />
@@ -149,7 +149,7 @@ const ContactMe: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
             Contact
           </h1>
-          <p className="text-base mt-2 mb-0 text-base-content/75">
+          <p className="text-base mt-2 mb-0 text-base-content/70">
             Have a question, idea, or opportunity in mind? I’m always open to meaningful
             conversations, collaborations, and new projects. Feel free to reach out —
             you can also connect with me on{" "}
@@ -157,7 +157,7 @@ const ContactMe: React.FC = () => {
               href="https://x.com/mehedihasan1102"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium hover:text-primary underline underline-offset-6 transition-colors"
+              className="font-medium hover:text-primary underline underline-offset-6 transition-colors text-base-content/70 "
             >
               X
             </a>.
@@ -220,7 +220,7 @@ const ContactMe: React.FC = () => {
                 type="submit"
                 className="inline-flex items-center gap-1 text-sm
                            
-                           hover:text-primary transition cursor-pointer"
+                           hover:text-primary transition cursor-pointer text-base-content/70 "
               >
                 Send Message
                 <FiArrowUpRight size={14} />
@@ -229,7 +229,7 @@ const ContactMe: React.FC = () => {
           </div>
 
           {/* Info */}
-          <div className="w-full md:w-1/2 space-y-6">
+          <div className="w-full md:w-1/2 space-y-6 text-base-content/70 ">
             {contactItems.map((item, idx) => (
               <div
                 key={idx}

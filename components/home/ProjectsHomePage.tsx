@@ -54,6 +54,7 @@ const ProjectsHomePage: React.FC = () => {
               inline-flex items-center gap-1
               text-sm font-medium
               hover:text-primary
+              text-base-content/70
             "
           >
             See all projects

@@ -77,7 +77,7 @@ export default function BlogHomePage({ latestBlogs }: BlogHomePageProps) {
 
       {/* Footer */}
       <div className="pt-6 text-center">
-        <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary">
+        <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary text-base-content/70">
           See all posts
           <FiChevronDown size={14} />
         </Link>

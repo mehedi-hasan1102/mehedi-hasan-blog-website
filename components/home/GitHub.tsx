@@ -36,7 +36,7 @@ const GitHubActivitySection: React.FC = () => {
           href="https://github.com/mehedi-hasan1102"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary"
+          className="inline-flex items-center gap-1 text-sm font-medium hover:text-primary text-base-content/70"
         >
           View GitHub profile
           <FiArrowUpRight size={14} />

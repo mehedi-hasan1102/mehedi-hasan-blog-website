@@ -17,13 +17,13 @@ export default function AboutPage() {
           <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
             About 
           </h1>
-          <p className="text-base mt-2 mb-0 text-base-content/75">
+          <p className="text-base mt-2 mb-0 text-base-content/70">
  I’m a Full-Stack Web Developer building fast, scalable web apps with Next.js, React, Node.js, and MongoDB. I focus on clean architecture, performance, and great user experience. Connect with me on{" "}
 <a
                 href="https://www.linkedin.com/in/mehedi-hasan1102/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium hover:text-primary underline underline-offset-6 transition-colors"
+                className="font-medium hover:text-primary text-base-content/70 underline underline-offset-6 transition-colors"
               >
                 LinkedIn
               </a>.
@@ -32,8 +32,7 @@ export default function AboutPage() {
 
      
 
-        {/* Divider */}
-        {/* <div className="h-px bg-primary/30 my-4" /> */}
+        
 
         {/* Sections */}
         <SkillsAboutSection />

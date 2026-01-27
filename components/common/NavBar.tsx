@@ -69,7 +69,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
       <Link
         href={item.route}
         className={`relative inline-flex items-center px-3 py-1.5 transition-colors duration-200
-          ${isActive(item.route) ? "text-(--text) font-medium" : "text-(--muted) hover:text-(--muted)/50"}
+          ${isActive(item.route) ? "text-primary font-medium" : "text-base-content/70 hover:text-base-content"}
         `}
       >
         {item.name}
@@ -182,7 +182,7 @@ const Navbar: React.FC<{ blogs: BlogMetaData[] }> = ({ blogs }) => {
                   ${
                     active
                       ? "text-primary"
-                      : "text-base-content/80 hover:text-primary"
+                      : "text-base-content/70 hover:text-primary"
                   }
                 `}
               >

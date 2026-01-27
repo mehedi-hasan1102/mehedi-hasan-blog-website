@@ -61,13 +61,13 @@ export function BlogContent({ years, structured }: BlogContentProps) {
         <h1 className="text-3xl sm:text-4xl font-semibold leading-tight">
           Blog
         </h1>
-        <p className="text-base mt-2 mb-0 text-base-content/75">
+        <p className="text-base mt-2 mb-0 text-base-content/70">
           I have been programming for nearly two years. Over the past year, I’ve worked with a variety of technologies, and I’m here to share my experience. You can also read my tweets on {" "}
           <a
             href="https://x.com/mehedihasan1102"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium hover:text-primary underline underline-offset-6 transition-colors"
+            className="font-medium hover:text-primary text-base-content/70 underline underline-offset-6 transition-colors"
           >
             X
           </a>.

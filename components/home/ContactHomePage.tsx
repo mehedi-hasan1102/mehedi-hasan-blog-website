@@ -64,7 +64,7 @@ const ContactHomePage: React.FC = () => {
             inline-flex items-center gap-1
             text-sm font-medium
             hover:text-primary
-             cursor-pointer
+             cursor-pointer text-base-content/70 
           "
         >
           Send
