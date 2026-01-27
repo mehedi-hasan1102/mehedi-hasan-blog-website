@@ -134,7 +134,7 @@ const BlogPost: React.FC<Props> = ({ blog }) => {
             </span>
           </div>
           
-          <h1 className="text-4xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.05] text-base-content mb-5">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.05] text-base-content mb-5">
             {blog.title}
           </h1>
           
