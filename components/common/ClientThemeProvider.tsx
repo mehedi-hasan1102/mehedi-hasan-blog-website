@@ -9,7 +9,12 @@ interface Props {
 
 export const ClientThemeProvider = ({ children }: Props) => {
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
+    <ThemeProvider 
+      attribute="data-theme" 
+      defaultTheme="dark" 
+      enableSystem={false}
+      storageKey="theme"
+    >
       {children}
     </ThemeProvider>
   );
