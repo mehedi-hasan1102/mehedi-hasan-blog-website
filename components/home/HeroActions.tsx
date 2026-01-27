@@ -23,7 +23,7 @@ const HeroActions = () => {
 
       {/* Hire Me */}
       <Link
-        href="/#hire-me"
+        href="/contact"
         className="inline-flex items-center gap-2 text-sm font-medium text-base-content/80 hover:text-primary transition-colors"
       >
         <FiMail size={16} />
