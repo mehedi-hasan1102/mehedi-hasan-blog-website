@@ -1,4 +1,4 @@
-# Mehedi Hasan — Personal Website   test
+# Mehedi Hasan — Personal Website  
 
 A modern, responsive personal website built with Next.js (App Router) and TypeScript, designed to showcase my professional work, technical capabilities, and writing. This portfolio includes interactive sections, project highlights, blog content, GitHub activity visualization, and a lightweight demo authentication flow for experimenting with protected routes.
 
