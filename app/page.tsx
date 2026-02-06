@@ -1,48 +1,87 @@
-import { getAllPosts } from '@/lib/blog';
-import { BlogCard } from './blog/BlogCard';
-import styles from './blog/blog.module.css';
+// ================================================
+// IMPORTS
+// ================================================
+import HeroSection from '@/components/home/Hero';
+import ResumeSections from '@/components/home/Resume';
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import ProjectsHomePage from '@/components/home/ProjectsHomePage';
+import BlogHomePage from '@/components/home/BlogHomePage';
+import GitHubActivitySection from '@/components/home/GitHub';
+import SkillsSection from '@/components/home/Skills';
+import ContactHomePage from '@/components/home/ContactHomePage';
+import WhatIDoSection from '@/components/home/WhatIDoSection';
+import { getSortedBlogsData } from '@/lib/blogs';
+import UpcomingProjects from '@/components/home/UpcomingProject';
 
-export default function Home() {
-  const posts = getAllPosts();
+// ================================================
+// HOME PAGE COMPONENT
+// ================================================
+export default async function Home() {
+    // 🔹 Fetch all blogs
+    const allBlogsData = await getSortedBlogsData();
 
-  return (
-    <main className={styles.blogPage}>
-      {/* Gradient Orbs Background */}
-      <div className={`${styles.orb} ${styles.orb1}`} />
-      <div className={`${styles.orb} ${styles.orb2}`} />
-      <div className={`${styles.orb} ${styles.orb3}`} />
+    // 🔹 Get latest 3 blogs for homepage
+    const latestBlogs = allBlogsData
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3);
 
-      {/* Header Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <h1 className={styles.title}>
-            Notes from the <span className={styles.accentText}>build desk</span>
-          </h1>
+    return (
+        <div className="min-h-screen font-geist relative pt-20">
+
+            {/* ================================================
+          SCROLL PROGRESS INDICATOR
+      ================================================ */}
+            <ScrollProgress />
+
+            {/* ================================================
+          1. Hero Section – Identity & CTA
+      ================================================ */}
+            <HeroSection />
+
+            {/* ================================================
+          2. Skills Section – Quick Technical Validation
+      ================================================ */}
+            <SkillsSection />
+
+            {/* ================================================
+          3. Featured Projects – Primary Proof
+      ================================================ */}
+            <ProjectsHomePage />
+
+            {/* ================================================
+              4. Upcoming Projects – Primary Proof
+             ================================================ */}
+
+
+            <UpcomingProjects />
+
+
+
+            {/* ================================================
+          5. What I Do – Services / Offerings
+      ================================================ */}
+            <WhatIDoSection />
+
+            {/* ================================================
+          6. Resume Section – Hiring Support
+      ================================================ */}
+            <ResumeSections />
+
+            {/* ================================================
+          7. Blog Section – Thought Leadership
+      ================================================ */}
+            <BlogHomePage latestBlogs={latestBlogs} />
+
+            {/* ================================================
+          8. GitHub Section – Activity Proof
+      ================================================ */}
+            <GitHubActivitySection />
+
+            {/* ================================================
+          9. Contact Section – Conversion
+      ================================================ */}
+            <ContactHomePage />
+
         </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className={styles.listSection}>
-        {posts.length === 0 ? (
-          <p className={styles.empty}>
-            No posts yet. Add MDX files under content/blog.
-          </p>
-        ) : (
-          <div className={styles.grid}>
-            {posts.map((post, index) => (
-              <BlogCard
-                key={post.meta.slug}
-                slug={post.meta.slug}
-                title={post.meta.title}
-                excerpt={post.meta.excerpt}
-                date={post.meta.date}
-                tags={post.meta.tags}
-                index={index}
-              />
-            ))}
-          </div>
-        )}
-      </section>
-    </main>
-  );
+    );
 }

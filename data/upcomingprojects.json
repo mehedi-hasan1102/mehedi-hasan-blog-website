@@ -1,0 +1,69 @@
+[
+  {
+    "title": "Kid School",
+    "description": "A responsive informational site for children’s activities and resources, built with HTML and Tailwind CSS. Focus is on a playful, accessible layout that highlights programs and resources.",
+    "features": [
+      "Clean, kid-friendly layout and illustrations",
+      "Responsive design for phones, tablets, and desktops",
+      "Smooth hover effects and lightweight animations",
+      "Accessible markup and fast loading"
+    ],
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS"
+    ],
+    "frontendRepo": "https://github.com/mehedi-hasan1102/Kids-School",
+    "liveLink": "https://mehedi-hasan1102.github.io/Kids-School/",
+    "images": [
+      "/assets/images/projects/Kid-School.png"
+    ],
+    "challenges": "Achieving a playful, accessible design that scales across devices without using JavaScript frameworks.",
+    "futurePlans": "Add interactive elements (sliders, collapsible FAQ) and minor JS improvements for richer UX.",
+    "type": "Frontend"
+  },
+  {
+    "title": "Bangladesh 2.0",
+    "description": "A static landing page built with semantic HTML and basic CSS, designed to highlight Bangladesh’s culture, innovation, and development vision. It focuses on layout structure and clean visual presentation.",
+    "features": [
+      "Static single-page layout using HTML and CSS",
+      "Structured and semantic content sections",
+      "Simple grid-based layout for clarity",
+      "Clean typography and color balance"
+    ],
+    "techStack": [
+      "HTML5",
+      "CSS3"
+    ],
+    "frontendRepo": "https://github.com/mehedi-hasan1102/Bangladesh-2.0",
+    "liveLink": "https://mehedi-hasan1102.github.io/Bangladesh-2.0/",
+    "images": [
+      "/assets/images/projects/Bangladesh.png"
+    ],
+    "challenges": "Maintaining visual consistency and layout balance without using any responsive techniques or frameworks.",
+    "futurePlans": "Refactor the layout to be fully responsive using Tailwind CSS or CSS Grid for better mobile compatibility.",
+    "type": "Frontend"
+  },
+  {
+    "title": "Browse4Pets",
+    "description": "A responsive pet adoption website built entirely with HTML and Tailwind CSS. It showcases various pet profiles in a visually appealing layout with smooth styling and animations.",
+    "features": [
+      "Built purely with HTML and Tailwind CSS",
+      "Fully responsive design for all screen sizes",
+      "Clean and minimal pet showcase layout",
+      "Smooth hover effects and transitions",
+      "Optimized for fast loading and accessibility"
+    ],
+    "techStack": [
+      "HTML",
+      "Tailwind CSS"
+    ],
+    "frontendRepo": "https://github.com/mehedi-hasan1102/Browse4Pets",
+    "liveLink": "https://mehedi-hasan1102.github.io/Browse4Pets/",
+    "images": [
+      "/assets/images/projects/Browse4Pets.png"
+    ],
+    "challenges": "Achieving responsive and visually appealing design without using JavaScript or any frameworks.",
+    "futurePlans": "Add interactive filters and dynamic content loading using JavaScript in future updates.",
+    "type": "Frontend"
+  }
+]

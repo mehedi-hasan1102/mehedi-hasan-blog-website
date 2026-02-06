@@ -1,48 +1,54 @@
-import { getAllPosts } from '@/lib/blog';
-import { BlogCard } from './BlogCard';
-import styles from './blog.module.css';
 
-export default function Blog() {
-  const posts = getAllPosts();
+
+import React from "react";
+import { Blog, getSortedBlogsData } from "../../lib/blogs";
+import { BlogContent } from "../../components/blogs/BlogContent";
+
+// Month mapping for sorting - still needed on server side for structuring data
+
+
+export default async function BlogsHome() {
+  const blogs: Blog[] = await getSortedBlogsData();
+
+  type Structured = Record<string, Record<string, Blog[]>>;
+
+  // Structure blogs by year and month
+  const structured: Structured = blogs.reduce((acc: Structured, blog: Blog) => {
+    const parts = blog.date.split(" "); // ["Aug", "30,", "2025"]
+    // Ensure parts has enough elements before accessing. Adding a check for robustness.
+    if (parts.length < 3) {
+      console.warn(`Unexpected date format for blog: ${blog.title}, date: ${blog.date}`);
+      return acc; // Skip this blog if date format is unexpected
+    }
+    const monthShort = parts[0];
+    const day = parts[1].replace(',', ''); // Extract day and remove comma
+    const year = parts[2];
+
+    // Use a more robust date string for new Date()
+    const fullDateString = `${monthShort} ${day}, ${year}`;
+    const dateObject = new Date(fullDateString);
+
+    if (isNaN(dateObject.getTime())) {
+      console.error(`Invalid date parsing for blog: ${blog.title}, date: ${blog.date}`);
+      return acc; // Skip if date is invalid
+    }
+
+    const monthName = dateObject.toLocaleString("en", { month: "long" });
+
+
+    if (!acc[year]) acc[year] = {};
+    if (!acc[year][monthName]) acc[year][monthName] = [];
+    acc[year][monthName].push(blog);
+
+    return acc;
+  }, {} as Structured);
+
+  // Sort years latest first
+  const years = Object.keys(structured).sort((a, b) => Number(b) - Number(a));
 
   return (
-    <main className={styles.blogPage}>
-      {/* Gradient Orbs Background */}
-      <div className={`${styles.orb} ${styles.orb1}`} />
-      <div className={`${styles.orb} ${styles.orb2}`} />
-      <div className={`${styles.orb} ${styles.orb3}`} />
-
-      {/* Header Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <h1 className={styles.title}>
-            Notes from the <span className={styles.accentText}>build desk</span>
-          </h1>
-        </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className={styles.listSection}>
-        {posts.length === 0 ? (
-          <p className={styles.empty}>
-            No posts yet. Add MDX files under content/blog.
-          </p>
-        ) : (
-          <div className={styles.grid}>
-            {posts.map((post, index) => (
-              <BlogCard
-                key={post.meta.slug}
-                slug={post.meta.slug}
-                title={post.meta.title}
-                excerpt={post.meta.excerpt}
-                date={post.meta.date}
-                tags={post.meta.tags}
-                index={index}
-              />
-            ))}
-          </div>
-        )}
-      </section>
-    </main>
+    <div className="text-base-content font-geist mx-auto pt-20 max-w-3xl ">
+      <BlogContent years={years} structured={structured} />
+    </div>
   );
 }
