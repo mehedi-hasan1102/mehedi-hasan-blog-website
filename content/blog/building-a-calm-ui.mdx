@@ -1,0 +1,54 @@
+---
+title: "Building a calm UI"
+date: "2026-02-02"
+excerpt: "A small checklist for interfaces that feel quiet, clear, and confident."
+tags: ["design", "ui"]
+---
+
+<Img 
+  src="/assets/images/blogs/css.webp" 
+  alt="Calm UI design principles" 
+  caption="Building interfaces that feel quiet, clear, and confident"
+/>
+
+## Start with visual rhythm
+
+A calm interface is not empty. It is paced. Keep spacing consistent and let
+sections breathe so the eye knows where to land.
+
+<Callout type="info">
+Choose one strong type scale and commit to consistent spacing. This creates 
+rhythm that guides the eye naturally through the interface.
+</Callout>
+
+- Choose one strong type scale
+- Keep line lengths around 60 to 75 characters
+- Use fewer, larger groups instead of many tiny cards
+
+## Reduce competing accents
+
+Pick one accent color and commit to it. If everything is loud, nothing is.
+
+```css
+:root {
+  --accent: #22d3ee;
+  --surface: #121618;
+  --text: #ffffff;
+}
+```
+
+<Callout type="success">
+Using a single accent throughout your interface creates visual cohesion and 
+reduces cognitive load for users navigating your product.
+</Callout>
+
+> The easiest way to make a UI feel calm is to remove one layer of noise.
+
+## Ship the smallest version
+
+Try to remove one element before you add a new one. Every pixel has a job.
+
+<Callout type="warning">
+Watch out for "feature creep" during design. Ask: Does this element serve the user's goal, 
+or does it serve my ego?
+</Callout>

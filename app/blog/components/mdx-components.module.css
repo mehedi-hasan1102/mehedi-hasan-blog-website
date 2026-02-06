@@ -1,0 +1,124 @@
+.callout {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  gap: 1rem;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: rgba(34, 211, 238, 0.1);
+  border-left-color: #22d3ee;
+}
+
+.callout-warning {
+  background: rgba(249, 115, 22, 0.1);
+  border-left-color: #f97316;
+}
+
+.callout-success {
+  background: rgba(34, 197, 94, 0.1);
+  border-left-color: #22c55e;
+}
+
+.callout-error {
+  background: rgba(239, 68, 68, 0.1);
+  border-left-color: #ef4444;
+}
+
+.calloutIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.calloutContent {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.calloutContent p {
+  margin: 0;
+}
+
+.calloutContent p + p {
+  margin-top: 0.5rem;
+}
+
+.imageFigure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.codeBlockWrapper {
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codeBlockTitle {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codeBlock {
+  background: #0f1416;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.codeBlock code {
+  font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  color: #a1a1a1;
+}
+
+.prose {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.prose :first-child {
+  margin-top: 0;
+}
+
+.prose :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .callout {
+    padding: 1rem;
+  }
+
+  .codeBlockWrapper {
+    margin: 1rem 0;
+  }
+
+  .codeBlock {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+}
